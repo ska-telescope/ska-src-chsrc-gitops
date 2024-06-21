@@ -1,0 +1,6 @@
+controller:
+  ingressClassResource:
+    name: ingress-nginx
+    enabled: true
+    default: false
+  ingressClass: ingress-nginx
