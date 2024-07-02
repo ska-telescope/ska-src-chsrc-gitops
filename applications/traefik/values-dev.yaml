@@ -1,0 +1,3 @@
+ingressClass:
+  enabled: true
+  isDefaultClass: flase
