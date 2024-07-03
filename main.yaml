@@ -11,7 +11,7 @@ metadata:
 spec:
   source:
     path: applications
-    repoURL: 'https://gitlab.epfl.ch/skach/argocd.git'
+    repoURL: 'https://gitlab.com/ska-telescope/src/ska-chsrc-gitops.git'
     targetRevision: main
   destination:
     namespace: argocd
