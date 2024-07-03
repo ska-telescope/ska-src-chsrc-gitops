@@ -1,0 +1,9 @@
+---
+text: "Hello SKACH"
+service:
+  main:
+    type: LoadBalancer
+    ports:
+      http:
+        port: 80
+        targetPort: 5678
