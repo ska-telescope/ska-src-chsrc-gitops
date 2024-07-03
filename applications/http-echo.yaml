@@ -18,7 +18,7 @@ spec:
   # An alternative option would be to use an umbrella chart with the target helm chart as a dependency:
   # https://github.com/argoproj/argocd-example-apps/tree/master/helm-dependency
   - repoURL: https://gitlab.epfl.ch/skach/argocd.git
-    targetRevision: main
+    targetRevision: pablodev
     ref: argorepo
   destination:
     server: https://kubernetes.default.svc
