@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: echo.dev.skach.org
+  namespace: http-echo
+spec:
+  dnsNames:
+    - echo.dev.skach.org
+  secretName: echo.dev.skach.org
+  issuerRef:
+    name: letsencrypt-traefik-issuer
+    kind: ClusterIssuer
