@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: certificates
+  namespace: argocd
+spec:
+  project: default
+  source:
+    path: applications/certificates
+    repoURL: https://gitlab.com/ska-telescope/src/ska-chsrc-gitops.git
+    targetRevision: choc-15-cert-manager
+  destination:
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
