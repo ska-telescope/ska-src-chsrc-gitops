@@ -9,10 +9,11 @@ spec:
   - repoURL: https://gitlab.com/ska-telescope/src/ska-chsrc-gitops.git
     targetRevision: main
     ref: argorepo
+    path: applications/vault
     directory:
       recurse: false
-      include:
-      - applications/vault/harbor-vault-sa.yaml
+      exclude: 'values.yaml'
+      include: '*.yaml'
   - repoURL: https://helm.releases.hashicorp.com
     chart: vault
     targetRevision: 0.28.0
