@@ -1,9 +1,17 @@
 ---
 text: "Hello SKACH"
-service:
+ingress:
   main:
-    type: LoadBalancer
-    ports:
-      http:
-        port: 443
-        targetPort: 5678
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: traefik
+      traefik.ingress.kubernetes.io/router.entrypoints: web, websecure
+    hosts:
+      - host: echo.dev.skach.org
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+    tls:
+      - hosts:
+          - echo.dev.skach.org
+        secretName: echo.dev.skach.org
