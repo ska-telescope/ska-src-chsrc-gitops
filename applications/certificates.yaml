@@ -8,7 +8,7 @@ spec:
   source:
     path: applications/certificates
     repoURL: https://gitlab.com/ska-telescope/src/ska-chsrc-gitops.git
-    targetRevision: choc-15-cert-manager
+    targetRevision: main
   destination:
     server: https://kubernetes.default.svc
   syncPolicy:

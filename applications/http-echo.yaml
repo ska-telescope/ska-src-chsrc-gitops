@@ -20,6 +20,9 @@ spec:
   - repoURL: https://gitlab.com/ska-telescope/src/ska-chsrc-gitops.git
     targetRevision: main
     ref: argorepo
+    path: applications/http-echo
+    directory:
+      exclude: 'values.yaml'
   destination:
     server: https://kubernetes.default.svc
     namespace: http-echo
