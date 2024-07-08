@@ -7,7 +7,7 @@ spec:
   project: default
   sources:
   - repoURL: https://gitlab.com/ska-telescope/src/ska-chsrc-gitops.git
-    targetRevision: main
+    targetRevision: choc-48-add-vault
     path: applications/vault
     directory:
       recurse: false
