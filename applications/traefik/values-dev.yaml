@@ -1,3 +1,11 @@
 ingressClass:
   enabled: true
   isDefaultClass: flase
+
+providers:
+  kubernetesIngress:
+    publishedService:
+      # Needed for Argo to be able to check the ingress health (https://argo-cd.readthedocs.io/en/stable/operator-manual/health/#ingress)
+      # For this setting to work, Traefik needs to be configured accordingly. See:
+      # https://github.com/argoproj/argo-cd/issues/968
+      enabled: true
