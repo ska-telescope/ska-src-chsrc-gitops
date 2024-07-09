@@ -1,0 +1,27 @@
+# This CR and CRB is needed because the CRB of the secrets is not enough for external-dns.
+# These permissions are based off the docs at https://github.com/kubernetes-sigs/external-dns/blob/226dbb931f7a2019810b3703aec096c4ea4f40ea/docs/tutorials/gandi.md#manifest-for-clusters-with-rbac-enabled
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: skach-external-dns
+rules:
+- apiGroups: [""]
+  resources: ["services","endpoints","pods","nodes"]
+  verbs: ["get","watch","list"]
+- apiGroups: ["extensions","networking","networking.k8s.io"]
+  resources: ["ingresses"]
+  verbs: ["get","watch","list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: skach-external-dns
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: skach-external-dns
+subjects:
+- kind: ServiceAccount
+  name: skach-external-dns
+  namespace: skach-external-dns
