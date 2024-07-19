@@ -1,0 +1,31 @@
+image:
+  name: ubuntu:latest
+  entrypoint: [ "/bin/sh", "-c" ]
+
+variables:
+  KUBECONFORM: "https://github.com/yannh/kubeconform/releases/download/v0.6.6/kubeconform-linux-amd64.tar.gz"
+  ARGOCD_CRDS: "https://raw.githubusercontent.com/argoproj/argo-cd/master/manifests/crds"
+
+stages:
+  - kubeconform
+
+kubeconform:
+  stage: kubeconform
+
+  before_script:
+    - apt-get -y update && apt-get -y install curl
+    - curl -L -O $KUBECONFORM && tar xf kubeconform-linux-amd64.tar.gz
+    - mkdir -p .schemas/argocd-crd
+    - for crd in `curl -s https://api.github.com/repos/argoproj/argo-cd/contents/manifests/crds | grep 'download_url' | cut -d '"' -f 4`; do curl -L -o .schemas/argocd-crd/$(basename $crd) $crd; done
+
+  script:
+    - >
+      ./kubeconform
+      -summary
+      -ignore-filename-pattern ^[.]
+      -ignore-missing-schemas
+      -schema-location default
+      -schema-location './.schemas/argocd-crd/{{ .ResourceKind }}{{ .KindSuffix }}.yaml'
+      -schema-location https://raw.githubusercontent.com/kubernetes/kubernetes/v1.29.0/api/openapi-spec/v3/apis__apiextensions.k8s.io__v1_openapi.json
+      -kubernetes-version 1.29.0 .
+
