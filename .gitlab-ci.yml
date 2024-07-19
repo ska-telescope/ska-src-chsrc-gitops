@@ -25,7 +25,7 @@ kubeconform:
     - |
       ./kubeconform \
       -summary \
-      -ignore-filename-pattern "^[.]" \
+      -ignore-filename-pattern "^[.]|values.yaml$|values-dev.yaml$" \
       -ignore-missing-schemas \
       -schema-location default \
       -schema-location './.schemas/argocd-crd/{{ .ResourceKind }}{{ .KindSuffix }}.yaml' \
