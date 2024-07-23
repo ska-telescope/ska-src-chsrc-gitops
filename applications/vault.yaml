@@ -6,13 +6,6 @@ metadata:
 spec:
   project: default
   sources:
-  - repoURL: https://gitlab.com/ska-telescope/src/ska-chsrc-gitops.git
-    targetRevision: choc-48-add-vault
-    path: applications/vault
-    directory:
-      recurse: false
-      exclude: 'values.yaml'
-      include: '*.yaml'
   - repoURL: https://helm.releases.hashicorp.com
     chart: vault
     targetRevision: 0.28.0
@@ -27,6 +20,9 @@ spec:
   - repoURL: https://gitlab.com/ska-telescope/src/ska-chsrc-gitops.git
     targetRevision: main
     ref: argorepo
+    path: applications/vault
+    directory:
+      exclude: 'values.yaml'
   destination:
     server: https://kubernetes.default.svc
     namespace: vault
