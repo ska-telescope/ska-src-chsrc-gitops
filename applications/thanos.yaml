@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   sources:
-  - repoURL: oci://registry-1.docker.io/bitnamicharts/thanos
+  - repoURL: registry-1.docker.io/bitnamicharts
     chart: thanos
     targetRevision: 15.7.17
     helm:
