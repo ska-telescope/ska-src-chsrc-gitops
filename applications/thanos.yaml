@@ -6,21 +6,21 @@ metadata:
 spec:
   project: default
   sources:
-  - repoURL: https://prometheus-community.github.io/helm-charts
-    chart: kube-prometheus-stack
+  - repoURL: oci://registry-1.docker.io/bitnamicharts/thanos
+    chart: thanos
     targetRevision: 61.7.1
     helm:
       valueFiles:
-      - '$argorepo/applications/kube-prometheus-stack/values.yaml'
+      - '$argorepo/applications/thanos/values.yaml'
   # We need to define this repo again using the multiple sources pattern.
   # This is necessary when using a values.yaml and a Helm chart that live on different repositories.
   # https://argo-cd.readthedocs.io/en/latest/user-guide/multiple_sources/#helm-value-files-from-external-git-repository
   # An alternative option would be to use an umbrella chart with the target helm chart as a dependency:
   # https://github.com/argoproj/argocd-example-apps/tree/master/helm-dependency
   - repoURL: https://gitlab.com/ska-telescope/src/ska-chsrc-gitops.git
-    targetRevision: choc-55-thanos
+    targetRevision: choc-33-thanos
     ref: argorepo
-    path: applications/kube-prometheus-stack
+    path: applications/thanos
     directory:
       exclude: 'values.yaml'
   destination:
@@ -32,4 +32,4 @@ spec:
       selfHeal: true
     syncOptions:
     - CreateNamespace=true
-
+    
