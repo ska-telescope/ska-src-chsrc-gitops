@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: xrootd
+  namespace: argocd
+spec:
+  project: default
+  sources:
+  - repoURL: https://gitlab.com/ska-telescope/src/ska-chsrc-gitops.git
+    targetRevision: choc-19-xrootd
+    ref: argorepo
+    path: applications/xrootd
+    directory:
+      exclude: 'values.yaml'
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: xrootd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
