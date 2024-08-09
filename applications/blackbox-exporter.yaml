@@ -11,7 +11,7 @@ spec:
     targetRevision: 9.0.0
     helm:
       valueFiles:
-      - '$argorepo/applications/prom-graf-stack/values.yaml'
+      - '$argorepo/applications/blackbox-exporter/values.yaml'
   # We need to define this repo again using the multiple sources pattern.
   # This is necessary when using a values.yaml and a Helm chart that live on different repositories.
   # https://argo-cd.readthedocs.io/en/latest/user-guide/multiple_sources/#helm-value-files-from-external-git-repository
