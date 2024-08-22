@@ -1,29 +1,20 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: xrdhttp
-  namespace: xrootd
-spec:
-  selector:
-    app: xrootd
-  ports:
-  - name: https
-    protocol: TCP
-    port: 80
-    targetPort: 80
-  type: ClusterIP # No need for the externalIP if we use Ingress
----
-apiVersion: v1
-kind: Service
-metadata:
   name: xrootd
   namespace: xrootd
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: xrootd.dev.skach.org.
 spec:
   selector:
     app: xrootd
   ports:
-  - name: xrootd
+  - name: xrdhttp
+    protocol: TCP
+    port: 443
+    targetPort: 80
+  - name: root
     protocol: TCP
     port: 1094
     targetPort: 1094
-  type: LoadBalancer # xrootd isn't http based, so we can not use Ingress and need a dedicated externalIP
+  type: LoadBalancer
