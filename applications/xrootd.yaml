@@ -7,7 +7,7 @@ spec:
   project: default
   sources:
   - repoURL: https://gitlab.com/ska-telescope/src/ska-chsrc-gitops.git
-    targetRevision: choc-19-xrootd
+    targetRevision: main
     ref: argorepo
     path: applications/xrootd
     directory:
