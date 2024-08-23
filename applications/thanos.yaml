@@ -18,7 +18,7 @@ spec:
   # An alternative option would be to use an umbrella chart with the target helm chart as a dependency:
   # https://github.com/argoproj/argocd-example-apps/tree/master/helm-dependency
   - repoURL: https://gitlab.com/ska-telescope/src/ska-chsrc-gitops.git
-    targetRevision: choc-33-thanos
+    targetRevision: main
     ref: argorepo
     path: applications/thanos
     directory:
