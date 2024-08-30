@@ -1022,7 +1022,7 @@ grafana:
     ##
     # ORIGINAL # tls: []
     tls: 
-      - secretName: grafana-tls
+      - secretName: grafana.dev.skach.org
         hosts:
           - grafana.dev.skach.org
     # - secretName: grafana-general-tls
