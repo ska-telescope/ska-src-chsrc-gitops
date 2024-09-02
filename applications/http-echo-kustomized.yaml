@@ -1,0 +1,34 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: http-echo-kustomized
+  namespace: argocd
+spec:
+  project: default
+  sources:
+  - repoURL: https://haraldkoch.github.io/helm-charts
+    chart: http-echo
+    targetRevision: 0.3.4
+    helm:
+      valueFiles:
+      - '$argorepo/applications/http-echo-kustomized/values.yaml'
+  # We need to define this repo again using the multiple sources pattern.
+  # This is necessary when using a values.yaml and a Helm chart that live on different repositories.
+  # https://argo-cd.readthedocs.io/en/latest/user-guide/multiple_sources/#helm-value-files-from-external-git-repository
+  # An alternative option would be to use an umbrella chart with the target helm chart as a dependency:
+  # https://github.com/argoproj/argocd-example-apps/tree/master/helm-dependency
+  - repoURL: https://gitlab.com/ska-telescope/src/ska-chsrc-gitops.git
+    targetRevision: choc-69-kustomize
+    ref: argorepo
+    path: applications/http-echo-kustomized
+    directory:
+      exclude: 'values.yaml'
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: http-echo-kustomized
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
