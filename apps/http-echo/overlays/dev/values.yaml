@@ -1,0 +1,14 @@
+---
+text: "Hello SKACH dev cluster"
+ingress:
+  main:
+    hosts:
+      # caveat: helm does NOT merge lists/arrays, so we have to specify the whole thing even if only the host changes
+      - host: echo.dev.skach.org
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+    tls:
+      - hosts:
+          - echo.dev.skach.org
+        secretName: echo.dev.skach.org
