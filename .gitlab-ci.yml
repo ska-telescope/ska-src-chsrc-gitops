@@ -8,6 +8,9 @@ variables:
 
 stages:
   - kubeconform
+  - build
+  - deploy
+  - cleanup
 
 kubeconform:
   stage: kubeconform
@@ -25,9 +28,86 @@ kubeconform:
     - |
       ./kubeconform \
       -summary \
-      -ignore-filename-pattern "^[.]|values.yaml$|values-dev.yaml$|-patch.yaml$" \
+      -ignore-filename-pattern "^[.]|values.yaml$|values-dev.yaml$|mkdocs.yml|-patch.yaml$|^public/|^docs/" \
       -ignore-missing-schemas \
       -schema-location default \
       -schema-location './.schemas/argocd-crd/{{ .ResourceKind }}{{ .KindSuffix }}.yaml' \
       -schema-location https://raw.githubusercontent.com/kubernetes/kubernetes/v1.29.0/api/openapi-spec/v3/apis__apiextensions.k8s.io__v1_openapi.json \
       -kubernetes-version 1.29.0 .
+
+# The docs build job translates markdown to static html pages 
+docs:
+  image: python:3.11-alpine
+  stage: build
+#  only:
+#    changes:
+#      - docs/**/*
+  script:
+    - apk add --no-cache git
+    - pip3 install mkdocs mkdocs-material mkdocs-glightbox mkdocs-literate-nav mkdocs-git-revision-date-localized-plugin
+    - mkdocs build --strict -d site
+  artifacts:
+    paths:
+      - site
+
+# Normally GitLab allows only one page per project.
+# However we would like to have live previews for every branch that rebuilds the docs.
+# Workaround:
+# By defining the public dir as a cache, it will be preserved between builds.
+# This ensures that we can deploy more than one page
+# (will need to append the branch name to the gitlab-managed url)
+cache:
+  key: docs
+  paths:
+    - public
+
+# Pages job to deploy to GitLab Pages
+pages:
+  image: python:3.11-alpine
+  stage: deploy
+#  only:
+#    changes:
+#      - docs/**/*
+  script:
+    # public/ will be cached between pipelines/jobs, so copy the site over
+    # to the directory corresponding to the branch name.
+    - mkdir -p public/$CI_COMMIT_REF_SLUG
+    - cp -r site/* public/$CI_COMMIT_REF_SLUG
+    - echo "Deployed pages for $CI_COMMIT_REF_SLUG"
+  artifacts:
+    paths:
+      - public
+#  only:
+#    - main
+
+# Preview the docs in merge requests
+# DISABLED because, unlike for pages, a static site served this way
+# is served in a way that misses the default index.html. Therefore
+# all the links in the docs will be broken (unless one manually appends index.html).
+#docs-preview:
+#  image: python:3.11-alpine
+#  stage: deploy
+#  script:
+#    - ls public
+#  artifacts:
+#    expire_in: 1 day
+#    paths:
+#      - public
+#  environment:
+#    name: review/$CI_COMMIT_REF_NAME
+#    url: https://$CI_PROJECT_ROOT_NAMESPACE.gitlab.io/-/src/$CI_PROJECT_NAME/-/jobs/$CI_JOB_ID/artifacts/public/index.html
+#    on_stop: stop_review  # Stops the review app when the MR is closed or branch deleted
+#  #only:
+#  #  - merge_requests  # Triggers only on MRs
+
+# Clean up the review environment when the branch is deleted or MR is closed
+stop_review:
+  stage: cleanup
+  script:
+    - echo "Stopping the review app"
+  environment:
+    name: review/$CI_COMMIT_REF_NAME
+    action: stop
+  when: manual  # Manually triggers cleanup
+  only:
+    - merge_requests

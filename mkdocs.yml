@@ -1,0 +1,43 @@
+site_name: CHSRC GitOps Documentation
+site_description: CHSRC GitOps Documentation
+site_author: SKA CHSRC Team
+
+nav:
+  - Introduction: index.md
+  - GitOps Procedures:
+    - procedures/gitops/making-changes.md
+    - procedures/gitops/new-app.md
+    - procedures/gitops/delete-app.md
+    - procedures/gitops/app-secrets.md
+  - Service Procedures:
+    - procedures/services/central-monitoring.md
+  - Bootstrapping:
+    - bootstrap/argocd.md
+    - bootstrap/vault.md
+  - Misc:
+    - misc/locked-credentials.md
+  - about.md
+
+theme:
+  name: material
+  language: en
+  features:
+    - navigation.path
+    - navigation.instant
+    - content.code.copy
+    - content.code.select
+    - navigation.indexes
+    - admonition
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - attr_list
+  - md_in_html
+
+plugins:
+  - search
+  - literate-nav
+  - glightbox
+  - git-revision-date-localized
