@@ -3,8 +3,6 @@ kind: Service
 metadata:
   name: xrootd
   namespace: xrootd
-  annotations:
-    external-dns.alpha.kubernetes.io/hostname: xrootd.dev.skach.org.
 spec:
   selector:
     app: xrootd

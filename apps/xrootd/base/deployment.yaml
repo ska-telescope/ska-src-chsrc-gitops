@@ -107,5 +107,5 @@ spec:
         emptyDir: {}
       - name: tls-secrets
         secret:
-          secretName: xrootd.dev.skach.org
+          secretName: xrootd-cert
           defaultMode: 256 # 256 decimal = 0400 octal
