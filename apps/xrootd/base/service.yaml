@@ -1,18 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: xrootd
+  name: xrdhttp
   namespace: xrootd
 spec:
   selector:
     app: xrootd
   ports:
-  - name: xrdhttp
-    protocol: TCP
-    port: 443
-    targetPort: 80
-  - name: root
+  - name: https
     protocol: TCP
     port: 1094
     targetPort: 1094
-  type: LoadBalancer
+  type: ClusterIP # No need for the externalIP if we use Ingress

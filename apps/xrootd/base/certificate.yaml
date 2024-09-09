@@ -4,6 +4,7 @@ metadata:
   name: xrootd-cert
   namespace: xrootd
 spec:
+  secretName: xrootd-cert
   issuerRef:
     name: letsencrypt-http01
     kind: ClusterIssuer

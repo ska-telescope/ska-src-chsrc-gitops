@@ -69,8 +69,7 @@ spec:
         command: ["/usr/bin/xrootd"]
         args: ["-c", "/etc/xrootd/xrootd-http.cfg", "-k", "fifo", "-s", "/run/xrootd/xrootd-http.pid", "-n", "http"]
         ports:
-        - containerPort: 80   # HTTPS (XrdHTTP) port
-        - containerPort: 1094 # xrootd port
+        - containerPort: 1094 # http and xrootd port
         securityContext:
           runAsUser: 1000        # Run as non-root user
           runAsGroup: 1000       # Run as non-root group

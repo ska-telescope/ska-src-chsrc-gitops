@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: xrootd-ingress
+  namespace: xrootd
+spec:
+  ingressClassName: nginx
+  rules:
+  # overlay will add a host: key to the list item below
+  - http:
+      paths:
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: xrdhttp
+            port:
+              number: 1094
+  tls:
+  - hosts: [] # overlay will add a dns name
+    secretName: xrootd-cert
