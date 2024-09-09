@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: docs-redirect
+  namespace: cluster-resources
+  annotations:
+    nginx.ingress.kubernetes.io/permanent-redirect: "https://ska-telescope.gitlab.io/src/ska-chsrc-gitops/dev"
+spec:
+  rules:
+  - host: docs.dev.skach.org
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: dummy-service  # You can use any dummy service here
+            port:
+              number: 80
