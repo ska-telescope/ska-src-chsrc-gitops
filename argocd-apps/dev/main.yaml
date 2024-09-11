@@ -16,7 +16,7 @@ spec:
   # excluding itself (main.yaml).
   source:
     path: argocd-apps/dev
-    repoURL: 'https://gitlab.com/ska-telescope/src/ska-chsrc-gitops.git'
+    repoURL: 'https://gitlab.com/ska-telescope/src/deployments/chsrc/ska-src-chsrc-services-cd.git'
     targetRevision: dev
     directory:
       exclude: 'main.yaml'

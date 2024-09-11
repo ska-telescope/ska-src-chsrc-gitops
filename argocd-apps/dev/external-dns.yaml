@@ -10,7 +10,7 @@ spec:
   # WARNING: do NOT set sources.directory when using kustomize, otherwise
   # ArgoCD will interpret all files as raw kubernetes manifests instead of kustomize resources
   sources:
-  - repoURL: https://gitlab.com/ska-telescope/src/ska-chsrc-gitops.git
+  - repoURL: https://gitlab.com/ska-telescope/src/deployments/chsrc/ska-src-chsrc-services-cd.git
     targetRevision: dev
     ref: argorepo
     path: apps/external-dns/overlays/dev
