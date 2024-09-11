@@ -4,7 +4,7 @@ metadata:
   name: docs-redirect
   namespace: cluster-resources
   annotations:
-    nginx.ingress.kubernetes.io/permanent-redirect: "https://ska-telescope.gitlab.io/src/ska-chsrc-gitops/dev"
+    nginx.ingress.kubernetes.io/permanent-redirect: "https://ska-telescope.gitlab.io/src/deployments/chsrc/ska-src-chsrc-services-cd/dev/"
 spec:
   rules:
   - host: docs.dev.skach.org
