@@ -8,12 +8,13 @@ metadata:
 spec:
   ingressClassName: nginx
   rules: # This list will be fully replaced in each overlay
-  - http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: dummy-service  # You can use any dummy service here
-            port:
-              number: 80
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: docs-redirect
+  namespace: cluster-resources
+spec:
+  issuerRef:
+    name: letsencrypt-http01
+    kind: ClusterIssuer

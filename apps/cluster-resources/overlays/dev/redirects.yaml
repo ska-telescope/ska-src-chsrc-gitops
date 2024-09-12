@@ -17,3 +17,13 @@ spec:
             name: dummy-service  # You can use any dummy service here
             port:
               number: 80
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: docs-redirect
+  namespace: cluster-resources
+spec:
+  dnsNames:
+    - docs.dev.skach.org
+  secretName: docs.dev.skach.org
