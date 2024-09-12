@@ -15,6 +15,7 @@ metadata:
   name: docs-redirect
   namespace: cluster-resources
 spec:
+  secretName: docs-redirect
   issuerRef:
     name: letsencrypt-http01
     kind: ClusterIssuer

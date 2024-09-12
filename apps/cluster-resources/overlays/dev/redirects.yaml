@@ -6,6 +6,10 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/permanent-redirect: "https://ska-telescope.gitlab.io/src/deployments/chsrc/ska-src-chsrc-services-cd/dev/"
 spec:
+  tls:
+  - hosts:
+    - docs.dev.skach.org
+    secretName: docs-redirect
   rules:
   - host: docs.dev.skach.org
     http:
@@ -26,4 +30,4 @@ metadata:
 spec:
   dnsNames:
     - docs.dev.skach.org
-  secretName: docs.dev.skach.org
+  secretName: docs-redirect
