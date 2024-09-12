@@ -29,10 +29,11 @@ More specifically, the workflow is as follows.
 
 ### Workflow
 
-!!! Warn If the service changes will have a visible impact on other users (either end-users, or
-         services operators that depend on the service undergoing changes), one should announce the planned
-         change or intervention to end users with sufficient time to adapt for this change. This is obviously
-         less important during prototyping, but keep in mind the impact of changes on the network.
+!!! Warn
+    If the service changes will have a visible impact on other users (either end-users, or
+    services operators that depend on the service undergoing changes), one should announce the planned
+    change or intervention to end users with sufficient time to adapt for this change. This is obviously
+    less important during prototyping, but keep in mind the impact of changes on the network.
 
 **On the dev cluster** Create a feature branch, and push the branch (even if there are no new
 commits). Try to give this branch name a descriptive name, including the related task ticket if
@@ -78,8 +79,9 @@ rollbacks easy in an isolated fashion (i.e. rolling back one feature = rolling b
 Once merged into the development branch, it is recommended to keep the new change for a week or two
 in order to detect any unexpected behaviours or bugs.
 
-!!! Tip If the changes have an impact on end-users, there might be a chance for end-users to
-        evaluate on the development deployment.
+!!! Tip
+    If the changes have an impact on end-users, there might be a chance for end-users to
+    evaluate on the development deployment.
 
 ### Merging dev to prod
 
