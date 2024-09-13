@@ -35,20 +35,26 @@ Applications will have a directory structure roughly resembling the following:
         └── app1.yaml
 ```
 
-This would represent an app, `app1`, that's deployed across two clusters/environments (dev and
-prod), and which leverages Kustomize to minimise duplication of resources.
+!!! Tip
+    The `argocd-apps` directory contains ArgoCD-specific resources, while the `apps` directory
+    contains mostly Kubernetes (ArgoCD-agnostic) resources. This clean split enables reusability of
+    resources.
 
-The `apps/app1/base` directory would contain the resources that all clusters/environments have in
-common, while in the overlays we would only specify patches for environment-specific values. The
-`argocd-apps` directory contains ArgoCD specific resources, while the `apps` directory contains
-mostly ArgoCD-agnostic Kubernetes resources. This clean split enables reusability of resources.
+This would represent an app, `app1`, that's deployed across two clusters/environments (dev and
+prod), and which leverages [Kustomize](https://kustomize.io/) to [minimise
+duplication](https://speakerdeck.com/spesnova/introduction-to-kustomize?slide=7) of resources.
+
+The `apps/app1/base` directory contains the resources that all clusters/environments have in common,
+while in the overlays (dev and prod) only specify patches for environment-specific values.
 
 As mentioned, a **good starting point** would be to just **take an existing app as template** and
 just changing the relevant properties.
 
-The values to change in the template should be evident or self-explanatory. but just in case, here's
-a checklist of properties that you will probably want to modify when basing a new application off a
-template:
+## Details
+
+The values to change in the existing apps should be evident or self-explanatory. But just in case,
+here's a checklist of properties that you will probably want to modify when adding a new app, or
+basing a new application off a template:
 
 * The `argocd-apps/<environment>/app1.yaml` file name should match the application's (short) name.
   * For the same file, the ArgoCD `Application`'s `metadata.name` ideally will match the name of the
@@ -93,14 +99,26 @@ Therefore, please define the following if needed:
     * Prefer strategic merge patches or JSON patches based on common sense about what is simpler,
       according to each case.
 
+## Build and Preview Overlays
+
+In order to check how an app's resources are rendered for a specific overlay, one can easily check
+locally as follows.
+
+```bash
+kustomize build --load-restrictor LoadRestrictionsNone --enable-helm apps/app1/overlays/dev
+```
+
+This will output all of the resources as ArgoCD would apply them. Doing this check is recommended
+during development before pushing changes, and during debugging.
+
 ## Secrets 🪅
 
 See the [Secrets Management](app-secrets.md) doc.
 
 ## Branching 🌳
 
-See [Making Changes](making-changes.md) for how to deal with feature branches and MRs. Adding a new app is just a
-special case for making a change to the infrastructure.
+See [Making Changes](making-changes.md) for how to deal with feature branches and MRs. Adding a new
+app is just a special case for making a change to the infrastructure.
 
 ## Locked Credentials 🗝️
 
