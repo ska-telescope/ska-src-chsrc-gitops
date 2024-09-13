@@ -99,7 +99,7 @@ See the [Secrets Management](app-secrets.md) doc.
 
 ## Branching 🌳
 
-See [Making Changes] for how to deal with feature branches and MRs. Adding a new app is just a
+See [Making Changes](making-changes.md) for how to deal with feature branches and MRs. Adding a new app is just a
 special case for making a change to the infrastructure.
 
 ## Locked Credentials 🗝️
