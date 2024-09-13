@@ -39,9 +39,11 @@ kubeconform:
 docs:
   image: python:3.11-alpine
   stage: build
-#  only:
-#    changes:
-#      - docs/**/*
+  only:
+    changes:
+      - docs/**/*
+      - mkdocs.yml
+      - .gitlab-ci.yml
   script:
     - apk add --no-cache git
     - pip3 install mkdocs mkdocs-material mkdocs-glightbox mkdocs-literate-nav mkdocs-git-revision-date-localized-plugin
@@ -65,9 +67,11 @@ cache:
 pages:
   image: python:3.11-alpine
   stage: deploy
-#  only:
-#    changes:
-#      - docs/**/*
+  only:
+    changes:
+      - docs/**/*
+      - mkdocs.yml
+      - .gitlab-ci.yml
   script:
     # public/ will be cached between pipelines/jobs, so copy the site over
     # to the directory corresponding to the branch name.
