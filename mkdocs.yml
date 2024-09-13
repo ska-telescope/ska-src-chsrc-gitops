@@ -2,6 +2,9 @@ site_name: CHSRC GitOps Documentation
 site_description: CHSRC GitOps Documentation
 site_author: SKA CHSRC Team
 
+repo_url: https://gitlab.com/ska-telescope/src/deployments/chsrc/ska-src-chsrc-services-cd
+repo_name: ska-src-chsrc-services-cd
+
 nav:
   - Introduction: index.md
   - GitOps Procedures:
@@ -16,6 +19,9 @@ nav:
     - bootstrap/vault.md
   - Misc:
     - misc/locked-credentials.md
+  - Contributing:
+    - contributing/repo.md
+    - contributing/docs.md
   - about.md
 
 theme:
