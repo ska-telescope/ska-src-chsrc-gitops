@@ -11,7 +11,7 @@ spec:
   # ArgoCD will interpret all files as raw kubernetes manifests instead of kustomize resources
   sources:
   - repoURL: https://gitlab.com/ska-telescope/src/deployments/chsrc/ska-src-chsrc-services-cd.git
-    targetRevision: choc-0-xrootd-fix
+    targetRevision: dev
     ref: argorepo
     path: apps/xrootd/overlays/dev
   destination:
