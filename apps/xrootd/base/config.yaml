@@ -27,6 +27,9 @@ data:
     xrd.tlsca certdir /etc/grid-security/certificates refresh 8h
     xrootd.tls capable all -data
   
+    # Enable checksum support
+    xrootd.chksum adler32
+
     # Config tokens
     xrootd.seclib libXrdSec.so
     sec.level all compatible
