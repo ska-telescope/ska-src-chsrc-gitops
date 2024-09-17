@@ -8,7 +8,7 @@ resources:
 # Patching of regular resources
 patches:
 - path: certificate.yaml
-- path: ingress.yaml # mostly based on lists, so better to use jsonpatch
+- path: ingress-patch.yaml # mostly based on lists, so better to use jsonpatch
   target:
     group: networking.k8s.io
     version: v1
