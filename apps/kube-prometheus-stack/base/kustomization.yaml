@@ -3,5 +3,4 @@ kind: Kustomization
 namespace: http-echo
 
 resources:
-- certificate.yaml
 - secrets.yaml
