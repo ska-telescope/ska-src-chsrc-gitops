@@ -1008,7 +1008,7 @@ grafana:
     ##
     # hosts:
     #   - grafana.domain.com
-    # ORIGINAL #  hosts: []
+    hosts: []
     # moved to dev
     #hosts: 
     #    - grafana.dev.skach.org
@@ -1021,7 +1021,7 @@ grafana:
     ## TLS configuration for grafana Ingress
     ## Secret must be manually created in the namespace
     ##
-    # ORIGINAL # tls: []
+    tls: []
     # moved to dev
     #tls: 
     #  - secretName: grafana.dev.skach.org
