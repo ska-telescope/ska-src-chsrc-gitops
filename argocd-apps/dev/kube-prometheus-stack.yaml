@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kube-prometheus-stack
+  namespace: argocd
+spec:
+  project: default
+  # The sources: and namespace: sections below are the most important bits.
+  # This points to the app's corresponding repo, branch, and kustomize overlay path.
+  # WARNING: do NOT set sources.directory when using kustomize, otherwise
+  # ArgoCD will interpret all files as raw kubernetes manifests instead of kustomize resources
+  sources:
+  #- repoURL: https://prometheus-community.github.io/helm-charts
+  #  chart: kube-prometheus-stack
+  #  targetRevision: 61.7.2
+  #  helm:
+  #    valueFiles:
+  #    - '$argorepo/applications/kube-prometheus-stack/values.yaml'
+  - repoURL: https://gitlab.com/ska-telescope/src/deployments/chsrc/ska-src-chsrc-services-cd.git
+    targetRevision: dev
+    ref: argorepo
+    path: apps/kube-prometheus-stack/overlays/dev
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: monitoring
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true #otherwise the metadata becomes too large
