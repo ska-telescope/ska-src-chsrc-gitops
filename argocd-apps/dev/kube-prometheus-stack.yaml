@@ -13,7 +13,7 @@ spec:
   - repoURL: https://gitlab.com/ska-telescope/src/deployments/chsrc/ska-src-chsrc-services-cd.git
     targetRevision: choc-69-monitoring-stack-base-dev
     ref: argorepo
-    path: apps/blackbox-exporter/overlays/dev
+    path: apps/kube-prometheus-stack/overlays/dev
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
