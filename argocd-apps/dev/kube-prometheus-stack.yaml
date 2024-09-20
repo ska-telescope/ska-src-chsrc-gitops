@@ -5,6 +5,7 @@ metadata:
   namespace: argocd
 spec:
   project: default
+<<<<<<< HEAD
   # The sources: and namespace: sections below are the most important bits.
   # This points to the app's corresponding repo, branch, and kustomize overlay path.
   # WARNING: do NOT set sources.directory when using kustomize, otherwise
