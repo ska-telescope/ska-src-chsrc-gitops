@@ -1986,10 +1986,10 @@ compactor:
   ##
   # Raw data
   # ORIGINAL # retentionResolutionRaw: 30d
-  retentionResolutionRaw: 7d
+  retentionResolutionRaw: 4d
   # Sampling down to 5m data
   # ORIGINAL # retentionResolution5m: 30d
-  retentionResolution5m: 14d
+  retentionResolution5m: 7d
   # Sampling down to 1h data
   # ORIGINAL # retentionResolution1h: 10y
   retentionResolution1h: 90d
