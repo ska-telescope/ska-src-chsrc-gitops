@@ -16,3 +16,9 @@ helmCharts:
     # overlay values file that will override the base
     additionalValuesFiles:
       - values.yaml
+
+# Patching of regular resources
+patches:
+- path: dashboards.yaml
+- path: dashboards2.yaml
+- path: grafana.dev.skach.org.yaml
