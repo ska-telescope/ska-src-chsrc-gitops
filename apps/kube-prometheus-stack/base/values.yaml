@@ -3834,7 +3834,7 @@ prometheus:
     ## Using tmpfs volume
     ##
     #  emptyDir:
-    #    medium: Memorykkk
+    #    medium: Memory
 
     # Additional volumes on the output StatefulSet definition.
     volumes: []
