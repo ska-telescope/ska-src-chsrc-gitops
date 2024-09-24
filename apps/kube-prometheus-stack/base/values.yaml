@@ -1009,7 +1009,7 @@ grafana:
     # hosts:
     #   - grafana.domain.com
     # ORIGINAL #  hosts: []
-    # moved to dev
+    # moved to overlay
     #hosts: 
     #    - grafana.dev.skach.org
 
@@ -1022,7 +1022,7 @@ grafana:
     ## Secret must be manually created in the namespace
     ##
     # ORIGINAL # tls: []
-    # moved to dev
+    # moved to overlay
     #tls: 
     #  - secretName: grafana.dev.skach.org
     #    hosts:
@@ -1060,7 +1060,7 @@ grafana:
       url: https://grafana.net
     server:
       domain: "{{ if (and .Values.ingress.enabled .Values.ingress.hosts) }}{{ .Values.ingress.hosts | first }}{{ else }}''{{ end }}"
-      # moved to dev
+      # moved to overlay
       #root_url: https://grafana.dev.skach.org
       serve_from_sub_path: true
     security:
@@ -3834,7 +3834,7 @@ prometheus:
     ## Using tmpfs volume
     ##
     #  emptyDir:
-    #    medium: Memory
+    #    medium: Memorykkk
 
     # Additional volumes on the output StatefulSet definition.
     volumes: []
