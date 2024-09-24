@@ -10,12 +10,6 @@ spec:
   # WARNING: do NOT set sources.directory when using kustomize, otherwise
   # ArgoCD will interpret all files as raw kubernetes manifests instead of kustomize resources
   sources:
-  #- repoURL: https://prometheus-community.github.io/helm-charts
-  #  chart: kube-prometheus-stack
-  #  targetRevision: 61.7.2
-  #  helm:
-  #    valueFiles:
-  #    - '$argorepo/applications/kube-prometheus-stack/values.yaml'
   - repoURL: https://gitlab.com/ska-telescope/src/deployments/chsrc/ska-src-chsrc-services-cd.git
     targetRevision: dev
     ref: argorepo
