@@ -1009,8 +1009,9 @@ grafana:
     # hosts:
     #   - grafana.domain.com
     # ORIGINAL #  hosts: []
-    hosts: 
-        - grafana.dev.skach.org
+    # moved to overlay
+    #hosts: 
+    #    - grafana.dev.skach.org
 
     ## Path for grafana ingress
     path: /
@@ -1021,13 +1022,11 @@ grafana:
     ## Secret must be manually created in the namespace
     ##
     # ORIGINAL # tls: []
-    tls: 
-      - secretName: grafana.dev.skach.org
-        hosts:
-          - grafana.dev.skach.org
-    # - secretName: grafana-general-tls
-    #   hosts:
-    #   - grafana.example.com
+    # moved to overlay
+    #tls: 
+    #  - secretName: grafana.dev.skach.org
+    #    hosts:
+    #      - grafana.dev.skach.org
 
   # # To make Grafana persistent (Using Statefulset)
   # #
@@ -1061,7 +1060,8 @@ grafana:
       url: https://grafana.net
     server:
       domain: "{{ if (and .Values.ingress.enabled .Values.ingress.hosts) }}{{ .Values.ingress.hosts | first }}{{ else }}''{{ end }}"
-      root_url: https://grafana.dev.skach.org
+      # moved to overlay
+      #root_url: https://grafana.dev.skach.org
       serve_from_sub_path: true
     security:
       disable_initial_admin_creation: true
