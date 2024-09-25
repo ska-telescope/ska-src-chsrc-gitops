@@ -9,7 +9,7 @@ spec:
   - repoURL: https://gitlab.com/ska-telescope/src/deployments/chsrc/ska-src-chsrc-services-cd.git
     targetRevision: choc-125-kustomize-overlay-thanos
     ref: argorepo
-    path: applications/thanos
+    path: apps/thanos/overlays/dev
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
