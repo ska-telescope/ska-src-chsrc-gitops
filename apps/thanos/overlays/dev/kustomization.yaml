@@ -8,7 +8,7 @@ resources:
 # Helm chart definition with values overlay
 helmCharts:
   - name: thanos
-    repo: registry-1.docker.io/bitnamicharts
+    repo: https://charts.bitnami.com/bitnami
     version: 15.7.25
     namespace: monitoring
     releaseName: thanos
