@@ -9,7 +9,7 @@ resources:
 helmCharts:
   - name: thanos
     repo: registry-1.docker.io/bitnamicharts
-    version: 61.7.2
+    version: 15.7.25
     namespace: monitoring
     releaseName: thanos
     # base values file
