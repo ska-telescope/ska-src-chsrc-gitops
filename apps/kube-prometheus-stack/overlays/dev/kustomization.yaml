@@ -4,9 +4,9 @@ namespace: monitoring
 
 resources:
 - ../../base
+- grafana.dev.skach.org.yaml
 - dashboards.yaml
 - dashboards2.yaml
-- grafana.dev.skach.org.yaml
 
 # Helm chart definition with values overlay
 helmCharts:
@@ -20,3 +20,4 @@ helmCharts:
     # overlay values file that will override the base
     additionalValuesFiles:
       - values.yaml
+      - targets.yaml
