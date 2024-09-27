@@ -19,3 +19,6 @@ helmCharts:
   - values.yaml
   valuesInline:
     fullnameOverride: harbor
+
+patches:
+  - path: remove-database-secret.yaml
