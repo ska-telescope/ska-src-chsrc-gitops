@@ -7,7 +7,7 @@ spec:
   project: default
   sources:
   - repoURL: https://gitlab.com/ska-telescope/src/deployments/chsrc/ska-src-chsrc-services-cd.git
-    targetRevision: choc-125-kustomize-overlay-thanos
+    targetRevision: dev
     ref: argorepo
     path: apps/thanos/overlays/dev
   destination:
