@@ -11,7 +11,7 @@ spec:
   # ArgoCD will interpret all files as raw kubernetes manifests instead of kustomize resources
   sources:
   - repoURL: https://gitlab.com/ska-telescope/src/deployments/chsrc/ska-src-chsrc-services-cd.git
-    targetRevision: choc-69-monitoring-stack-base-dev
+    targetRevision: dev
     ref: argorepo
     path: apps/blackbox-exporter/overlays/dev
   destination:
