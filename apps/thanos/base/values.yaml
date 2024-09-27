@@ -1985,14 +1985,15 @@ compactor:
   ## @param compactor.retentionResolution1h Resolution and Retention flag
   ##
   # Raw data
+  # moved to overlay
   # ORIGINAL # retentionResolutionRaw: 30d
-  retentionResolutionRaw: 1d
+  # retentionResolutionRaw: 1d
   # Sampling down to 5m data
   # ORIGINAL # retentionResolution5m: 30d
-  retentionResolution5m: 14d
+  # retentionResolution5m: 14d
   # Sampling down to 1h data
   # ORIGINAL # retentionResolution1h: 10y
-  retentionResolution1h: 90d
+  # retentionResolution1h: 90d
   ## @param compactor.consistencyDelay Minimum age of fresh (non-compacted) blocks before they are being processed
   ##
   consistencyDelay: 30m

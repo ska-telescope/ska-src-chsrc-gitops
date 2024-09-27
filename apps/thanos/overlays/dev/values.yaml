@@ -1,12 +1,11 @@
 ---
-grafana:
-  ingress:
-    hosts:
-      - grafana.dev.skach.org
-    tls:
-      - secretName: grafana.dev.skach.org
-        hosts:
-          - grafana.dev.skach.org
-  grafana.ini:
-    server:
-      root_url: https://grafana.dev.skach.org
+compactor:
+  # moved to overlay
+  # ORIGINAL # retentionResolutionRaw: 30d
+  retentionResolutionRaw: 1d
+  # Sampling down to 5m data
+  # ORIGINAL # retentionResolution5m: 30d
+  retentionResolution5m: 14d
+  # Sampling down to 1h data
+  # ORIGINAL # retentionResolution1h: 10y
+  retentionResolution1h: 90d
