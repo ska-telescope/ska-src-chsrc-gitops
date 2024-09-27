@@ -9,9 +9,12 @@ prometheus:
         static_configs:
           - targets:
               - https://spsrc25.iaa.csic.es/  # Target to probe with https.
+            labels:
+              name: 'spsrc25'
+          - targets:
               - https://spsrc26.iaa.csic.es/  # Target to probe with https.
             labels:
-              location: 'ESSRC'
+              name: 'spsrc26'
         relabel_configs:
           - source_labels: [__address__]
             target_label: __param_target
@@ -19,3 +22,5 @@ prometheus:
             target_label: instance
           - target_label: __address__
             replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115  # The blackbox exporter's real hostname:port.
+          - target_label: location
+            replacement: 'ESSRC'
