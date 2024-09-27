@@ -8,5 +8,5 @@ spec:
     - harbor.dev.skach.org
   secretName: harbor.dev.skach.org
   issuerRef:
-    name: letsencrypt-traefik-issuer
+    name: letsencrypt-http01
     kind: ClusterIssuer
