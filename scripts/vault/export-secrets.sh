@@ -9,7 +9,9 @@ secrets=$(vault kv list -format=json ${path} | jq -r '.[]')
 # Export each secret
 for secret in $secrets; do
     echo "Exporting secret: ${secret}"
-    vault kv get -format=json ${path}${secret} > ${secret}_secret.json
+
+    # Extract only the inner "data" field, that's what the import expects
+    vault kv get -format=json ${path}${secret} | jq '.data.data' > ${secret}_secret.json
     
     if [ $? -eq 0 ]; then
         echo "Secret ${secret} successfully exported."
