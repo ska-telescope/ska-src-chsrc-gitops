@@ -10,11 +10,11 @@ prometheus:
           - targets:
               - https://spsrc25.iaa.csic.es/  # Target to probe with https.
             labels:
-              name: 'spsrc25'
+              servicename: 'spsrc25'
           - targets:
               - https://spsrc26.iaa.csic.es/  # Target to probe with https.
             labels:
-              name: 'spsrc26'
+              servicename: 'spsrc26'
         relabel_configs:
           - source_labels: [__address__]
             target_label: __param_target
