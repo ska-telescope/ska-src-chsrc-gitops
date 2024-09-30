@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: CHSRC-blackbox-scrape-config
+  name: chsrc-blackbox-scrape-config
   namespace: monitoring
   labels:
     release: kube-prometheus-stack  # Label for matching
