@@ -18,5 +18,5 @@ helmCharts:
     valuesFile: ../../base/values.yaml
 
 patches:
-  - targets/CHSRC.yaml
-  - targets/ESSRC.yaml
+  - path: targets/CHSRC.yaml
+  - path: targets/ESSRC.yaml
