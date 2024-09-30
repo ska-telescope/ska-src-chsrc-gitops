@@ -8,7 +8,6 @@ resources:
   - dashboards.yaml
   - dashboards2.yaml
 
-# Helm chart definition with values overlay
 helmCharts:
   - name: kube-prometheus-stack
     repo: https://prometheus-community.github.io/helm-charts
@@ -18,7 +17,6 @@ helmCharts:
     # base values file
     valuesFile: ../../base/values.yaml
 
-# Patches for the additional target configurations using strategic merge
-patchesStrategicMerge:
+patches:
   - targets/CHSRC.yaml
   - targets/ESSRC.yaml
