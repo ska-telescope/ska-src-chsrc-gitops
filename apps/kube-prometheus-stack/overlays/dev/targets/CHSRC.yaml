@@ -1,9 +1,9 @@
 apiVersion: monitoring.coreos.com/v1
 kind: Prometheus
 metadata:
-  name: kube-prometheus-stack
+  name: kube-prometheus-stack-prometheus  
   namespace: monitoring
-prometheus:
+spec:
   prometheusSpec:
     additionalScrapeConfigs:
       - job_name: 'blackbox'
