@@ -1,11 +1,14 @@
----
-prometheus:
+apiVersion: monitoring.coreos.com/v1
+kind: Prometheus
+metadata:
+  name: kube-prometheus-stack
+spec:
   prometheusSpec:
     additionalScrapeConfigs:
       - job_name: 'blackbox'
         metrics_path: /probe
         params:
-          module: [http_2xx]  # Look for a HTTP 200 response.
+          module: [http_2xx]
         static_configs:
           - targets:
               - http://skaha.src.skach.org/

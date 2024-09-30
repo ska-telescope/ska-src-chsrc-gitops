@@ -3,10 +3,10 @@ kind: Kustomization
 namespace: monitoring
 
 resources:
-- ../../base
-- grafana.dev.skach.org.yaml
-- dashboards.yaml
-- dashboards2.yaml
+  - ../../base
+  - grafana.dev.skach.org.yaml
+  - dashboards.yaml
+  - dashboards2.yaml
 
 # Helm chart definition with values overlay
 helmCharts:
@@ -17,8 +17,8 @@ helmCharts:
     releaseName: kube-prometheus-stack
     # base values file
     valuesFile: ../../base/values.yaml
-    # overlay values file that will override the base
-    additionalValuesFiles:
-      - values.yaml
-      - targets/CHSRC.yaml
-      - targets/ESSRC.yaml
+
+# Patches for the additional target configurations using strategic merge
+patchesStrategicMerge:
+  - targets/CHSRC.yaml
+  - targets/ESSRC.yaml
