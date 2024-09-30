@@ -3,7 +3,7 @@ kind: Prometheus
 metadata:
   name: kube-prometheus-stack
   namespace: monitoring
-spec:
+prometheus:
   prometheusSpec:
     additionalScrapeConfigs:
       - job_name: 'blackbox'
