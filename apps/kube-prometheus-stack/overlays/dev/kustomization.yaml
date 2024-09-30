@@ -3,12 +3,12 @@ kind: Kustomization
 namespace: monitoring
 
 resources:
-  - ../../base
-  - grafana.dev.skach.org.yaml
-  - dashboards.yaml
-  - dashboards2.yaml
-  - ../../targets
+- ../../base
+- grafana.dev.skach.org.yaml
+- dashboards.yaml
+- dashboards2.yaml
 
+# Helm chart definition with values overlay
 helmCharts:
   - name: kube-prometheus-stack
     repo: https://prometheus-community.github.io/helm-charts
@@ -20,3 +20,5 @@ helmCharts:
     # overlay values file that will override the base
     additionalValuesFiles:
       - values.yaml
+      - targets/CHSRC.yaml
+      - targets/ESSRC.yaml
