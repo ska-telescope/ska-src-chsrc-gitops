@@ -1,0 +1,30 @@
+---
+prometheus:
+  prometheusSpec:
+    additionalScrapeConfigs:
+      - job_name: 'chsrc-blackbox'
+        metrics_path: /probe
+        params:
+          module: [http_2xx]  # Look for a HTTP 200 response.
+        static_configs:
+          - targets:
+              - http://skaha.src.skach.org/
+            labels:
+              servicename: 'skaha'
+          - targets:
+              - http://harbor.dev.skach.org/
+            labels:
+              servicename: 'harbor'
+          - targets:
+              - https://echo.dev.skach.org/  # Test target we can take down
+            labels:
+              servicename: 'echo'
+        relabel_configs:
+          - source_labels: [__address__]
+            target_label: __param_target
+          - source_labels: [__param_target]
+            target_label: instance
+          - target_label: __address__
+            replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115  # The blackbox exporter's real hostname:port.
+          - target_label: location
+            replacement: 'CHSRC'
