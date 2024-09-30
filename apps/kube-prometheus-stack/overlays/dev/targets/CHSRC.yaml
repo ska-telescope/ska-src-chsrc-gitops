@@ -8,11 +8,17 @@ prometheus:
           module: [http_2xx]  # Look for a HTTP 200 response.
         static_configs:
           - targets:
-              - http://skaha.src.skach.org/    # Target to probe with http.
-              - http://harbor.dev.skach.org/   # Target to probe with http.
-              - https://echo.dev.skach.org/ # Test target we can take down 
+              - http://skaha.src.skach.org/
             labels:
-              node: 'CHSRC'
+              servicename: 'skaha'
+          - targets:
+              - http://harbor.dev.skach.org/
+            labels:
+              servicename: 'harbor'
+          - targets:
+              - https://echo.dev.skach.org/  # Test target we can take down
+            labels:
+              servicename: 'echo'
         relabel_configs:
           - source_labels: [__address__]
             target_label: __param_target
@@ -20,3 +26,5 @@ prometheus:
             target_label: instance
           - target_label: __address__
             replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115  # The blackbox exporter's real hostname:port.
+          - target_label: location
+            replacement: 'CHSRC'
