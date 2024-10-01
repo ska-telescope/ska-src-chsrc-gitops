@@ -21,12 +21,13 @@ helmCharts:
     additionalValuesFiles:
       - values.yaml
       - targets/ESSRC.yaml
-#patches:
-#  - target:
-#      kind: ConfigMap
-#      name: kube-prometheus-stack-prometheus
-#      namespace: monitoring
-#    path: targets/CHSRC.yaml
+
+patches:
+  - path: targets/CHSRC.yaml
+    target:
+      kind: Secret
+      name: kube-prometheus-stack-prometheus-scrape-confg
+      namespace: monitoring
 #  - target:
 #      kind: ConfigMap
 #      name: kube-prometheus-stack-prometheus
