@@ -4,7 +4,7 @@ metadata:
   name: essrc-kube-prometheus-stack-prometheus-scrape-confg
   namespace: monitoring
 stringData: # Use stringData to avoid base64 encoding issues
-  essrc-additional-scrape-configs.yaml: |
+  additional-scrape-configs.yaml: |
     - job_name: 'essrc-blackbox'
       metrics_path: /probe
       params:
