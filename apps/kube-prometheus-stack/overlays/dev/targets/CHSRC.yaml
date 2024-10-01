@@ -3,6 +3,7 @@ kind: Secret
 metadata:
   name: kube-prometheus-stack-prometheus-scrape-confg
   namespace: monitoring
+type: Opaque
 data:
   additional-scrape-configs.yaml: |
     - job_name: chsrc-blackbox
