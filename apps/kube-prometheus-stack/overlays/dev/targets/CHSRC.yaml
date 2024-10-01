@@ -3,7 +3,7 @@ kind: Secret
 metadata:
   name: kube-prometheus-stack-prometheus-scrape-confg
   namespace: monitoring
-stringData:
+stringData: # Use stringData to avoid base64 encoding issues
   additional-scrape-configs.yaml: |
     - job_name: chsrc-blackbox
       metrics_path: /probe
