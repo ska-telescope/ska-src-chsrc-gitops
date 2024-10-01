@@ -20,15 +20,15 @@ helmCharts:
     # overlay values file that will override the base
     additionalValuesFiles:
       - values.yaml
-
-patches:
-  - target:
-      kind: ConfigMap
-      name: kube-prometheus-stack-prometheus
-      namespace: monitoring
-    path: targets/CHSRC.yaml
-  - target:
-      kind: ConfigMap
-      name: kube-prometheus-stack-prometheus
-      namespace: monitoring
-    path: targets/ESSRC.yaml
+      - targets/ESSRC.yaml
+#patches:
+#  - target:
+#      kind: ConfigMap
+#      name: kube-prometheus-stack-prometheus
+#      namespace: monitoring
+#    path: targets/CHSRC.yaml
+#  - target:
+#      kind: ConfigMap
+#      name: kube-prometheus-stack-prometheus
+#      namespace: monitoring
+#    path: targets/ESSRC.yaml
