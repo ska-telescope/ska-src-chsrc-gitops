@@ -22,7 +22,7 @@ helmCharts:
     additionalValuesFiles:
       - values.yaml
 
-patches:
+patchesStrategicMerge:
   - path: targets/CHSRC.yaml
     target:
       kind: Secret

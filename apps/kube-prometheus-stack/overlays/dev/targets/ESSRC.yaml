@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Secret
 metadata:
-  name: essrc-kube-prometheus-stack-prometheus-scrape-confg
+  name: kube-prometheus-stack-prometheus-scrape-confg
   namespace: monitoring
 stringData: # Use stringData to avoid base64 encoding issues
   additional-scrape-configs.yaml: |
