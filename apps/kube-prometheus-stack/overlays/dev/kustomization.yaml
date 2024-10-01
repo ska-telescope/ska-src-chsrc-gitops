@@ -22,12 +22,12 @@ helmCharts:
       - values.yaml
       - targets/ESSRC.yaml
 
-patches:
-  - path: targets/CHSRC.yaml
-    target:
-      kind: Secret
-      name: kube-prometheus-stack-prometheus-scrape-confg
-      namespace: monitoring
+#patches:
+#  - path: targets/CHSRC.yaml
+#    target:
+#      kind: Secret
+#      name: kube-prometheus-stack-prometheus-scrape-confg
+#      namespace: monitoring
 #  - path: targets/ESSRC.yaml
 #    target:
 #      kind: Secret
