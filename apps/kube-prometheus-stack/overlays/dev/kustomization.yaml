@@ -26,6 +26,5 @@ secretGenerator:
   - name: kube-prometheus-stack-prometheus-scrape-confg
     namespace: monitoring
     files:
-      - additional-scrape-configs.yaml=targets/CHSRC.yaml
-      - additional-scrape-configs.yaml=targets/ESSRC.yaml
+      - additional-scrape-configs.yaml=targets/additional-scrape-configs.yaml
     type: Opaque

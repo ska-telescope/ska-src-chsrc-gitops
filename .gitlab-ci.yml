@@ -25,6 +25,10 @@ kubeconform:
       done
 
   script:
+    # concatenate all scraping targets into one scrape config
+    - cat targets/*.yaml > targets/additional-scrape-configs.yaml
+
+    # run cubeconform validation
     - |
       ./kubeconform \
       -summary \
