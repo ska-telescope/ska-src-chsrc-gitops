@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: harbor.dev.skach.org
+  namespace: harbor
+spec:
+  dnsNames:
+    - harbor.dev.skach.org
+  secretName: harbor.dev.skach.org
+  issuerRef:
+    name: letsencrypt-http01
+    kind: ClusterIssuer
