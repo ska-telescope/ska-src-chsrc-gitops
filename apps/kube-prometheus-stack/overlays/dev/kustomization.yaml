@@ -22,11 +22,14 @@ helmCharts:
     additionalValuesFiles:
       - values.yaml
 
+generatorOptions:
+  disableNameSuffixHash: true
+
 secretGenerator:
   - name: kube-prometheus-stack-prometheus-scrape-confg
     behavior: merge
     namespace: monitoring
-    files:
-      - targets/CHSRC.yaml
-      - targets/ESSRC.yaml
+    literals:
+      - additional-scrape-configs.yaml=targets/CHSRC.yaml
+      - additional-scrape-configs.yaml=targets/ESSRC.yaml
     type: Opaque
