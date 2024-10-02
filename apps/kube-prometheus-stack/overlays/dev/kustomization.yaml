@@ -26,11 +26,9 @@ secretGenerator:
   - name: kube-prometheus-stack-prometheus-scrape-confg
     namespace: monitoring
     type: Opaque
-    behavior: merge  # Merge with existing secret if it exists
-    literals:  # Initialize with the key
-      - additional-scrape-configs.yaml: |  # Initialize with an empty list
-        []
-
+    behavior: merge
+    literals:
+      - additional-scrape-configs.yaml=[]  # Initialize with an empty list
 patches:
   - path: targets/CHSRC.yaml
     target:
