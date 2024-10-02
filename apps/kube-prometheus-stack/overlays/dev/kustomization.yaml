@@ -30,14 +30,14 @@ helmCharts:
 #    literals:
 #      - additional-scrape-configs.yaml=[]  # Initialize with an empty list
 
-#patches:
-#  - path: targets/CHSRC.yaml
-#    target:
-#      kind: Secret
-#      name: kube-prometheus-stack-prometheus-scrape-confg
-#      namespace: monitoring
-#  - path: targets/ESSRC.yaml
-#    target:
-#      kind: Secret
-#      name: kube-prometheus-stack-prometheus-scrape-confg
-#      namespace: monitoring
+patches:
+  - path: targets/CHSRC.yaml
+    target:
+      kind: Secret
+      name: kube-prometheus-stack-prometheus-scrape-confg
+      namespace: monitoring
+  - path: targets/ESSRC.yaml
+    target:
+      kind: Secret
+      name: kube-prometheus-stack-prometheus-scrape-confg
+      namespace: monitoring
