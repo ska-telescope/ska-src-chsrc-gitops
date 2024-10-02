@@ -24,7 +24,9 @@ helmCharts:
 
 secretGenerator:
   - name: kube-prometheus-stack-prometheus-scrape-confg
+    behavior: merge
     namespace: monitoring
     files:
-      - additional-scrape-configs.yaml=targets/additional-scrape-configs.yaml
+      - additional-scrape-configs.yaml=targets/CHSRC.yaml
+      - additional-scrape-configs.yaml=targets/ESSRC.yaml
     type: Opaque
