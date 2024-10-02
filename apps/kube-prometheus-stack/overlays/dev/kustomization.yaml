@@ -31,5 +31,12 @@ secretGenerator:
     namespace: monitoring
     literals:
       - additional-scrape-configs.yaml=targets/CHSRC.yaml
+    type: Opaque
+
+secretGenerator:
+  - name: kube-prometheus-stack-prometheus-scrape-confg
+    behavior: merge
+    namespace: monitoring
+    literals:
       - additional-scrape-configs.yaml=targets/ESSRC.yaml
     type: Opaque
