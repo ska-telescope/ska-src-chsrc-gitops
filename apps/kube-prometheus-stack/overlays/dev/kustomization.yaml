@@ -24,10 +24,10 @@ helmCharts:
 
 patches:
   - path: targets/initial.yaml
-      target:
-        kind: Secret
-        name: kube-prometheus-stack-prometheus-scrape-confg
-        namespace: monitoring
+    target:
+      kind: Secret
+      name: kube-prometheus-stack-prometheus-scrape-confg
+      namespace: monitoring
   - path: targets/CHSRC.yaml
     target:
       kind: Secret
