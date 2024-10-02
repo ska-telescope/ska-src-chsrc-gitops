@@ -1,5 +1,5 @@
 - op: add
-  path: additional-scrape-configs.yaml
+  path: data/additional-scrape-configs.yaml
   value: |
     - job_name: chsrc-blackbox
       metrics_path: /probe
