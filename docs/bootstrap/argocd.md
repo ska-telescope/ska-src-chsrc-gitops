@@ -68,11 +68,10 @@ exposed at all.
 
 The following two configmaps are configured to setup ArgoCD for the CHSRC use cases.
 
-It configures [OIDC access](#oidc-setup), enables [Helm Kustomize support](#helm-kustomize-support),
-and configures ArgoCD to [ignore Cilium-related](#cilium-caveat) resources that are added to
-our clusters behind the scenes.
+It configures enables [Helm Kustomize support](#helm-kustomize-support), and configures ArgoCD to
+[ignore Cilium-related](#cilium-caveat) resources that are added to our clusters behind the scenes.
 
-To configure all of this, create these two files:
+To configure all of this, create this file:
 
 `argocd-cm.yaml`:
 
@@ -86,11 +85,6 @@ metadata:
     app.kubernetes.io/name: argocd-cm
     app.kubernetes.io/part-of: argocd
 data:
-  oidc.config: |
-    name: ska-iam
-    issuer: https://ska-iam.stfc.ac.uk/
-    clientID: <client_id>
-    clientSecret: <client_secret>
   url: https://localhost:8080/
   kustomize.buildOptions: --load-restrictor LoadRestrictionsNone --enable-helm
   resource.exclusions: |
@@ -102,63 +96,16 @@ data:
       - "*"
 ```
 
-`argocd-rbac-cm.yaml`:
-
-```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: argocd-rbac-cm
-  namespace: argocd
-data:
-  policy.csv: |
-    p, role:ska-admin, applications, create, */*, allow
-    p, role:ska-admin, applications, update, */*, allow
-    p, role:ska-admin, applications, delete, */*, allow
-    p, role:ska-admin, applications, sync, */*, allow
-    p, role:ska-admin, applications, override, */*, allow
-    p, role:ska-admin, applications, action/*, */*, allow
-    p, role:ska-admin, applications, *, */*, allow
-    p, role:ska-admin, applicationsets, get, */*, allow
-    p, role:ska-admin, applicationsets, create, */*, allow
-    p, role:ska-admin, applicationsets, update, */*, allow
-    p, role:ska-admin, applicationsets, delete, */*, allow
-    p, role:ska-admin, certificates, create, *, allow
-    p, role:ska-admin, certificates, update, *, allow
-    p, role:ska-admin, certificates, delete, *, allow
-    p, role:ska-admin, clusters, create, *, allow
-    p, role:ska-admin, clusters, update, *, allow
-    p, role:ska-admin, clusters, delete, *, allow
-    p, role:ska-admin, repositories, create, *, allow
-    p, role:ska-admin, repositories, update, *, allow
-    p, role:ska-admin, repositories, delete, *, allow
-    p, role:ska-admin, projects, create, *, allow
-    p, role:ska-admin, projects, update, *, allow
-    p, role:ska-admin, projects, delete, *, allow
-    p, role:ska-admin, accounts, update, *, allow
-    p, role:ska-admin, gpgkeys, create, *, allow
-    p, role:ska-admin, gpgkeys, delete, *, allow
-    p, role:ska-admin, exec, create, */*, allow
-    g, src/chsrc/admins, role:ska-admin
-  policy.default: ""
-```
-
-Apply them:
+Apply:
 
 ```bash
-kubectl apply -f argocd-rbac-cm.yaml -n argocd
 kubectl apply -f argocd-cm.yaml -n argocd
 ```
-
-!!! Info
-    The OIDC client needs to have the `group` scope.
-
-!!! Info
-    If you generated a new client ID and secret, please add them to the [secrets table](../misc/locked-credentials.md).
 
 At this point, we're done. For more details about what we just did in this
 quickstart and why, see the sections below.
 
+<!--
 ### OIDC Setup
 
 See the OIDC
@@ -227,6 +174,7 @@ data:
 This will enable SKA-IAM logins with admin access for members of src/chsrc/admins. All other users
 will still be able to (sort of) login (this is an ArgoCD limitation), but they will not have access
 to read or write anything.
+-->
 
 ### Helm Kustomize support
 
