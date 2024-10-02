@@ -22,12 +22,16 @@ helmCharts:
     additionalValuesFiles:
       - values.yaml
 
+secretGenerator:
+  - name: kube-prometheus-stack-prometheus-scrape-confg
+    namespace: monitoring
+    type: Opaque
+    behavior: merge  # Merge with existing secret if it exists
+    literals:  # Initialize with the key
+      - additional-scrape-configs.yaml: |  # Initialize with an empty list
+        []
+
 patches:
-  - path: targets/initial.yaml
-    target:
-      kind: Secret
-      name: kube-prometheus-stack-prometheus-scrape-confg
-      namespace: monitoring
   - path: targets/CHSRC.yaml
     target:
       kind: Secret
