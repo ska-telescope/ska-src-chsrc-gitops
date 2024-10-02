@@ -773,7 +773,9 @@ server:
     mountPath: "/vault/data"
     # Name of the storage class to use.  If null it will use the
     # configured default Storage Class.
-    storageClass: null
+    # @ORIGINAL
+    # storageClass: null
+    storageClass: ceph-corbo-rbd-hdd-retain
     # Access Mode of the storage device being used for the PVC
     accessMode: ReadWriteOnce
     # Annotations to apply to the PVC
@@ -787,7 +789,12 @@ server:
   # persistentVolumeClaimRetentionPolicy:
   #   whenDeleted: Retain
   #   whenScaled: Retain
-  persistentVolumeClaimRetentionPolicy: {}
+
+  # @ORIGINAL
+  # persistentVolumeClaimRetentionPolicy: {}
+  persistentVolumeClaimRetentionPolicy:
+    whenDeleted: Retain
+    whenScaled: Retain
 
   # This configures the Vault Statefulset to create a PVC for audit
   # logs.  Once Vault is deployed, initialized, and unsealed, Vault must
