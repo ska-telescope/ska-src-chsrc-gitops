@@ -1,0 +1,8 @@
+expose:
+  tls:
+    secret:
+      secretName: "harbor.src.skach.org"
+  ingress:
+    hosts:
+      core: harbor.src.skach.org
+externalURL: https://harbor.src.skach.org

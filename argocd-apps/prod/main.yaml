@@ -1,0 +1,38 @@
+# This is the main application that deploys all the other argocd apps.
+# It can be installed via kubectl apply -f main.yaml.
+# WARNING: deleting this resource will cascade delete every other app!
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: main-prod
+  namespace: argocd
+  finalizers:
+    # The default behaviour is foreground cascading deletion
+    - resources-finalizer.argocd.argoproj.io
+    # Alternatively, you can use background cascading deletion
+    # - resources-finalizer.argocd.argoproj.io/background
+spec:
+  # Install all argocd apps under argocd-apps/prod in the prod branch,
+  # excluding itself (main.yaml).
+  source:
+    path: argocd-apps/prod
+    repoURL: 'https://gitlab.com/ska-telescope/src/deployments/chsrc/ska-src-chsrc-services-cd.git'
+    targetRevision: prod
+    directory:
+      exclude: 'main.yaml'
+  destination:
+    namespace: argocd
+    server: 'https://kubernetes.default.svc'
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        maxDuration: 3m0s
+        factor: 2
+    syncOptions:
+      - CreateNamespace=true

@@ -4,7 +4,7 @@ namespace: harbor
 
 resources:
 - ../../base
-- harbor.dev.skach.org.yaml
+- harbor.src.skach.org.yaml
 
 # Helm chart definition with values overlay
 helmCharts:
@@ -20,6 +20,5 @@ helmCharts:
   valuesInline:
     fullnameOverride: harbor
 
-# This kind of patch is unlikely to work in base, only overlay
 patches:
   - path: remove-database-secret.yaml
