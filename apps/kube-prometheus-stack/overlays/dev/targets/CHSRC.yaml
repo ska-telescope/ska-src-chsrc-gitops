@@ -1,36 +1,27 @@
-apiVersion: v1
-kind: Secret
-metadata:
-  name: kube-prometheus-stack-prometheus-scrape-confg
-  namespace: monitoring
-stringData: # Use stringData to avoid base64 encoding issues
-  chsrc-additional-scrape-configs.yaml: |
-    - job_name: chsrc-blackbox
-      metrics_path: /probe
-      params:
-        module:
-        - http_2xx
-      relabel_configs:
-      - source_labels:
-        - __address__
-        target_label: __param_target
-      - source_labels:
-        - __param_target
-        target_label: instance
-      - replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
-        target_label: __address__
-      - replacement: CHSRC
-        target_label: location
-      static_configs:
-      - labels:
-          servicename: skaha
-        targets:
-        - http://skaha.src.skach.org/
-      - labels:
-          servicename: harbor
-        targets:
-        - http://harbor.dev.skach.org/
-      - labels:
-          servicename: echo
-        targets:
-        - https://echo.dev.skach.org/
+- job_name: chsrc-blackbox
+  metrics_path: /probe
+  params:
+    module:
+    - http_2xx
+  relabel_configs:
+  - source_labels: [__address__]
+    target_label: __param_target
+  - source_labels: [__param_target]
+    target_label: instance
+  - replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
+    target_label: __address__
+  - replacement: CHSRC
+    target_label: location
+  static_configs:
+  - labels:
+      servicename: skaha
+    targets:
+    - http://skaha.src.skach.org/
+  - labels:
+      servicename: harbor
+    targets:
+    - http://harbor.dev.skach.org/
+  - labels:
+      servicename: echo
+    targets:
+    - https://echo.dev.skach.org/
