@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: kube-prometheus-stack-prometheus-scrape-confg
+  namespace: monitoring
+type: Opaque
+data:
+  additional-scrape-configs.yaml: |  # Initialize with an empty list
+    []
+    
