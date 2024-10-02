@@ -27,6 +27,6 @@ secretGenerator:
     behavior: merge
     namespace: monitoring
     files:
-      - additional-scrape-configs.yaml=targets/CHSRC.yaml
-      - additional-scrape-configs.yaml=targets/ESSRC.yaml
+      - targets/CHSRC.yaml
+      - targets/ESSRC.yaml
     type: Opaque
