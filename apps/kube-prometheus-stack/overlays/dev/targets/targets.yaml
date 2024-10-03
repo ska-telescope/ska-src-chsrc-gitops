@@ -25,6 +25,26 @@
   #   targets:
   #   - https://aussrc.example.com/
 
+  - labels:
+      servicename: rucio-storage-element
+    targets:
+    # - https://rucio.aussrc.org/
+
+  - labels:
+      servicename: jupyterhub
+    targets:
+    # - https://jupyterhub.aussrc.org/
+
+  - labels:
+      servicename: perfsonar
+    targets:
+    # - https://perfsonar.aussrc.org/
+
+  - labels:
+      servicename: gatekeeper-api
+    targets:
+    # - https://gatekeeper.aussrc.org/
+
 
 ##################################################
 #                                                #
