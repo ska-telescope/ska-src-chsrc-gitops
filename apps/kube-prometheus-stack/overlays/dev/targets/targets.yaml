@@ -25,25 +25,25 @@
   #   targets:
   #   - https://chsrc.example.com/
 
-  - labels:
-      servicename: rucio-storage-element
-    targets:
-    # - https://rucio.chsrc.org/
+  #- labels:
+  #    servicename: rucio-storage-element
+  #  targets:
+  #   - https://rucio.chsrc.org/
 
-  - labels:
-      servicename: jupyterhub
-    targets:
-    # - https://jupyterhub.chsrc.org/
+  #- labels:
+  #    servicename: jupyterhub
+  #  targets:
+  #   - https://jupyterhub.chsrc.org/
 
-  - labels:
-      servicename: perfsonar
-    targets:
-    # - https://perfsonar.chsrc.org/
+  #- labels:
+  #    servicename: perfsonar
+  #  targets:
+  #   - https://perfsonar.chsrc.org/
 
-  - labels:
-      servicename: gatekeeper-api
-    targets:
-    # - https://gatekeeper.chsrc.org/
+  #- labels:
+  #    servicename: gatekeeper-api
+  #  targets:
+  #   - https://gatekeeper.chsrc.org/
 
   - labels:
       servicename: skaha
