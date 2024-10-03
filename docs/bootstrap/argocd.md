@@ -1,38 +1,122 @@
-# ArgoCD installation and Setup
+# ArgoCD Installation and Setup
 
 ## Installation
 
-Following https://argo-cd.readthedocs.io/en/stable/getting_started/.
+The installation reference is <https://argo-cd.readthedocs.io/en/stable/getting_started/>.
 
-Caveats: Unfortunately the port-forward solution to connect to ArgoCD is broken, so we used:
+More precisely:
+
+```bash
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+```
+
+If you didn't already, [install the local argocd
+CLI](https://argo-cd.readthedocs.io/en/stable/cli_installation/).
+
+Setup a port-forward to the argocd cluster:
+
+### Connect to ArgoCD via port-forward
+
+```bash
+kubectl port-forward svc/argocd-server -n argocd 8080:443
+```
+
+### Obtain initial admin password
+
+Now we're able to retrieve the admin password:
+
+```bash
+argocd admin initial-password -n argocd
+```
+
+### Connecting to ArgoCD via web UI
+
+You should now be able to login as `admin` to <https://localhost:8080/>.
+
+### Connecting to ArgoCD via CLI
+
+First, login via CLI. Assuming you've setup the port-forward as described above, you can do:
+
+```
+argocd login localhost:8080 --insecure
+```
+
+And now you should be able to run other commands such as:
+
+```bash
+argocd app list
+```
+
+### Expose ArgoCD (or not)
+
+!!! Warning
+    Only do this as a last resort, if case the port-forwarding solution does not work. Exposing ArgoCD is probably a bad idea.
+
+If the port-forward solution to connect to ArgoCD is broken, you can use:
 
 ```bash
 kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
 ```
 
-to expose it as a Service. For security reasons, we should revise the above and not have ArgoCD exposed at all.
+to expose it as a Service. For security reasons, the above should be revised to not have ArgoCD
+exposed at all.
 
 ## Setup
 
-### CLI login
-The `--sso` option seems to use the wrong return_url (to be fixed). But login can happen with the admin user. The password is stored in the argocd namespace, the secret name is skach-argocd-admin.
+### Quick Start
 
-Then you should be able to login using:
+The following two configmaps are configured to setup ArgoCD for the CHSRC use cases.
+
+It configures enables [Helm Kustomize support](#helm-kustomize-support), and configures ArgoCD to
+[ignore Cilium-related](#cilium-caveat) resources that are added to our clusters behind the scenes.
+
+To configure all of this, create this file:
+
+`argocd-cm.yaml`:
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-cm
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: argocd-cm
+    app.kubernetes.io/part-of: argocd
+data:
+  url: https://localhost:8080/
+  kustomize.buildOptions: --load-restrictor LoadRestrictionsNone --enable-helm
+  resource.exclusions: |
+    - apiGroups:
+      - cilium.io
+      kinds:
+      - CiliumIdentity
+      clusters:
+      - "*"
+```
+
+Apply:
 
 ```bash
-argocd login 148.187.17.54 --username admin --password $PASSWORD
+kubectl apply -f argocd-cm.yaml -n argocd
 ```
-(Or use the correct public IP if this has changed). If you run into issues, you may need to use `--insecure`  or `--port-forward-namespace` argocd options.
 
+At this point, we're done. For more details about what we just did in this
+quickstart and why, see the sections below.
+
+<!--
 ### OIDC Setup
 
-See the OIDC [reference](https://argo-cd.readthedocs.io/en/stable/operator-manual/user-management/#existing-oidc-provider).
+See the OIDC
+[reference](https://argo-cd.readthedocs.io/en/stable/operator-manual/user-management/#existing-oidc-provider).
 
 To setup SKA-IAM logins via sso we can apply some changes on Kubernetes resources:
 
-In the `argocd` namespace, need to configure 2 configmaps:
+In the `argocd` namespace, need to configure 2 configmaps: `argocd-cm` and `argocd-rbac-cm`, as follows.
 
-In the `argocd-cm` ConfigMap, the url needs to match the hostname.
+First, in the `argocd-cm` ConfigMap, configure oidc.config to talk to the IAM server,
+ and the url to match the hostname.
 
 ```yaml
 data:
@@ -44,8 +128,14 @@ data:
   url: https://148.187.17.54/
 ```
 
+Then apply it.
 
-In the `argocd-rbac-cm` ConfigMap:
+```
+kubectl apply -f argocd-cm.yaml -n argocd
+```
+
+Second, to configure the policies for OIDC user access based on their group membership,
+Add the following to the `argocd-rbac-cm` ConfigMap:
 
 ```yaml
 data:
@@ -81,9 +171,12 @@ data:
   policy.default: ""
 ```
 
-This will enable SKA-IAM logins with admin access for members of src/chsrc/admins. All other users will still be able to (sort of) login (this is an ArgoCD limitation), but they will not have access to read or write anything.
+This will enable SKA-IAM logins with admin access for members of src/chsrc/admins. All other users
+will still be able to (sort of) login (this is an ArgoCD limitation), but they will not have access
+to read or write anything.
+-->
 
-### Helm kustomize support
+### Helm Kustomize support
 
 To enable helm support for kustomizations, as well as loading values files from other directories.
 
@@ -96,7 +189,10 @@ data:
 
 ### Cilium caveat
 
-CSCS Seems to instrument the cluster with Cilium, which seems to automatically add extra fields to Kubernetes resources. This confuses ArgoCD, thinking that the resources are OutOfSync. To remedy this, we can simply exclude these resources from Argo. In the argocd-cm ConfigMap (argocd namespace), we just need to add:
+CSCS Seems to instrument the cluster with Cilium, which seems to automatically add extra fields to
+Kubernetes resources. This confuses ArgoCD, thinking that the resources are OutOfSync. To remedy
+this, we can simply exclude these resources from Argo. In the argocd-cm ConfigMap (argocd
+namespace), we just need to add:
 
 ```yaml
 resource.exclusions: |
@@ -108,4 +204,16 @@ resource.exclusions: |
       - "*"
 ```
 
+## Install GitOps repo environment
 
+Add the repo via web UI or CLI:
+
+```bash
+argocd repo add https://gitlab.com/ska-telescope/src/deployments/chsrc/ska-src-chsrc-services-cd.git --type git --project default --username argocd --password <gitlab_pat>
+```
+
+!!! Tip
+    The GitLab PAT is generated in GitLab and can not be viewed after creation.
+    Therefore we store it as a Secret in the `argocd` namespace with name `argocd-pat`.
+
+To install the environment, `kubectly apply argocd-apps/<overlay>/main.yaml` to start the installation of all apps for a specific environment.

@@ -11,4 +11,5 @@ deprecated.
 | Secret in Vault                             | Service/App       | Owner    | Comment                                |
 |---------------------------------------------|-------------------|----------|----------------------------------------|
 | app/external-dns.gandi-externaldns-key      | external-dns      | Pablo    | Gandi's API key (deprecated). Can only be regenerated, not viewed. skach > account > authorized apps      |
-
+| argocd-cm ConfigMap (argocd ns)             | ArgoCD dev        | Pablo    | OIDC client id and secret
+| argocd-cm ConfigMap (argocd ns)             | ArgoCD prod       | Pablo    | OIDC client id and secret
