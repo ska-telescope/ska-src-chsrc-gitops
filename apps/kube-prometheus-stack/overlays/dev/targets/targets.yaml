@@ -45,17 +45,17 @@
   #  targets:
   #   - https://gatekeeper.chsrc.org/
 
-  -  targets:
+  - targets:
       - http://skaha.src.skach.org/
     labels:
       servicename: skaha
 
-  -  targets:
+  - targets:
       - http://harbor.dev.skach.org/
     labels:
       servicename: harbor
 
-  -  targets:
+  - targets:
       - https://echo.dev.skach.org/
     labels:
       servicename: echo
