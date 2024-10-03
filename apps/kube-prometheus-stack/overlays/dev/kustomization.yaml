@@ -7,7 +7,6 @@ resources:
 - grafana.dev.skach.org.yaml
 - dashboards.yaml
 - dashboards2.yaml
-- scrape-config.yaml
 
 # Helm chart definition with values overlay
 helmCharts:
@@ -21,11 +20,15 @@ helmCharts:
     # overlay values file that will override the base
     additionalValuesFiles:
       - values.yaml
-
-secretGenerator:
-  - name: kube-prometheus-stack-prometheus-scrape-confg
-    namespace: monitoring
-    type: Opaque
-    behavior: merge
-    files:
-      - additional-scrape-configs.yaml=targets/targets.yaml
+      - targets/ESSRC.yaml
+#patches:
+#  - target:
+#      kind: ConfigMap
+#      name: kube-prometheus-stack-prometheus
+#      namespace: monitoring
+#    path: targets/CHSRC.yaml
+#  - target:
+#      kind: ConfigMap
+#      name: kube-prometheus-stack-prometheus
+#      namespace: monitoring
+#    path: targets/ESSRC.yaml

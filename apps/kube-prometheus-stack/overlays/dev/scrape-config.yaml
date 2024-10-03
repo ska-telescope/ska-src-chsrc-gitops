@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: Secret
-metadata:
-  name: kube-prometheus-stack-prometheus-scrape-confg
-  namespace: monitoring
-type: Opaque
-stringData:  # Use stringData to allow plain text without base64 encoding
-  additional-scrape-configs.yaml: |
-    # This file is initially empty and populated with patches
