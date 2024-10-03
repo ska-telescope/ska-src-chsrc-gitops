@@ -4,14 +4,8 @@ metadata:
   name: grafana-dashboards
   labels:
     grafana_dashboard: "1"
+    srcnet_dashboard: "1"
 data:
-  folders.yaml: |
-    [
-      {
-        "uid": "srcnet-nodes",
-        "title": "SRCNet Nodes"
-      }
-    ]
   chsrc-dashboard.json: |
     {
       "annotations": {
@@ -375,5 +369,4 @@ data:
       "uid": "chsrc_services",
       "version": 1,
       "weekStart": "",
-      "folderUid": "srcnet-nodes",
     }

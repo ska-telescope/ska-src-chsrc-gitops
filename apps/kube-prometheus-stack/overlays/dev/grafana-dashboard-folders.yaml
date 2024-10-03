@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: GrafanaDashboard
+metadata:
+  name: SRCNet Nodes
+  namespace: srcnet_dashboard
+spec:
+  instanceSelector:
+    matchLabels:
+      dashboards: <Grafana-cloud-stack-name>
+  folder: "SRCNet Nodes"
+  json: >
+  {
+    "title": "SRCNet Nodes",
+    “uid” : "srcnet-nodes”
+  }
