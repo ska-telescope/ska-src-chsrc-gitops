@@ -1,11 +1,5 @@
 ---
 compactor:
-  # moved to overlay
-  # ORIGINAL # retentionResolutionRaw: 30d
-  retentionResolutionRaw: 1d
-  # Sampling down to 5m data
-  # ORIGINAL # retentionResolution5m: 30d
+  retentionResolutionRaw: 14d
   retentionResolution5m: 14d
-  # Sampling down to 1h data
-  # ORIGINAL # retentionResolution1h: 10y
   retentionResolution1h: 90d
