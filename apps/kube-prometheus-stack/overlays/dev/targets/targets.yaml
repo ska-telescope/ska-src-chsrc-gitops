@@ -48,14 +48,14 @@
   - labels:
       servicename: skaha
     targets:
-    - http://skaha.src.skach.org/
+      - http://skaha.src.skach.org/
 
   - labels:
       servicename: harbor
     targets:
-    - http://harbor.dev.skach.org/
+      - http://harbor.dev.skach.org/
 
   - labels:
       servicename: echo
     targets:
-    - https://echo.dev.skach.org/
+      - https://echo.dev.skach.org/
