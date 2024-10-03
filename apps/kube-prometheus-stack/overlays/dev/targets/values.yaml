@@ -2,25 +2,667 @@
 prometheus:
   prometheusSpec:
     additionalScrapeConfigs:
-      - job_name: 'essrc-blackbox'
+
+##################################################
+#                                                #
+#                    AUSSRC                      #
+#                                                #
+##################################################
+
+      - job_name: 'aussrc-blackbox'
         metrics_path: /probe
         params:
-          module: [http_2xx]  # Look for a HTTP 200 response.
+          module: [http_2xx]
         relabel_configs:
           - source_labels: [__address__]
             target_label: __param_target
           - source_labels: [__param_target]
             target_label: instance
           - target_label: __address__
-            replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115  # The blackbox exporter's real hostname:port.
+            replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
           - target_label: location
-            replacement: 'ESSRC'
+            replacement: 'AUSSRC'
         static_configs:
           - targets:
-              - https://spsrc25.iaa.csic.es/  # Target to probe with https.
+              #- https://rucio.aussrc.org/
+            labels:
+              servicename: 'rucio-storage-element'
+
+          - targets:
+              #- https://jupyterhub.aussrc.org/
+            labels:
+              servicename: 'jupyterhub'
+
+          - targets:
+              #- https://perfsonar.aussrc.org/
+            labels:
+              servicename: 'perfsonar'
+
+          - targets:
+              #- https://gatekeeper.aussrc.org/
+            labels:
+              servicename: 'gatekeeper-api'
+
+
+##################################################
+#                                                #
+#                    CANSRC                      #
+#                                                #
+##################################################
+      - job_name: 'cansrc-blackbox'
+        metrics_path: /probe
+        params:
+          module: [http_2xx]
+        relabel_configs:
+          - source_labels: [__address__]
+            target_label: __param_target
+          - source_labels: [__param_target]
+            target_label: instance
+          - target_label: __address__
+            replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
+          - target_label: location
+            replacement: 'CANSRC'
+        static_configs:
+          - targets:
+              #- https://rucio.cansrc.org/
+            labels:
+              servicename: 'rucio-storage-element'
+
+          - targets:
+              #- https://jupyterhub.cansrc.org/
+            labels:
+              servicename: 'jupyterhub'
+
+          - targets:
+              #- https://perfsonar.cansrc.org/
+            labels:
+              servicename: 'perfsonar'
+
+          - targets:
+              #- https://gatekeeper.cansrc.org/
+            labels:
+              servicename: 'gatekeeper-api'
+
+
+##################################################
+#                                                #
+#                    CHSRC                      #
+#                                                #
+##################################################
+      - job_name: 'chsrc-blackbox'
+        metrics_path: /probe
+        params:
+          module: [http_2xx]
+        relabel_configs:
+          - source_labels: [__address__]
+            target_label: __param_target
+          - source_labels: [__param_target]
+            target_label: instance
+          - target_label: __address__
+            replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
+          - target_label: location
+            replacement: 'CHSRC'
+        static_configs:
+          - targets:
+              #- https://rucio.chsrc.org/
+            labels:
+              servicename: 'rucio-storage-element'
+
+          - targets:
+              #- https://jupyterhub.chsrc.org/
+            labels:
+              servicename: 'jupyterhub'
+
+          - targets:
+              #- https://perfsonar.chsrc.org/
+            labels:
+              servicename: 'perfsonar'
+
+          - targets:
+              #- https://gatekeeper.chsrc.org/
+            labels:
+              servicename: 'gatekeeper-api'
+
+          - targets:
+              - http://skaha.src.skach.org/
+            labels:
+              servicename: 'skaha'
+
+          - targets:
+              - http://harbor.dev.skach.org/
+            labels:
+              servicename: 'harbor'
+
+          - targets:
+              - https://echo.dev.skach.org/
+            labels:
+              servicename: 'echo'
+
+
+##################################################
+#                                                #
+#                    CNSRC                       #
+#                                                #
+##################################################
+      - job_name: 'cnsrc-blackbox'
+        metrics_path: /probe
+        params:
+          module: [http_2xx]
+        relabel_configs:
+          - source_labels: [__address__]
+            target_label: __param_target
+          - source_labels: [__param_target]
+            target_label: instance
+          - target_label: __address__
+            replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
+          - target_label: location
+            replacement: 'CNSRC'
+        static_configs:
+          - targets:
+              #- https://rucio.cnsrc.org/
+            labels:
+              servicename: 'rucio-storage-element'
+
+          - targets:
+              #- https://jupyterhub.cnsrc.org/
+            labels:
+              servicename: 'jupyterhub'
+
+          - targets:
+              #- https://perfsonar.cnsrc.org/
+            labels:
+              servicename: 'perfsonar'
+
+          - targets:
+              #- https://gatekeeper.cnsrc.org/
+            labels:
+              servicename: 'gatekeeper-api'
+
+
+##################################################
+#                                                #
+#                    DESRC                       #
+#                                                #
+##################################################
+      - job_name: 'desrc-blackbox'
+        metrics_path: /probe
+        params:
+          module: [http_2xx]
+        relabel_configs:
+          - source_labels: [__address__]
+            target_label: __param_target
+          - source_labels: [__param_target]
+            target_label: instance
+          - target_label: __address__
+            replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
+          - target_label: location
+            replacement: 'DESRC'
+        static_configs:
+          - targets:
+              #- https://rucio.desrc.org/
+            labels:
+              servicename: 'rucio-storage-element'
+
+          - targets:
+              #- https://jupyterhub.desrc.org/
+            labels:
+              servicename: 'jupyterhub'
+
+          - targets:
+              #- https://perfsonar.desrc.org/
+            labels:
+              servicename: 'perfsonar'
+
+          - targets:
+              #- https://gatekeeper.desrc.org/
+            labels:
+              servicename: 'gatekeeper-api'
+
+
+##################################################
+#                                                #
+#                    ESPSRC                      #
+#                                                #
+##################################################
+      - job_name: 'espsrc-blackbox'
+        metrics_path: /probe
+        params:
+          module: [http_2xx]
+        relabel_configs:
+          - source_labels: [__address__]
+            target_label: __param_target
+          - source_labels: [__param_target]
+            target_label: instance
+          - target_label: __address__
+            replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
+          - target_label: location
+            replacement: 'ESPSRC'
+        static_configs:
+          - targets:
+              #- https://rucio.espsrc.org/
+            labels:
+              servicename: 'rucio-storage-element'
+
+          - targets:
+              #- https://jupyterhub.espsrc.org/
+            labels:
+              servicename: 'jupyterhub'
+
+          - targets:
+              #- https://perfsonar.espsrc.org/
+            labels:
+              servicename: 'perfsonar'
+
+          - targets:
+              #- https://gatekeeper.espsrc.org/
+            labels:
+              servicename: 'gatekeeper-api'
+
+          - targets:
+              - https://spsrc25.iaa.csic.es/
             labels:
               servicename: 'spsrc25'
+
           - targets:
-              - https://spsrc26.iaa.csic.es/  # Target to probe with https.
+              - https://spsrc26.iaa.csic.es/
             labels:
               servicename: 'spsrc26'
+
+
+##################################################
+#                                                #
+#                    FRSRC                      #
+#                                                #
+##################################################
+      - job_name: 'frsrc-blackbox'
+        metrics_path: /probe
+        params:
+          module: [http_2xx]
+        relabel_configs:
+          - source_labels: [__address__]
+            target_label: __param_target
+          - source_labels: [__param_target]
+            target_label: instance
+          - target_label: __address__
+            replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
+          - target_label: location
+            replacement: 'FRSRC'
+        static_configs:
+          - targets:
+              #- https://rucio.frsrc.org/
+            labels:
+              servicename: 'rucio-storage-element'
+
+          - targets:
+              #- https://jupyterhub.frsrc.org/
+            labels:
+              servicename: 'jupyterhub'
+
+          - targets:
+              #- https://perfsonar.frsrc.org/
+            labels:
+              servicename: 'perfsonar'
+
+          - targets:
+              #- https://gatekeeper.frsrc.org/
+            labels:
+              servicename: 'gatekeeper-api'
+
+
+##################################################
+#                                                #
+#                    INSRC                       #
+#                                                #
+##################################################
+      - job_name: 'insrc-blackbox'
+        metrics_path: /probe
+        params:
+          module: [http_2xx]
+        relabel_configs:
+          - source_labels: [__address__]
+            target_label: __param_target
+          - source_labels: [__param_target]
+            target_label: instance
+          - target_label: __address__
+            replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
+          - target_label: location
+            replacement: 'INSRC'
+        static_configs:
+          - targets:
+              #- https://rucio.insrc.org/
+            labels:
+              servicename: 'rucio-storage-element'
+
+          - targets:
+              #- https://jupyterhub.insrc.org/
+            labels:
+              servicename: 'jupyterhub'
+
+          - targets:
+              #- https://perfsonar.insrc.org/
+            labels:
+              servicename: 'perfsonar'
+
+          - targets:
+              #- https://gatekeeper.insrc.org/
+            labels:
+              servicename: 'gatekeeper-api'
+
+##################################################
+#                                                #
+#                    ITSRC                       #
+#                                                #
+##################################################
+      - job_name: 'itsrc-blackbox'
+        metrics_path: /probe
+        params:
+          module: [http_2xx]
+        relabel_configs:
+          - source_labels: [__address__]
+            target_label: __param_target
+          - source_labels: [__param_target]
+            target_label: instance
+          - target_label: __address__
+            replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
+          - target_label: location
+            replacement: 'ITSRC'
+        static_configs:
+          - targets:
+              #- https://rucio.itsrc.org/
+            labels:
+              servicename: 'rucio-storage-element'
+
+          - targets:
+              #- https://jupyterhub.itsrc.org/
+            labels:
+              servicename: 'jupyterhub'
+
+          - targets:
+              #- https://perfsonar.itsrc.org/
+            labels:
+              servicename: 'perfsonar'
+
+          - targets:
+              #- https://gatekeeper.itsrc.org/
+            labels:
+              servicename: 'gatekeeper-api'
+
+
+##################################################
+#                                                #
+#                    JPSRC                       #
+#                                                #
+##################################################
+      - job_name: 'jpsrc-blackbox'
+        metrics_path: /probe
+        params:
+          module: [http_2xx]
+        relabel_configs:
+          - source_labels: [__address__]
+            target_label: __param_target
+          - source_labels: [__param_target]
+            target_label: instance
+          - target_label: __address__
+            replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
+          - target_label: location
+            replacement: 'JPSRC'
+        static_configs:
+          - targets:
+              #- https://rucio.jpsrc.org/
+            labels:
+              servicename: 'rucio-storage-element'
+
+          - targets:
+              #- https://jupyterhub.jpsrc.org/
+            labels:
+              servicename: 'jupyterhub'
+
+          - targets:
+              #- https://perfsonar.jpsrc.org/
+            labels:
+              servicename: 'perfsonar'
+
+          - targets:
+              #- https://gatekeeper.jpsrc.org/
+            labels:
+              servicename: 'gatekeeper-api'
+
+
+##################################################
+#                                                #
+#                    KRSRC                       #
+#                                                #
+##################################################
+      - job_name: 'krsrc-blackbox'
+        metrics_path: /probe
+        params:
+          module: [http_2xx]
+        relabel_configs:
+          - source_labels: [__address__]
+            target_label: __param_target
+          - source_labels: [__param_target]
+            target_label: instance
+          - target_label: __address__
+            replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
+          - target_label: location
+            replacement: 'KRSRC'
+        static_configs:
+          - targets:
+              #- https://rucio.krsrc.org/
+            labels:
+              servicename: 'rucio-storage-element'
+
+          - targets:
+              #- https://jupyterhub.krsrc.org/
+            labels:
+              servicename: 'jupyterhub'
+
+          - targets:
+              #- https://perfsonar.krsrc.org/
+            labels:
+              servicename: 'perfsonar'
+
+          - targets:
+              #- https://gatekeeper.krsrc.org/
+            labels:
+              servicename: 'gatekeeper-api'
+
+
+##################################################
+#                                                #
+#                    NLSRC                       #
+#                                                #
+##################################################
+      - job_name: 'nlsrc-blackbox'
+        metrics_path: /probe
+        params:
+          module: [http_2xx]
+        relabel_configs:
+          - source_labels: [__address__]
+            target_label: __param_target
+          - source_labels: [__param_target]
+            target_label: instance
+          - target_label: __address__
+            replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
+          - target_label: location
+            replacement: 'NLSRC'
+        static_configs:
+          - targets:
+              #- https://rucio.nlsrc.org/
+            labels:
+              servicename: 'rucio-storage-element'
+
+          - targets:
+              #- https://jupyterhub.nlsrc.org/
+            labels:
+              servicename: 'jupyterhub'
+
+          - targets:
+              #- https://perfsonar.nlsrc.org/
+            labels:
+              servicename: 'perfsonar'
+
+          - targets:
+              #- https://gatekeeper.nlsrc.org/
+            labels:
+              servicename: 'gatekeeper-api'
+
+
+##################################################
+#                                                #
+#                    PTSRC                       #
+#                                                #
+##################################################
+      - job_name: 'ptsrc-blackbox'
+        metrics_path: /probe
+        params:
+          module: [http_2xx]
+        relabel_configs:
+          - source_labels: [__address__]
+            target_label: __param_target
+          - source_labels: [__param_target]
+            target_label: instance
+          - target_label: __address__
+            replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
+          - target_label: location
+            replacement: 'PTSRC'
+        static_configs:
+          - targets:
+              #- https://rucio.ptsrc.org/
+            labels:
+              servicename: 'rucio-storage-element'
+
+          - targets:
+              #- https://jupyterhub.ptsrc.org/
+            labels:
+              servicename: 'jupyterhub'
+
+          - targets:
+              #- https://perfsonar.ptsrc.org/
+            labels:
+              servicename: 'perfsonar'
+
+          - targets:
+              #- https://gatekeeper.ptsrc.org/
+            labels:
+              servicename: 'gatekeeper-api'
+
+
+##################################################
+#                                                #
+#                    SESRC                       #
+#                                                #
+##################################################
+      - job_name: 'sesrc-blackbox'
+        metrics_path: /probe
+        params:
+          module: [http_2xx]
+        relabel_configs:
+          - source_labels: [__address__]
+            target_label: __param_target
+          - source_labels: [__param_target]
+            target_label: instance
+          - target_label: __address__
+            replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
+          - target_label: location
+            replacement: 'SESRC'
+        static_configs:
+          - targets:
+              #- https://rucio.sesrc.org/
+            labels:
+              servicename: 'rucio-storage-element'
+
+          - targets:
+              #- https://jupyterhub.sesrc.org/
+            labels:
+              servicename: 'jupyterhub'
+
+          - targets:
+              #- https://perfsonar.sesrc.org/
+            labels:
+              servicename: 'perfsonar'
+
+          - targets:
+              #- https://gatekeeper.sesrc.org/
+            labels:
+              servicename: 'gatekeeper-api'
+
+
+##################################################
+#                                                #
+#                    UKSRC                       #
+#                                                #
+##################################################
+      - job_name: 'uksrc-blackbox'
+        metrics_path: /probe
+        params:
+          module: [http_2xx]
+        relabel_configs:
+          - source_labels: [__address__]
+            target_label: __param_target
+          - source_labels: [__param_target]
+            target_label: instance
+          - target_label: __address__
+            replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
+          - target_label: location
+            replacement: 'UKSRC'
+        static_configs:
+          - targets:
+              #- https://rucio.uksrc.org/
+            labels:
+              servicename: 'rucio-storage-element'
+
+          - targets:
+              #- https://jupyterhub.uksrc.org/
+            labels:
+              servicename: 'jupyterhub'
+
+          - targets:
+              #- https://perfsonar.uksrc.org/
+            labels:
+              servicename: 'perfsonar'
+
+          - targets:
+              #- https://gatekeeper.uksrc.org/
+            labels:
+              servicename: 'gatekeeper-api'
+
+
+##################################################
+#                                                #
+#                    ZASRC                       #
+#                                                #
+##################################################
+      - job_name: 'zasrc-blackbox'
+        metrics_path: /probe
+        params:
+          module: [http_2xx]
+        relabel_configs:
+          - source_labels: [__address__]
+            target_label: __param_target
+          - source_labels: [__param_target]
+            target_label: instance
+          - target_label: __address__
+            replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
+          - target_label: location
+            replacement: 'ZASRC'
+        static_configs:
+          - targets:
+              #- https://rucio.zasrc.org/
+            labels:
+              servicename: 'rucio-storage-element'
+
+          - targets:
+              #- https://jupyterhub.zasrc.org/
+            labels:
+              servicename: 'jupyterhub'
+
+          - targets:
+              #- https://perfsonar.zasrc.org/
+            labels:
+              servicename: 'perfsonar'
+
+          - targets:
+              #- https://gatekeeper.zasrc.org/
+            labels:
+              servicename: 'gatekeeper-api'
