@@ -28,4 +28,4 @@ secretGenerator:
     type: Opaque
     behavior: merge
     files:
-      - targets/targets.yaml
+      - additional-scrape-configs.yaml=targets/targets.yaml
