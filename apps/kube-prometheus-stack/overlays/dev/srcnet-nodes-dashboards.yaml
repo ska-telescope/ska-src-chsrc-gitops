@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: grafana-dashboards
+  name: srcnet-dashboards
   labels:
     grafana_dashboard: "1"
     srcnet_dashboard: "1"
