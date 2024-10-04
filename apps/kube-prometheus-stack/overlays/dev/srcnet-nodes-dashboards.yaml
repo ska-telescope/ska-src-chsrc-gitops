@@ -4,7 +4,6 @@ metadata:
   name: srcnet-dashboards
   labels:
     grafana_dashboard: "1"
-    srcnet_dashboard: "1"
 data:
   chsrc-dashboard.json: |
     {
