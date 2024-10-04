@@ -1,0 +1,12 @@
+---
+grafana:
+  ingress:
+    hosts:
+      - grafana.src.skach.org
+    tls:
+      - secretName: grafana.src.skach.org
+        hosts:
+          - grafana.src.skach.org
+  grafana.ini:
+    server:
+      root_url: https://grafana.src.skach.org

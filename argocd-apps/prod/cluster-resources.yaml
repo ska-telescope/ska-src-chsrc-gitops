@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cluster-resources
+  namespace: argocd
+spec:
+  project: default
+  # The sources: and namespace: sections below are the most important bits.
+  # This points to the app's corresponding repo, branch, and kustomize overlay path.
+  # WARNING: do NOT set sources.directory when using kustomize, otherwise
+  # ArgoCD will interpret all files as raw kubernetes manifests instead of kustomize resources
+  sources:
+  - repoURL: https://gitlab.com/ska-telescope/src/deployments/chsrc/ska-src-chsrc-services-cd.git
+    targetRevision: prod
+    ref: argorepo
+    path: apps/cluster-resources/overlays/prod
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: cluster-resources
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
