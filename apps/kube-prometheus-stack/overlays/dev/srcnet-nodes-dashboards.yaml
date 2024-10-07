@@ -26,7 +26,7 @@ data:
       "editable": true,
       "fiscalYearStartMonth": 0,
       "graphTooltip": 0,
-      "id": 31,
+      "id": 26,
       "links": [],
       "panels": [
         {
@@ -179,7 +179,7 @@ data:
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "avg_over_time(probe_success{location=\"CHSRC\", servicename=~\".+\"}[24h]) * 100",
+              "expr": "probe_success{location=\"CHSRC\", servicename=~\".+\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -366,6 +366,6 @@ data:
       "timezone": "browser",
       "title": "Global Monitoring / SRCNet Nodes / CHSRC Services",
       "uid": "chsrc_services",
-      "version": 1,
+      "version": 2,
       "weekStart": ""
     }
