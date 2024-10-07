@@ -364,7 +364,7 @@ data:
       },
       "timepicker": {},
       "timezone": "browser",
-      "title": "CHSRC Services",
+      "title": "Global Monitoring / SRCNet Nodes / CHSRC Services",
       "uid": "chsrc_services",
       "version": 1,
       "weekStart": ""
