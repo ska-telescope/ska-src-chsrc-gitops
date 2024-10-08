@@ -8,7 +8,6 @@ prometheus:
 #                    AUSSRC                      #
 #                                                #
 ##################################################
-
       - job_name: 'aussrc-blackbox'
         metrics_path: /probe
         params:
