@@ -1,4 +1,4 @@
-# Registering Your Monitoring Targets
+# Registering Your Global Monitoring Targets
 
 To register your services for monitoring, please follow these steps:
 
