@@ -27,7 +27,6 @@ spec:
         - --provider=gandi
         - --log-level=debug
         - --registry=txt
-        - --txt-owner-id=skach
         env:
         - name: GANDI_KEY
           valueFrom:
