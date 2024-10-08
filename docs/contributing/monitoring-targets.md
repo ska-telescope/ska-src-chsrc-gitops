@@ -24,8 +24,8 @@ If you encounter any issues, don’t hesitate to ask for assistance!
 
 - When adding a new site, please copy and paste an existing site and make the following changes:
 
-  1. Ensure `job_name` is unique (consider using `<site>-blackbox`).
-  2. Adjust the `target_label: location` replacement to match your specific site.
-  3. Change all service references to the services you want to monitor.
+    1. Ensure `job_name` is unique (consider using `<site>-blackbox`).
+    2. Adjust the `target_label: location` replacement to match your specific site.
+    3. Change all service references to the services you want to monitor.
   
 Make sure to review all relevant fields!
