@@ -13,6 +13,8 @@ To register your services for central monitoring, please follow these steps:
 If you encounter any issues, don’t hesitate to ask for assistance!
 
 ### A Few More Things to Consider for New Services
+- Do **not** change nor substitute any values under the section `relabel_configs:`. It's magic that's required to integrate with our monitoring infrastructure.
+
 - Please stick to the following format when adding your services:
 
     ```yaml
@@ -21,7 +23,6 @@ If you encounter any issues, don’t hesitate to ask for assistance!
       labels:
         servicename: 'example-service'
     ```
-- Do **not** change nor substitute any values under the section `relabel_configs:`. It's magic that's required to integrate with our monitoring infrastructure.
 
 - When adding a new site, please copy and paste an existing site and make the following changes:
 
