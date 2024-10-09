@@ -1,6 +1,6 @@
-# Registering Your Global Monitoring Targets
+# Registering Your Central Monitoring Targets
 
-To register your services for global monitoring, please follow these steps:
+To register your services for central monitoring, please follow these steps:
 
 1. Navigate to the [targets folder on the dev branch](https://gitlab.com/ska-telescope/src/deployments/chsrc/ska-src-chsrc-services-cd/-/tree/dev/apps/kube-prometheus-stack/overlays/dev/targets).
 2. Open the `values.yaml` file, which contains all the scraping targets.
