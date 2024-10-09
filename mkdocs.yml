@@ -22,6 +22,7 @@ nav:
   - Contributing:
     - contributing/repo.md
     - contributing/docs.md
+    - contributing/monitoring-targets.md
   - about.md
 
 theme:
