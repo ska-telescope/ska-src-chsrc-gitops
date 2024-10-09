@@ -8,5 +8,5 @@ spec:
     - grafana.src.skach.org
   secretName: grafana.src.skach.org
   issuerRef:
-    name: letsencrypt-traefik-issuer
+    name: letsencrypt-http01
     kind: ClusterIssuer
