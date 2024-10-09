@@ -21,6 +21,7 @@ If you encounter any issues, don’t hesitate to ask for assistance!
       labels:
         servicename: 'example-service'
     ```
+- Do **not** change nor substitute any values under the section `relabel_configs:`. It's magic that's required to integrate with our monitoring infrastructure.
 
 - When adding a new site, please copy and paste an existing site and make the following changes:
 
