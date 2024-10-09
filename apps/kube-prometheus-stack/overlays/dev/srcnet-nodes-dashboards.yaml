@@ -26,7 +26,6 @@ data:
       "editable": true,
       "fiscalYearStartMonth": 0,
       "graphTooltip": 0,
-      "id": 26,
       "links": [],
       "panels": [
         {
@@ -96,7 +95,7 @@ data:
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "avg_over_time(probe_success{location=\"CHSRC\", servicename=~\".+\"}[24h]) * 100",
+              "expr": "avg_over_time(probe_success{location=\"$sitename\", servicename=~\".+\"}[24h]) * 100",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -179,7 +178,7 @@ data:
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "probe_success{location=\"CHSRC\", servicename=~\".+\"}",
+              "expr": "probe_success{location=\"$sitename\", servicename=~\".+\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -259,7 +258,7 @@ data:
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "avg_over_time(probe_success{location=\"CHSRC\", servicename=~\".+\"}[1w]) * 100",
+              "expr": "avg_over_time(probe_success{location=\"$sitename\", servicename=~\".+\"}[1w]) * 100",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -339,7 +338,7 @@ data:
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "avg_over_time(probe_success{location=\"CHSRC\", servicename=~\".+\"}[30d]) * 100",
+              "expr": "avg_over_time(probe_success{location=\"$sitename\", servicename=~\".+\"}[30d]) * 100",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -356,16 +355,115 @@ data:
       "schemaVersion": 39,
       "tags": [],
       "templating": {
-        "list": []
+        "list": [
+          {
+            "current": {
+              "selected": true,
+              "text": "ESPSRC",
+              "value": "ESPSRC"
+            },
+            "hide": 0,
+            "includeAll": false,
+            "label": "sitename",
+            "multi": false,
+            "name": "sitename",
+            "options": [
+              {
+                "selected": false,
+                "text": "AUSSRC",
+                "value": "AUSSRC"
+              },
+              {
+                "selected": false,
+                "text": "CANSRC",
+                "value": "CANSRC"
+              },
+              {
+                "selected": false,
+                "text": "CHSRC",
+                "value": "CHSRC"
+              },
+              {
+                "selected": false,
+                "text": "CNSRC",
+                "value": "CNSRC"
+              },
+              {
+                "selected": false,
+                "text": "DESRC",
+                "value": "DESRC"
+              },
+              {
+                "selected": true,
+                "text": "ESPSRC",
+                "value": "ESPSRC"
+              },
+              {
+                "selected": false,
+                "text": "FRSRC",
+                "value": "FRSRC"
+              },
+              {
+                "selected": false,
+                "text": "INSRC",
+                "value": "INSRC"
+              },
+              {
+                "selected": false,
+                "text": "ITSRC",
+                "value": "ITSRC"
+              },
+              {
+                "selected": false,
+                "text": "JPSRC",
+                "value": "JPSRC"
+              },
+              {
+                "selected": false,
+                "text": "KRSRC",
+                "value": "KRSRC"
+              },
+              {
+                "selected": false,
+                "text": "NLSRC",
+                "value": "NLSRC"
+              },
+              {
+                "selected": false,
+                "text": "PTSRC",
+                "value": "PTSRC"
+              },
+              {
+                "selected": false,
+                "text": "SESRC",
+                "value": "SESRC"
+              },
+              {
+                "selected": false,
+                "text": "UKSRC",
+                "value": "UKSRC"
+              },
+              {
+                "selected": false,
+                "text": "ZASRC",
+                "value": "ZASRC"
+              }
+            ],
+            "query": "AUSSRC, CANSRC, CHSRC, CNSRC, DESRC, ESPSRC, FRSRC, INSRC, ITSRC, JPSRC, KRSRC, NLSRC, PTSRC, SESRC, UKSRC, ZASRC",
+            "queryValue": "",
+            "skipUrlSync": false,
+            "type": "custom"
+          }
+        ]
       },
       "time": {
-        "from": "now-6h",
+        "from": "now-7d",
         "to": "now"
       },
       "timepicker": {},
       "timezone": "browser",
-      "title": "Global Monitoring / SRCNet Nodes / CHSRC Services",
+      "title": "Global Monitoring / SRCNet Global Services",
       "uid": "chsrc_services",
-      "version": 2,
+      "version": 3,
       "weekStart": ""
     }
