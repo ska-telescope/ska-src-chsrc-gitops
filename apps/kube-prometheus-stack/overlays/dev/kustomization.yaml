@@ -7,7 +7,6 @@ resources:
 - grafana.dev.skach.org.yaml
 - dashboards.yaml
 - dashboards2.yaml
-- srcnet-nodes-dashboards.yaml
 
 # Helm chart definition with values overlay
 helmCharts:
