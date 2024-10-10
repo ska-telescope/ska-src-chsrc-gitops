@@ -22,6 +22,7 @@ If you encounter any issues, don’t hesitate to ask for assistance!
         - https://example.url.org/
       labels:
         servicename: 'example-service'
+        environment: 'dev/prod' #pick either 'dev' or 'prod'
     ```
 
 - When adding a new site, please copy and paste an existing site and make the following changes:
