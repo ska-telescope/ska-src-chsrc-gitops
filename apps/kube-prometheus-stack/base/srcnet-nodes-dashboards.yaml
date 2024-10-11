@@ -114,7 +114,7 @@ data:
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "last_over_time(probe_success{location=~\".+\", servicename=~\".+\"}[10m])",
+              "expr": "last_over_time(probe_success{location=~\".+\", servicename=~\".+\", environment=\"$environment\"}[10m])",
               "format": "table",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
@@ -205,7 +205,7 @@ data:
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "avg_over_time(probe_success{location=\"$sitename\", servicename=~\".+\"}[24h]) * 100",
+              "expr": "avg_over_time(probe_success{location=\"$sitename\", servicename=~\".+\", environment=\"$environment\"}[24h]) * 100",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -288,7 +288,7 @@ data:
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "probe_success{location=\"$sitename\", servicename=~\".+\"}",
+              "expr": "probe_success{location=\"$sitename\", servicename=~\".+\", environment=\"$environment\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -368,7 +368,7 @@ data:
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "avg_over_time(probe_success{location=\"$sitename\", servicename=~\".+\"}[1w]) * 100",
+              "expr": "avg_over_time(probe_success{location=\"$sitename\", servicename=~\".+\", environment=\"$environment\"}[1w]) * 100",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -448,7 +448,7 @@ data:
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "avg_over_time(probe_success{location=\"$sitename\", servicename=~\".+\"}[30d]) * 100",
+              "expr": "avg_over_time(probe_success{location=\"$sitename\", servicename=~\".+\", environment=\"$environment\"}[30d]) * 100",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -468,7 +468,7 @@ data:
         "list": [
           {
             "current": {
-              "selected": true,
+              "selected": false,
               "text": "CHSRC",
               "value": "CHSRC"
             },
@@ -563,17 +563,45 @@ data:
             "queryValue": "",
             "skipUrlSync": false,
             "type": "custom"
+          },
+          {
+            "current": {
+              "selected": true,
+              "text": "dev",
+              "value": "dev"
+            },
+            "hide": 0,
+            "includeAll": false,
+            "label": "environment",
+            "multi": false,
+            "name": "environment",
+            "options": [
+              {
+                "selected": true,
+                "text": "dev",
+                "value": "dev"
+              },
+              {
+                "selected": false,
+                "text": "prod",
+                "value": "prod"
+              }
+            ],
+            "query": "dev, prod",
+            "queryValue": "",
+            "skipUrlSync": false,
+            "type": "custom"
           }
         ]
       },
       "time": {
-        "from": "now-2d",
+        "from": "now-1h",
         "to": "now"
       },
       "timepicker": {},
       "timezone": "browser",
       "title": "Central Monitoring / SRCNet Global Services",
       "uid": "chsrc_services",
-      "version": 4,
+      "version": 1,
       "weekStart": ""
     }
