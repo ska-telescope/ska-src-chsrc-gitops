@@ -5,7 +5,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
 data:
-  chsrc-dashboard.json: |
+  central-monitoring-dashboard.json: |
     {
       "annotations": {
         "list": [
@@ -601,7 +601,7 @@ data:
       "timepicker": {},
       "timezone": "browser",
       "title": "Central Monitoring / SRCNet Global Services",
-      "uid": "chsrc_services",
+      "uid": "global_services",
       "version": 1,
       "weekStart": ""
     }
