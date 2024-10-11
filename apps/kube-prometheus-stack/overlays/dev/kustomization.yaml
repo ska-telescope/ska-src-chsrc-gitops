@@ -21,4 +21,4 @@ helmCharts:
     # overlay values file that will override the base
     additionalValuesFiles:
       - values.yaml
-      - targets/values.yaml
+      - ../../base/targets/values.yaml
