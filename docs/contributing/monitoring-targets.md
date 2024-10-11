@@ -2,7 +2,7 @@
 
 To register your services for central monitoring, please follow these steps:
 
-1. Navigate to the [targets folder on the dev branch](https://gitlab.com/ska-telescope/src/deployments/chsrc/ska-src-chsrc-services-cd/-/tree/dev/apps/kube-prometheus-stack/overlays/dev/targets).
+1. Navigate to the [targets folder on the dev branch](https://gitlab.com/ska-telescope/src/deployments/chsrc/ska-src-chsrc-services-cd/-/tree/dev/apps/kube-prometheus-stack/base/targets).
 2. Open the `values.yaml` file, which contains all the scraping targets.
 3. (Unless you're cloning this repo to make edits) Click on **Edit** &rarr; **Open in Web IDE** to edit the targets.
 4. Locate the section that corresponds to your SRC node. Some fields should already be prefilled for you, but please double-check everything.
