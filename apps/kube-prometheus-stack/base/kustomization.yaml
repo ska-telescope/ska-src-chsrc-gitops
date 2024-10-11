@@ -4,3 +4,4 @@ namespace: monitoring
 
 resources:
 - secrets.yaml
+- srcnet-nodes-dashboards.yaml
