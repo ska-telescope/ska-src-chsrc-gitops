@@ -4,15 +4,16 @@ namespace: monitoring
 
 resources:
 - ../../base
+- grafana.dev.skach.org.yaml
 - dashboards.yaml
 - dashboards2.yaml
-- grafana.dev.skach.org.yaml
 
 # Helm chart definition with values overlay
 helmCharts:
   - name: kube-prometheus-stack
     repo: https://prometheus-community.github.io/helm-charts
     version: 61.7.2
+    includeCRDs: true
     namespace: monitoring
     releaseName: kube-prometheus-stack
     # base values file
@@ -20,3 +21,4 @@ helmCharts:
     # overlay values file that will override the base
     additionalValuesFiles:
       - values.yaml
+      - ../../base/targets/values.yaml
