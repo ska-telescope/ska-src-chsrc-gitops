@@ -205,7 +205,7 @@ data:
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "avg_over_time(probe_success{location=\"$sitename\", servicename=~\".+\", environment=\"$environment\"}[24h]) * 100",
+              "expr": "avg_over_time(probe_success{location=\"$sitename\", servicename=~\".+\", environment=\"$environment\"}[$__range]) * 100",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -215,7 +215,7 @@ data:
               "useBackend": false
             }
           ],
-          "title": "$sitename Services: Availability 24h",
+          "title": "$sitename Services: Availability",
           "type": "gauge"
         },
         {
@@ -300,166 +300,6 @@ data:
           ],
           "title": "$sitename Services: Timeline",
           "type": "heatmap"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "dark-red",
-                    "value": null
-                  },
-                  {
-                    "color": "semi-dark-red",
-                    "value": 50
-                  },
-                  {
-                    "color": "semi-dark-orange",
-                    "value": 80
-                  },
-                  {
-                    "color": "dark-green",
-                    "value": 95
-                  }
-                ]
-              },
-              "unit": "percent"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 8,
-            "w": 12,
-            "x": 0,
-            "y": 16
-          },
-          "id": 4,
-          "options": {
-            "minVizHeight": 75,
-            "minVizWidth": 75,
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showThresholdLabels": false,
-            "showThresholdMarkers": true,
-            "sizing": "auto"
-          },
-          "pluginVersion": "11.1.0",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
-              },
-              "disableTextWrap": false,
-              "editorMode": "builder",
-              "expr": "avg_over_time(probe_success{location=\"$sitename\", servicename=~\".+\", environment=\"$environment\"}[1w]) * 100",
-              "fullMetaSearch": false,
-              "includeNullMetadata": true,
-              "instant": false,
-              "legendFormat": "{{servicename}}",
-              "range": true,
-              "refId": "A",
-              "useBackend": false
-            }
-          ],
-          "title": "$sitename Services: Availability 7d",
-          "type": "gauge"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "dark-red",
-                    "value": null
-                  },
-                  {
-                    "color": "semi-dark-red",
-                    "value": 50
-                  },
-                  {
-                    "color": "semi-dark-orange",
-                    "value": 80
-                  },
-                  {
-                    "color": "dark-green",
-                    "value": 95
-                  }
-                ]
-              },
-              "unit": "percent"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 8,
-            "w": 12,
-            "x": 0,
-            "y": 24
-          },
-          "id": 3,
-          "options": {
-            "minVizHeight": 75,
-            "minVizWidth": 75,
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showThresholdLabels": false,
-            "showThresholdMarkers": true,
-            "sizing": "auto"
-          },
-          "pluginVersion": "11.1.0",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
-              },
-              "disableTextWrap": false,
-              "editorMode": "builder",
-              "expr": "avg_over_time(probe_success{location=\"$sitename\", servicename=~\".+\", environment=\"$environment\"}[30d]) * 100",
-              "fullMetaSearch": false,
-              "includeNullMetadata": true,
-              "instant": false,
-              "legendFormat": "{{servicename}}",
-              "range": true,
-              "refId": "A",
-              "useBackend": false
-            }
-          ],
-          "title": "$sitename Services: Availability 30d",
-          "type": "gauge"
         }
       ],
       "schemaVersion": 39,
@@ -468,7 +308,7 @@ data:
         "list": [
           {
             "current": {
-              "selected": false,
+              "selected": true,
               "text": "CHSRC",
               "value": "CHSRC"
             },
@@ -566,7 +406,7 @@ data:
           },
           {
             "current": {
-              "selected": true,
+              "selected": false,
               "text": "dev",
               "value": "dev"
             },
@@ -595,13 +435,26 @@ data:
         ]
       },
       "time": {
-        "from": "now-1h",
+        "from": "now-24h",
         "to": "now"
       },
-      "timepicker": {},
+      "timepicker": {
+        "refresh_intervals": [
+          "5s",
+          "10s",
+          "30s",
+          "1m",
+          "5m",
+          "15m",
+          "30m",
+          "1h",
+          "2h",
+          "1d"
+        ]
+      },
       "timezone": "browser",
       "title": "Central Monitoring / SRCNet Global Services",
       "uid": "global_services",
-      "version": 1,
+      "version": 2,
       "weekStart": ""
     }
