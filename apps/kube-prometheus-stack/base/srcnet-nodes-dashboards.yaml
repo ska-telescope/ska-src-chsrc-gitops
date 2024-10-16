@@ -215,7 +215,7 @@ data:
               "useBackend": false
             }
           ],
-          "title": "$sitename Services: Reliability 24h",
+          "title": "$sitename Services: Availability 24h",
           "type": "gauge"
         },
         {
@@ -378,7 +378,7 @@ data:
               "useBackend": false
             }
           ],
-          "title": "$sitename Services: Reliability 7d",
+          "title": "$sitename Services: Availability 7d",
           "type": "gauge"
         },
         {
@@ -458,7 +458,7 @@ data:
               "useBackend": false
             }
           ],
-          "title": "$sitename Services: Reliability 30d",
+          "title": "$sitename Services: Availability 30d",
           "type": "gauge"
         }
       ],
