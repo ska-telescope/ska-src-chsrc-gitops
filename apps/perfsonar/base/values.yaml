@@ -1,0 +1,34 @@
+namespace: perfsonar
+image:
+  repository: perfsonar/testpoint
+  tag: v5.1.3
+  pullPolicy: IfNotPresent
+
+# Service DNS name. This MUST be a DNS name, not an IP address.
+# This is a perfSONAR limitation. See https://github.com/perfsonar/pscheduler/issues/1476
+# It should match the name that is used with the pscheduler `--dest` parameter.
+#serviceDNSName: "perfsonar.dev.skach.org"
+
+# This will be added to the psconfig on startup
+psconfigUrl: "https://perfsonar01.jc.rl.ac.uk/psconfig/psconfig-test.json"
+
+# owamp-server UDP test port range
+owampTestPortRange:
+  start: 8760
+  end: 8770
+
+# Resource requests and limits (optional)
+resources:
+  limits:
+    memory: "4Gi"
+    cpu: "4"
+  requests:
+    memory: "2Gi"
+    cpu: "2"
+
+# Custom annotations (optional)
+#serviceAnnotations:
+#  metallb.universe.tf/loadBalancerIPs: "148.187.17.53"
+
+# Optional imagePullPolicy
+imagePullPolicy: IfNotPresent
