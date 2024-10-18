@@ -98,12 +98,7 @@ data:
             },
             "frameIndex": 5,
             "showHeader": true,
-            "sortBy": [
-              {
-                "desc": false,
-                "displayName": "Time"
-              }
-            ]
+            "sortBy": []
           },
           "pluginVersion": "11.1.0",
           "targets": [
@@ -225,58 +220,80 @@ data:
           },
           "fieldConfig": {
             "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
               "custom": {
+                "fillOpacity": 61,
                 "hideFrom": {
                   "legend": false,
                   "tooltip": false,
                   "viz": false
                 },
-                "scaleDistribution": {
-                  "type": "linear"
+                "insertNulls": false,
+                "lineWidth": 0,
+                "spanNulls": false
+              },
+              "mappings": [
+                {
+                  "options": {
+                    "from": -1,
+                    "result": {
+                      "index": 0,
+                      "text": "Offline"
+                    },
+                    "to": 0.5
+                  },
+                  "type": "range"
+                },
+                {
+                  "options": {
+                    "from": 0.5,
+                    "result": {
+                      "index": 1,
+                      "text": "Online"
+                    },
+                    "to": 1.5
+                  },
+                  "type": "range"
                 }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "red",
+                    "value": null
+                  },
+                  {
+                    "color": "semi-dark-green",
+                    "value": 1
+                  }
+                ]
               }
             },
             "overrides": []
           },
           "gridPos": {
             "h": 8,
-            "w": 11,
+            "w": 12,
             "x": 12,
             "y": 8
           },
           "id": 2,
           "options": {
-            "calculate": false,
-            "cellGap": 0,
-            "color": {
-              "exponent": 0.5,
-              "fill": "dark-orange",
-              "mode": "scheme",
-              "reverse": false,
-              "scale": "exponential",
-              "scheme": "Oranges",
-              "steps": 30
-            },
-            "exemplars": {
-              "color": "rgba(255,0,255,0.7)"
-            },
-            "filterValues": {
-              "le": 1e-9
-            },
+            "alignValue": "left",
             "legend": {
-              "show": false
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
             },
-            "rowsFrame": {
-              "layout": "auto"
-            },
+            "mergeValues": true,
+            "rowHeight": 0.83,
+            "showValue": "never",
             "tooltip": {
               "mode": "single",
-              "showColorScale": false,
-              "yHistogram": false
-            },
-            "yAxis": {
-              "axisPlacement": "left",
-              "reverse": false
+              "sort": "none"
             }
           },
           "pluginVersion": "11.1.0",
@@ -299,7 +316,7 @@ data:
             }
           ],
           "title": "$sitename Services: Timeline",
-          "type": "heatmap"
+          "type": "state-timeline"
         }
       ],
       "schemaVersion": 39,
@@ -435,7 +452,7 @@ data:
         ]
       },
       "time": {
-        "from": "now-7d",
+        "from": "now-2d",
         "to": "now"
       },
       "timepicker": {
@@ -455,6 +472,6 @@ data:
       "timezone": "browser",
       "title": "Central Monitoring / SRCNet Global Services",
       "uid": "global_services",
-      "version": 3,
+      "version": 4,
       "weekStart": ""
     }
