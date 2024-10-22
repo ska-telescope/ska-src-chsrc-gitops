@@ -1,0 +1,6 @@
+serviceDNSName: "perfsonar.dev.skach.org"
+
+serviceAnnotations:
+  metallb.universe.tf/loadBalancerIPs: "148.187.17.53"
+  external-dns.alpha.kubernetes.io/hostname: "perfsonar.dev.skach.org"
+  external-dns.alpha.kubernetes.io/ttl: "600"
