@@ -181,7 +181,7 @@ prometheus:
 # Please DO add your targets below this line
         static_configs:
           - targets:
-              #- https://rucio.cnsrc.org/
+              https://canfar.shao.ac.cn:31309/data
             labels:
               servicename: 'rucio-storage-element'
               environment: 'dev/prod'
