@@ -98,12 +98,7 @@ data:
             },
             "frameIndex": 5,
             "showHeader": true,
-            "sortBy": [
-              {
-                "desc": false,
-                "displayName": "Time"
-              }
-            ]
+            "sortBy": []
           },
           "pluginVersion": "11.1.0",
           "targets": [
@@ -125,7 +120,7 @@ data:
               "useBackend": false
             }
           ],
-          "title": "Global Overview",
+          "title": "Overview",
           "transformations": [
             {
               "id": "groupingToMatrix",
@@ -205,7 +200,7 @@ data:
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "avg_over_time(probe_success{location=\"$sitename\", servicename=~\".+\", environment=\"$environment\"}[24h]) * 100",
+              "expr": "avg by(job, servicename, environment, instance, location) (avg_over_time(probe_success{location=\"$sitename\", servicename=~\".+\", environment=\"$environment\"}[$__range])) * 100",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -215,7 +210,7 @@ data:
               "useBackend": false
             }
           ],
-          "title": "$sitename Services: Reliability 24h",
+          "title": "$sitename Services: Availability",
           "type": "gauge"
         },
         {
@@ -225,15 +220,56 @@ data:
           },
           "fieldConfig": {
             "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
               "custom": {
+                "fillOpacity": 61,
                 "hideFrom": {
                   "legend": false,
                   "tooltip": false,
                   "viz": false
                 },
-                "scaleDistribution": {
-                  "type": "linear"
+                "insertNulls": false,
+                "lineWidth": 0,
+                "spanNulls": false
+              },
+              "mappings": [
+                {
+                  "options": {
+                    "from": -1,
+                    "result": {
+                      "index": 0,
+                      "text": "Offline"
+                    },
+                    "to": 0.5
+                  },
+                  "type": "range"
+                },
+                {
+                  "options": {
+                    "from": 0.5,
+                    "result": {
+                      "index": 1,
+                      "text": "Online"
+                    },
+                    "to": 1.5
+                  },
+                  "type": "range"
                 }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "red",
+                    "value": null
+                  },
+                  {
+                    "color": "semi-dark-green",
+                    "value": 1
+                  }
+                ]
               }
             },
             "overrides": []
@@ -246,37 +282,18 @@ data:
           },
           "id": 2,
           "options": {
-            "calculate": false,
-            "cellGap": 0,
-            "color": {
-              "exponent": 0.5,
-              "fill": "dark-orange",
-              "mode": "scheme",
-              "reverse": false,
-              "scale": "exponential",
-              "scheme": "Oranges",
-              "steps": 64
-            },
-            "exemplars": {
-              "color": "rgba(255,0,255,0.7)"
-            },
-            "filterValues": {
-              "le": 1e-9
-            },
+            "alignValue": "left",
             "legend": {
-              "show": false
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
             },
-            "rowsFrame": {
-              "layout": "auto"
-            },
+            "mergeValues": true,
+            "rowHeight": 0.83,
+            "showValue": "never",
             "tooltip": {
               "mode": "single",
-              "showColorScale": false,
-              "yHistogram": false
-            },
-            "yAxis": {
-              "axisPlacement": "left",
-              "reverse": false
+              "sort": "none"
             }
           },
           "pluginVersion": "11.1.0",
@@ -288,7 +305,7 @@ data:
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "probe_success{location=\"$sitename\", servicename=~\".+\", environment=\"$environment\"}",
+              "expr": "sum by(environment, job, location, servicename) (probe_success{location=\"$sitename\", servicename=~\".+\", environment=\"$environment\"})",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -299,167 +316,7 @@ data:
             }
           ],
           "title": "$sitename Services: Timeline",
-          "type": "heatmap"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "dark-red",
-                    "value": null
-                  },
-                  {
-                    "color": "semi-dark-red",
-                    "value": 50
-                  },
-                  {
-                    "color": "semi-dark-orange",
-                    "value": 80
-                  },
-                  {
-                    "color": "dark-green",
-                    "value": 95
-                  }
-                ]
-              },
-              "unit": "percent"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 8,
-            "w": 12,
-            "x": 0,
-            "y": 16
-          },
-          "id": 4,
-          "options": {
-            "minVizHeight": 75,
-            "minVizWidth": 75,
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showThresholdLabels": false,
-            "showThresholdMarkers": true,
-            "sizing": "auto"
-          },
-          "pluginVersion": "11.1.0",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
-              },
-              "disableTextWrap": false,
-              "editorMode": "builder",
-              "expr": "avg_over_time(probe_success{location=\"$sitename\", servicename=~\".+\", environment=\"$environment\"}[1w]) * 100",
-              "fullMetaSearch": false,
-              "includeNullMetadata": true,
-              "instant": false,
-              "legendFormat": "{{servicename}}",
-              "range": true,
-              "refId": "A",
-              "useBackend": false
-            }
-          ],
-          "title": "$sitename Services: Reliability 7d",
-          "type": "gauge"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "dark-red",
-                    "value": null
-                  },
-                  {
-                    "color": "semi-dark-red",
-                    "value": 50
-                  },
-                  {
-                    "color": "semi-dark-orange",
-                    "value": 80
-                  },
-                  {
-                    "color": "dark-green",
-                    "value": 95
-                  }
-                ]
-              },
-              "unit": "percent"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 8,
-            "w": 12,
-            "x": 0,
-            "y": 24
-          },
-          "id": 3,
-          "options": {
-            "minVizHeight": 75,
-            "minVizWidth": 75,
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showThresholdLabels": false,
-            "showThresholdMarkers": true,
-            "sizing": "auto"
-          },
-          "pluginVersion": "11.1.0",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
-              },
-              "disableTextWrap": false,
-              "editorMode": "builder",
-              "expr": "avg_over_time(probe_success{location=\"$sitename\", servicename=~\".+\", environment=\"$environment\"}[30d]) * 100",
-              "fullMetaSearch": false,
-              "includeNullMetadata": true,
-              "instant": false,
-              "legendFormat": "{{servicename}}",
-              "range": true,
-              "refId": "A",
-              "useBackend": false
-            }
-          ],
-          "title": "$sitename Services: Reliability 30d",
-          "type": "gauge"
+          "type": "state-timeline"
         }
       ],
       "schemaVersion": 39,
@@ -468,9 +325,9 @@ data:
         "list": [
           {
             "current": {
-              "selected": false,
-              "text": "CHSRC",
-              "value": "CHSRC"
+              "selected": true,
+              "text": "ESPSRC",
+              "value": "ESPSRC"
             },
             "hide": 0,
             "includeAll": false,
@@ -489,7 +346,7 @@ data:
                 "value": "CANSRC"
               },
               {
-                "selected": true,
+                "selected": false,
                 "text": "CHSRC",
                 "value": "CHSRC"
               },
@@ -504,7 +361,7 @@ data:
                 "value": "DESRC"
               },
               {
-                "selected": false,
+                "selected": true,
                 "text": "ESPSRC",
                 "value": "ESPSRC"
               },
@@ -566,7 +423,7 @@ data:
           },
           {
             "current": {
-              "selected": true,
+              "selected": false,
               "text": "dev",
               "value": "dev"
             },
@@ -595,13 +452,26 @@ data:
         ]
       },
       "time": {
-        "from": "now-1h",
+        "from": "now-2d",
         "to": "now"
       },
-      "timepicker": {},
+      "timepicker": {
+        "refresh_intervals": [
+          "5s",
+          "10s",
+          "30s",
+          "1m",
+          "5m",
+          "15m",
+          "30m",
+          "1h",
+          "2h",
+          "1d"
+        ]
+      },
       "timezone": "browser",
-      "title": "Central Monitoring / SRCNet Global Services",
-      "uid": "global_services",
-      "version": 1,
+      "title": "Central Monitoring / SRCNet Site Services",
+      "uid": "site_specific_services",
+      "version": 4,
       "weekStart": ""
     }
