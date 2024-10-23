@@ -635,10 +635,10 @@ prometheus:
 
 ##################################################
 #                                                #
-#                    SESRC                       #
+#                    SWESRC                       #
 #                                                #
 ##################################################
-      - job_name: 'sesrc-blackbox'
+      - job_name: 'swesrc-blackbox'
 # DO NOT edit these values unless instructed otherwise 
         metrics_path: /probe
         params:
@@ -651,11 +651,11 @@ prometheus:
           - target_label: __address__
             replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
           - target_label: location
-            replacement: 'SESRC'
+            replacement: 'SWESRC'
 # Please DO add your targets below this line
         static_configs:
           - targets:
-              #- https://rucio.sesrc.org/
+              #- https://rucio.swesrc.org/
             labels:
               servicename: 'rucio-storage-element'
               environment: 'dev/prod'
