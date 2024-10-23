@@ -120,7 +120,7 @@ data:
               "useBackend": false
             }
           ],
-          "title": "Global Overview",
+          "title": "Overview",
           "transformations": [
             {
               "id": "groupingToMatrix",
@@ -470,8 +470,8 @@ data:
         ]
       },
       "timezone": "browser",
-      "title": "Central Monitoring / SRCNet Global Services",
-      "uid": "global_services",
+      "title": "Central Monitoring / SRCNet Site Services",
+      "uid": "site_specific_services",
       "version": 4,
       "weekStart": ""
     }
