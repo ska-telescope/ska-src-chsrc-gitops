@@ -117,10 +117,10 @@ prometheus:
 # Please DO add your targets below this line
         static_configs:
           - targets:
-              #- https://rucio.chsrc.org/
+              - https://xrootd.dev.skach.org/data/
             labels:
               servicename: 'rucio-storage-element'
-              environment: 'dev/prod'
+              environment: 'dev'
 
           - targets:
               #- https://jupyterhub.chsrc.org/
