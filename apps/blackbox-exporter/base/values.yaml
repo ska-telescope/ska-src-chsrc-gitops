@@ -171,6 +171,7 @@ config:
         follow_redirects: true
         preferred_ip_protocol: "ip4"
         fail_if_not_ssl: true # @ORIGINAL: added
+        valid_status_codes: [2xx, 403] # Accepts all 2xx codes and 403
 
 # Set custom config path, other than default /config/blackbox.yaml. If let empty, path will be "/config/blackbox.yaml"
 # configPath: "/foo/bar"
