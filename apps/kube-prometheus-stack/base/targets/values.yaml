@@ -123,12 +123,6 @@ prometheus:
               environment: 'dev'
 
           - targets:
-              - https://xrootd2.dev.skach.org/data/
-            labels:
-              servicename: 'rucio-storage-element-xrd'
-              environment: 'dev'
-
-          - targets:
               - https://xrootd.src.skach.org/data/
             labels:
               servicename: 'rucio-storage-element'
