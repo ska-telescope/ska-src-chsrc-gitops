@@ -123,34 +123,90 @@ prometheus:
               environment: 'dev'
 
           - targets:
-              #- https://jupyterhub.chsrc.org/
+              - https://xrootd2.dev.skach.org/data/
+            labels:
+              servicename: 'rucio-storage-element'
+              environment: 'dev'
+
+          - targets:
+              - https://xrootd.src.skach.org/data/
+            labels:
+              servicename: 'rucio-storage-element'
+              environment: 'prod'
+
+          - targets:
+              - https://grafana.dev.skach.org/
+            labels:
+              servicename: 'grafana'
+              environment: 'dev'
+              type: 'global'
+
+          - targets:
+              - https://grafana.src.skach.org/
+            labels:
+              servicename: 'grafana'
+              environment: 'prod'
+              type: 'global'
+
+          - targets:
+              - https://jupyterhub.dev.skach.org/
             labels:
               servicename: 'jupyterhub'
-              environment: 'dev/prod'
+              environment: 'dev'
 
           - targets:
-              #- https://perfsonar.chsrc.org/
+              - https://jupyterhub.dev.skach.org/
+            labels:
+              servicename: 'jupyterhub'
+              environment: 'prod'
+
+          - targets:
+              - https://perfsonar.dev.skach.org/
             labels:
               servicename: 'perfsonar'
-              environment: 'dev/prod'
+              environment: 'dev'
 
           - targets:
-              #- https://gatekeeper.chsrc.org/
+              - https://perfsonar.castor.skach.org/
+            labels:
+              servicename: 'perfsonar'
+              environment: 'prod'
+
+          - targets:
+              - https://gatekeeper.dev.skach.org/
             labels:
               servicename: 'gatekeeper-api'
-              environment: 'dev/prod'
+              environment: 'dev'
 
           - targets:
-              - http://skaha.src.skach.org/
+              - https://gatekeeper.src.skach.org/
+            labels:
+              servicename: 'gatekeeper-api'
+              environment: 'src'
+
+          - targets:
+              - https://skaha.src.skach.org/
+            labels:
+              servicename: 'skaha'
+              environment: 'prod'
+
+          - targets:
+              - https://skaha.dev.skach.org/
             labels:
               servicename: 'skaha'
               environment: 'dev'
 
           - targets:
-              - http://harbor.dev.skach.org/
+              - https://harbor.dev.skach.org/
             labels:
               servicename: 'harbor'
               environment: 'dev'
+
+          - targets:
+              - https://harbor.src.skach.org/
+            labels:
+              servicename: 'harbor'
+              environment: 'prod'
 
           - targets:
               - https://echo.dev.skach.org/
@@ -158,6 +214,11 @@ prometheus:
               servicename: 'echo'
               environment: 'dev'
 
+          - targets:
+              - https://echo.src.skach.org/
+            labels:
+              servicename: 'echo'
+              environment: 'prod'
 
 ##################################################
 #                                                #
