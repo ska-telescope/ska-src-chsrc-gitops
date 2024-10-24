@@ -125,7 +125,7 @@ prometheus:
           - targets:
               - https://xrootd2.dev.skach.org/data/
             labels:
-              servicename: 'rucio-storage-element'
+              servicename: 'rucio-storage-element-xrd'
               environment: 'dev'
 
           - targets:
