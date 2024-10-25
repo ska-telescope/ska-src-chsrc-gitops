@@ -1,0 +1,23 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+# namespace is managed by the helmChart, and defining one here using the same name would cause a conflict error
+
+resources:
+- ../../base
+- certificate.yaml
+
+# Patching of regular resources
+patches: []
+
+# Helm chart definition with values overlay
+helmCharts:
+  - name: base
+    repo: https://images.opencadc.org/chartrepo/platform
+    version: 0.3.3
+    namespace: skaha-system
+    releaseName: skaha-base
+    # base values file
+    valuesFile: ../../base/values-base.yaml
+    # overlay values file that will override the base
+    additionalValuesFiles:
+      - values-base.yaml
