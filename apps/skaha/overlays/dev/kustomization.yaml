@@ -19,5 +19,15 @@ helmCharts:
     # base values file
     valuesFile: ../../base/values-base.yaml
     # overlay values file that will override the base
-    additionalValuesFiles:
-      - values-base.yaml
+    #additionalValuesFiles:
+    #  - values-base.yaml
+  - name: posixmapper
+    repo: https://images.opencadc.org/chartrepo/platform
+    version: 0.1.9
+    namespace: skaha-system
+    releaseName: skaha-posixmapper
+    # base values file
+    valuesFile: ../../base/values-posixmapper.yaml
+    # overlay values file that will override the base
+    #additionalValuesFiles:
+    #  - values-posixmapper.yaml
