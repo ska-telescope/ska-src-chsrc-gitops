@@ -3,3 +3,4 @@ kind: Kustomization
 
 resources:
 - secrets.yaml
+- skaha-pvc.yaml
