@@ -13,3 +13,7 @@ deprecated.
 | app/external-dns.gandi-externaldns-key      | external-dns      | Pablo    | Gandi's API key (deprecated). Can only be regenerated, not viewed. skach > account > authorized apps      |
 | argocd-cm ConfigMap (argocd ns)             | ArgoCD dev        | Pablo    | OIDC client id and secret
 | argocd-cm ConfigMap (argocd ns)             | ArgoCD prod       | Pablo    | OIDC client id and secret
+| apps/skaha.oidc-client-secret               | skaha portal      | Pablo    | OIDC client secret
+| apps/skaha.oidc-client-secret-storageui     | skaha storage     | Pablo    | OIDC client secret
+| apps/skaha.oidc-client-secret               | skaha portal prod | Pablo    | OIDC client secret
+| apps/skaha.oidc-client-secret-storageui     | skaha storage prod | Pablo    | OIDC client secret
