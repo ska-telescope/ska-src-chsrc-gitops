@@ -48,6 +48,16 @@ helmCharts:
     # overlay values file that will override the base
     #additionalValuesFiles:
     #  - values-posixmapper.yaml
+  - name: cavern
+    repo: https://images.opencadc.org/chartrepo/platform
+    version: 0.5.2
+    namespace: skaha-system
+    releaseName: skaha-cavern
+    # base values file
+    valuesFile: ../../base/values-cavern.yaml
+    # overlay values file that will override the base
+    #additionalValuesFiles:
+    #  - values-posixmapper.yaml
 
 # Patching of regular resources
 patches:
@@ -66,7 +76,7 @@ patches:
       version: v1
       kind: Deployment
       name: posix-mapper-tomcat
-    path: ../../base/posix-mapper-tomcat-deployment-patch.yaml
+    path: ../../base/tomcat-postgres-deployment-patch.yaml
   # The following two patches ensure the postgres deployment uses POSTGRES_PASSWORD env from the secret, not from the configmap as defined by Helm.
   - target:
       version: v1
@@ -91,3 +101,22 @@ patches:
       kind: Deployment
       name: science-portal-tomcat
     path: ../../base/science-portal-tomcat-deployment-patch.yaml
+  #### cavern patches ####
+  # Patches the cavern ingress to use the cert provided by cert-manager
+  - path: cavern-cert.yaml
+  # The cavern postgres password secret patches reuse the ones from posixmapper: two for postgres, one for the catalina.properties file.
+  - target:
+      version: v1
+      kind: ConfigMap
+      name: skaha-cavern-uws-postgres-config
+    path: ../../base/remove-postgres-password-from-configmap-patch.yaml
+  - target:
+      version: v1
+      kind: Deployment
+      name: skaha-cavern-uws-postgres
+    path: ../../base/postgres-deploy-patch.yaml
+  - target:
+      version: v1
+      kind: Deployment
+      name: skaha-cavern-tomcat
+    path: ../../base/tomcat-postgres-deployment-patch.yaml
