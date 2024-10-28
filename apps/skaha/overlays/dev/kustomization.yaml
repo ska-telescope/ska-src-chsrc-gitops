@@ -58,6 +58,16 @@ helmCharts:
     # overlay values file that will override the base
     #additionalValuesFiles:
     #  - values-posixmapper.yaml
+  - name: storageui
+    repo: https://images.opencadc.org/chartrepo/client
+    version: 0.2.5
+    namespace: skaha-system
+    releaseName: skaha-storageui
+    # base values file
+    valuesFile: ../../base/values-storageui.yaml
+    # overlay values file that will override the base
+    #additionalValuesFiles:
+    #  - values-posixmapper.yaml
 
 # Patching of regular resources
 patches:
@@ -120,3 +130,11 @@ patches:
       kind: Deployment
       name: skaha-cavern-tomcat
     path: ../../base/tomcat-postgres-deployment-patch.yaml
+  #### storage-ui patches ####
+  # Patches the cavern ingress to use the cert provided by cert-manager
+  - path: storageui-cert.yaml
+  - target:
+      version: v1
+      kind: Deployment
+      name: storage-ui-tomcat
+    path: ../../base/storage-ui-tomcat-deployment-patch.yaml

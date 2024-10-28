@@ -1,0 +1,35 @@
+- op: add
+  path: /spec/template/spec/initContainers
+  value:
+    - name: patch-secrets
+      image: envsubst/envsubst
+      command:
+        - "sh"
+        - "-c"
+        - |
+          cp /config/* /patched-config/ && \
+          cp /patched-config/org.opencadc.vosui.properties /patched-config/org.opencadc.vosui.properties.orig && \
+          envsubst < /patched-config/org.opencadc.vosui.properties.orig > /patched-config/org.opencadc.vosui.properties
+      env:
+        - name: CLIENT_SECRET_STORAGEUI
+          valueFrom:
+            secretKeyRef:
+              name: skaha-secrets
+              key: oidc-client-secret-storageui
+      volumeMounts:
+        - name: config-volume
+          mountPath: /config
+        - name: patched-config
+          mountPath: /patched-config
+
+- op: replace
+  path: /spec/template/spec/containers/0/volumeMounts
+  value:
+    - mountPath: "/config"
+      name: patched-config
+
+- op: add
+  path: /spec/template/spec/volumes/-
+  value:
+    name: patched-config
+    emptyDir: {}
