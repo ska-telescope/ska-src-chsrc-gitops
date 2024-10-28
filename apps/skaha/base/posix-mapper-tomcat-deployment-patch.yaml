@@ -1,0 +1,35 @@
+- op: add
+  path: /spec/template/spec/initContainers
+  value:
+    - name: configure-catalina
+      image: envsubst/envsubst
+      command:
+        - "sh"
+        - "-c"
+        - |
+          cp /config/* /patched-config/ && \
+          cp /patched-config/catalina.properties /patched-config/catalina.properties.orig && \
+          envsubst < /patched-config/catalina.properties.orig > /patched-config/catalina.properties
+      env:
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: skaha-secrets
+              key: postgres-password
+      volumeMounts:
+        - name: config-volume
+          mountPath: /config
+        - name: patched-config
+          mountPath: /patched-config
+
+- op: replace
+  path: /spec/template/spec/containers/0/volumeMounts
+  value:
+    - mountPath: "/config"
+      name: patched-config
+
+- op: add
+  path: /spec/template/spec/volumes/-
+  value:
+    name: patched-config
+    emptyDir: {}

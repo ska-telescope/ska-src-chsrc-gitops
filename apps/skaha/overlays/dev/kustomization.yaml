@@ -6,10 +6,6 @@ resources:
 - ../../base
 - certificate.yaml
 
-# Patching of regular resources
-patches:
-  - path: posixmapper-cert.yaml
-
 # Helm chart definition with values overlay
 helmCharts:
   - name: base
@@ -32,3 +28,32 @@ helmCharts:
     # overlay values file that will override the base
     #additionalValuesFiles:
     #  - values-posixmapper.yaml
+
+# Patching of regular resources
+patches:
+  # Patches the ingress to use the cert provided by cert-manager
+  - path: posixmapper-cert.yaml
+  # The posixmapper postgres password comes from the values.yaml :(
+  # To use our secret from Vault we need to change two things:
+  # 1. The postgres deployment, so that it uses our secret. This is the easy one as we can se the secret via env.
+  # 2. The tomcat application. This is the tricky one because it expects the secret to appear in the /config/catalina.properties file.
+  # 
+  # The following patch ensures that the catalina.properties file is patched so that the postgres password is substituted with
+  # the value that comes from our secret. This is implemented via an initContainer that runs envsubst to do the replacement.
+  # It assumes that the password is set to an env expression ${POSTGRES_PASSWORD}.
+  - target:
+      version: v1
+      kind: Deployment
+      name: posix-mapper-tomcat
+    path: ../../base/posix-mapper-tomcat-deployment-patch.yaml
+  # The following two patches ensure the postgres deployment uses POSTGRES_PASSWORD env from the secret, not from the configmap as defined by Helm.
+  - target:
+      version: v1
+      kind: Deployment
+      name: posix-mapper-postgres
+    path: ../../base/postgres-deploy-patch.yaml
+  - target:
+      version: v1
+      kind: ConfigMap
+      name: posix-mapper-postgres-config
+    path: ../../base/remove-postgres-password-from-configmap-patch.yaml

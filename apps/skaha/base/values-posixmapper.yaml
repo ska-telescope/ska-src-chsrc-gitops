@@ -80,7 +80,7 @@ postgresql:
   maxActive: 8
   auth:
     username: posixmapper
-    password: posixmapperpwd
+    password: ${POSTGRES_PASSWORD} # we will patch this via `envsubst` with the Vault secret during pod start.
     database: mapping
     schema: mapping
   storage:
