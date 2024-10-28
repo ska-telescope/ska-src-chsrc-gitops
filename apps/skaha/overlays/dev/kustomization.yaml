@@ -38,10 +38,21 @@ helmCharts:
     # overlay values file that will override the base
     #additionalValuesFiles:
     #  - values-posixmapper.yaml
+  - name: scienceportal
+    repo: https://images.opencadc.org/chartrepo/platform
+    version: 0.2.13
+    namespace: skaha-system
+    releaseName: skaha-scienceportal
+    # base values file
+    valuesFile: ../../base/values-scienceportal.yaml
+    # overlay values file that will override the base
+    #additionalValuesFiles:
+    #  - values-posixmapper.yaml
 
 # Patching of regular resources
 patches:
-  # Patches the ingress to use the cert provided by cert-manager
+  #### posixmapper patches ####
+  # Patches the posixmapper ingress to use the cert provided by cert-manager
   - path: posixmapper-cert.yaml
   # The posixmapper postgres password comes from the values.yaml :(
   # To use our secret from Vault we need to change two things:
