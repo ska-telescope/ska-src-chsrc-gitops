@@ -28,6 +28,16 @@ helmCharts:
     # overlay values file that will override the base
     #additionalValuesFiles:
     #  - values-posixmapper.yaml
+  - name: skaha
+    repo: https://images.opencadc.org/chartrepo/platform
+    version: 0.8.1
+    namespace: skaha-system
+    releaseName: skaha
+    # base values file
+    valuesFile: ../../base/values-skaha.yaml
+    # overlay values file that will override the base
+    #additionalValuesFiles:
+    #  - values-posixmapper.yaml
 
 # Patching of regular resources
 patches:
@@ -57,3 +67,16 @@ patches:
       kind: ConfigMap
       name: posix-mapper-postgres-config
     path: ../../base/remove-postgres-password-from-configmap-patch.yaml
+  #### skaha patches ####
+  - path: skaha-cert.yaml
+  #### scienceportal patches ####
+  # Patches the scienceportal ingress to use the cert provided by cert-manager
+  - path: scienceportal-cert.yaml
+  # Patches the cadc-registry.properties file in the science-portal-config ConfigMap and the science-portal-tomcat Deployment accordingly.
+  # While the helm chart provides an `existingSecretName`, this relies on a lookup at helm template generation time,
+  # which doesn't work without heavily patching ArgoCD as the reposerver doesn't have (by design) access to Kubernetes.
+  - target:
+      version: v1
+      kind: Deployment
+      name: science-portal-tomcat
+    path: ../../base/science-portal-tomcat-deployment-patch.yaml

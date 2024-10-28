@@ -9,7 +9,7 @@ skaha:
 
 # POSIX Mapper web service deployment
 deployment:
-  hostname: skaha.dev.skach.org # ORIGINAL example.org
+  hostname: skaha.dev.skach.org # ORIGINAL example.org, overlay OVERRIDE
   posixMapper:
     image: images.opencadc.org/platform/posix-mapper:0.2.1
     imagePullPolicy: Always
