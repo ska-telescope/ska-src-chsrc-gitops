@@ -26,8 +26,8 @@ helmCharts:
     # base values file
     valuesFile: ../../base/values-posixmapper.yaml
     # overlay values file that will override the base
-    #additionalValuesFiles:
-    #  - values-posixmapper.yaml
+    additionalValuesFiles:
+      - values-posixmapper.yaml
   - name: skaha
     repo: https://images.opencadc.org/chartrepo/platform
     version: 0.8.1
@@ -36,8 +36,8 @@ helmCharts:
     # base values file
     valuesFile: ../../base/values-skaha.yaml
     # overlay values file that will override the base
-    #additionalValuesFiles:
-    #  - values-posixmapper.yaml
+    additionalValuesFiles:
+      - values-skaha.yaml
   - name: scienceportal
     repo: https://images.opencadc.org/chartrepo/platform
     version: 0.2.13
@@ -46,8 +46,8 @@ helmCharts:
     # base values file
     valuesFile: ../../base/values-scienceportal.yaml
     # overlay values file that will override the base
-    #additionalValuesFiles:
-    #  - values-posixmapper.yaml
+    additionalValuesFiles:
+      - values-scienceportal.yaml
   - name: cavern
     repo: https://images.opencadc.org/chartrepo/platform
     version: 0.5.2
@@ -56,8 +56,8 @@ helmCharts:
     # base values file
     valuesFile: ../../base/values-cavern.yaml
     # overlay values file that will override the base
-    #additionalValuesFiles:
-    #  - values-posixmapper.yaml
+    additionalValuesFiles:
+      - values-cavern.yaml
   - name: storageui
     repo: https://images.opencadc.org/chartrepo/client
     version: 0.2.5
@@ -66,10 +66,11 @@ helmCharts:
     # base values file
     valuesFile: ../../base/values-storageui.yaml
     # overlay values file that will override the base
-    #additionalValuesFiles:
-    #  - values-posixmapper.yaml
+    additionalValuesFiles:
+      - values-storageui.yaml
 
 # Patching of regular resources
+# These patches have to go in the overlay, they can't go in the base
 patches:
   #### posixmapper patches ####
   # Patches the posixmapper ingress to use the cert provided by cert-manager

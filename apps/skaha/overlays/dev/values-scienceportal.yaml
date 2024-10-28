@@ -1,0 +1,8 @@
+deployment:
+  hostname: skaha.dev.skach.org
+  sciencePortal:
+    skahaResourceID: ivo://dev.skach.org/skaha
+    oidc:
+      clientID: c6c8eac3-84f9-49a4-aff8-a58cd2bd1916
+      redirectURI: https://skaha.dev.skach.org/science-portal/oidc-callback
+      callbackURI: https://skaha.dev.skach.org/science-portal/
