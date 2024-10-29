@@ -184,7 +184,7 @@ prometheus:
               https://canfar.shao.ac.cn:31309/data
             labels:
               servicename: 'rucio-storage-element'
-              environment: 'dev/prod'
+              environment: 'prod'
 
           - targets:
               #- https://jupyterhub.cnsrc.org/
