@@ -11,4 +11,4 @@ When upgrading Prometheus, one therefore needs to manually upgrade CRDs accordin
 
 ## Adding your SRC Site Service to Central Monitoring
 
-A guide on how to add your SRC Site Services to central monitoring can be found [here](../../contributing/monitoring-targets.md).
+A guide on how to add your SRC Site Services to central monitoring can be found [here](https://ska-telescope.gitlab.io/src/kb/ska-src-docs-operator/services/global/central-monitoring/add-service-endpoints.html).
