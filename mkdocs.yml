@@ -1,4 +1,4 @@
-site_name: CHSRC GitOps Documentation
+site_name: Infrastructure GitOps Documentation
 site_description: CHSRC GitOps Documentation
 site_author: SKA CHSRC Team
 
@@ -27,6 +27,7 @@ nav:
 
 theme:
   name: material
+  logo: images/logo.png
   language: en
   features:
     - navigation.path
