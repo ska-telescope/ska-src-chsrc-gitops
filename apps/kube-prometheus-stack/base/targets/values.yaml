@@ -18,6 +18,8 @@ prometheus:
             target_label: __param_target
           - source_labels: [__param_target]
             target_label: instance
+          - source_labels: [module]
+            target_label: __param_module
           - target_label: __address__
             replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
           - target_label: location
@@ -64,6 +66,8 @@ prometheus:
             target_label: __param_target
           - source_labels: [__param_target]
             target_label: instance
+          - source_labels: [module]
+            target_label: __param_module
           - target_label: __address__
             replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
           - target_label: location
@@ -110,6 +114,8 @@ prometheus:
             target_label: __param_target
           - source_labels: [__param_target]
             target_label: instance
+          - source_labels: [module]
+            target_label: __param_module
           - target_label: __address__
             replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
           - target_label: location
@@ -155,16 +161,18 @@ prometheus:
               environment: 'prod'
 
           - targets:
-              - https://perfsonar.dev.skach.org/
+              - perfsonar.dev.skach.org:861
             labels:
               servicename: 'perfsonar'
               environment: 'dev'
+              module: tcp_connect
 
           - targets:
-              - https://perfsonar.castor.skach.org/
+              - perfsonar.castor.skach.org:861
             labels:
               servicename: 'perfsonar'
               environment: 'prod'
+              module: tcp_connect
 
           - targets:
               - https://gatekeeper.dev.skach.org/
@@ -253,6 +261,8 @@ prometheus:
             target_label: __param_target
           - source_labels: [__param_target]
             target_label: instance
+          - source_labels: [module]
+            target_label: __param_module
           - target_label: __address__
             replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
           - target_label: location
@@ -299,6 +309,8 @@ prometheus:
             target_label: __param_target
           - source_labels: [__param_target]
             target_label: instance
+          - source_labels: [module]
+            target_label: __param_module
           - target_label: __address__
             replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
           - target_label: location
@@ -345,6 +357,8 @@ prometheus:
             target_label: __param_target
           - source_labels: [__param_target]
             target_label: instance
+          - source_labels: [module]
+            target_label: __param_module
           - target_label: __address__
             replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
           - target_label: location
@@ -405,6 +419,8 @@ prometheus:
             target_label: __param_target
           - source_labels: [__param_target]
             target_label: instance
+          - source_labels: [module]
+            target_label: __param_module
           - target_label: __address__
             replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
           - target_label: location
@@ -451,6 +467,8 @@ prometheus:
             target_label: __param_target
           - source_labels: [__param_target]
             target_label: instance
+          - source_labels: [module]
+            target_label: __param_module
           - target_label: __address__
             replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
           - target_label: location
@@ -497,6 +515,8 @@ prometheus:
             target_label: __param_target
           - source_labels: [__param_target]
             target_label: instance
+          - source_labels: [module]
+            target_label: __param_module
           - target_label: __address__
             replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
           - target_label: location
@@ -543,6 +563,8 @@ prometheus:
             target_label: __param_target
           - source_labels: [__param_target]
             target_label: instance
+          - source_labels: [module]
+            target_label: __param_module
           - target_label: __address__
             replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
           - target_label: location
@@ -589,6 +611,8 @@ prometheus:
             target_label: __param_target
           - source_labels: [__param_target]
             target_label: instance
+          - source_labels: [module]
+            target_label: __param_module
           - target_label: __address__
             replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
           - target_label: location
@@ -635,6 +659,8 @@ prometheus:
             target_label: __param_target
           - source_labels: [__param_target]
             target_label: instance
+          - source_labels: [module]
+            target_label: __param_module
           - target_label: __address__
             replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
           - target_label: location
@@ -681,6 +707,8 @@ prometheus:
             target_label: __param_target
           - source_labels: [__param_target]
             target_label: instance
+          - source_labels: [module]
+            target_label: __param_module
           - target_label: __address__
             replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
           - target_label: location
@@ -727,6 +755,8 @@ prometheus:
             target_label: __param_target
           - source_labels: [__param_target]
             target_label: instance
+          - source_labels: [module]
+            target_label: __param_module
           - target_label: __address__
             replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
           - target_label: location
@@ -773,6 +803,8 @@ prometheus:
             target_label: __param_target
           - source_labels: [__param_target]
             target_label: instance
+          - source_labels: [module]
+            target_label: __param_module
           - target_label: __address__
             replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
           - target_label: location
@@ -819,6 +851,8 @@ prometheus:
             target_label: __param_target
           - source_labels: [__param_target]
             target_label: instance
+          - source_labels: [module]
+            target_label: __param_module
           - target_label: __address__
             replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
           - target_label: location
