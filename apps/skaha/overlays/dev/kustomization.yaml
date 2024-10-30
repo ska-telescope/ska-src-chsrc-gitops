@@ -1,0 +1,141 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+# namespace is managed by the helmChart, and defining one here using the same name would cause a conflict error
+
+resources:
+- ../../base
+- certificate.yaml
+
+# Helm chart definition with values overlay
+helmCharts:
+  - name: base
+    repo: https://images.opencadc.org/chartrepo/platform
+    version: 0.3.3
+    namespace: skaha-system
+    releaseName: skaha-base
+    # base values file
+    valuesFile: ../../base/values-base.yaml
+    # overlay values file that will override the base
+    #additionalValuesFiles:
+    #  - values-base.yaml
+  - name: posixmapper
+    repo: https://images.opencadc.org/chartrepo/platform
+    version: 0.1.9
+    namespace: skaha-system
+    releaseName: skaha-posixmapper
+    # base values file
+    valuesFile: ../../base/values-posixmapper.yaml
+    # overlay values file that will override the base
+    additionalValuesFiles:
+      - values-posixmapper.yaml
+  - name: skaha
+    repo: https://images.opencadc.org/chartrepo/platform
+    version: 0.8.1
+    namespace: skaha-system
+    releaseName: skaha
+    # base values file
+    valuesFile: ../../base/values-skaha.yaml
+    # overlay values file that will override the base
+    additionalValuesFiles:
+      - values-skaha.yaml
+  - name: scienceportal
+    repo: https://images.opencadc.org/chartrepo/platform
+    version: 0.2.13
+    namespace: skaha-system
+    releaseName: skaha-scienceportal
+    # base values file
+    valuesFile: ../../base/values-scienceportal.yaml
+    # overlay values file that will override the base
+    additionalValuesFiles:
+      - values-scienceportal.yaml
+  - name: cavern
+    repo: https://images.opencadc.org/chartrepo/platform
+    version: 0.5.2
+    namespace: skaha-system
+    releaseName: skaha-cavern
+    # base values file
+    valuesFile: ../../base/values-cavern.yaml
+    # overlay values file that will override the base
+    additionalValuesFiles:
+      - values-cavern.yaml
+  - name: storageui
+    repo: https://images.opencadc.org/chartrepo/client
+    version: 0.2.5
+    namespace: skaha-system
+    releaseName: skaha-storageui
+    # base values file
+    valuesFile: ../../base/values-storageui.yaml
+    # overlay values file that will override the base
+    additionalValuesFiles:
+      - values-storageui.yaml
+
+# Patching of regular resources
+# These patches have to go in the overlay, they can't go in the base
+patches:
+  #### posixmapper patches ####
+  # Patches the posixmapper ingress to use the cert provided by cert-manager
+  - path: posixmapper-cert.yaml
+  # The posixmapper postgres password comes from the values.yaml :(
+  # To use our secret from Vault we need to change two things:
+  # 1. The postgres deployment, so that it uses our secret. This is the easy one as we can se the secret via env.
+  # 2. The tomcat application. This is the tricky one because it expects the secret to appear in the /config/catalina.properties file.
+  # 
+  # The following patch ensures that the catalina.properties file is patched so that the postgres password is substituted with
+  # the value that comes from our secret. This is implemented via an initContainer that runs envsubst to do the replacement.
+  # It assumes that the password is set to an env expression ${POSTGRES_PASSWORD}.
+  - target:
+      version: v1
+      kind: Deployment
+      name: posix-mapper-tomcat
+    path: ../../base/tomcat-postgres-deployment-patch.yaml
+  # The following two patches ensure the postgres deployment uses POSTGRES_PASSWORD env from the secret, not from the configmap as defined by Helm.
+  - target:
+      version: v1
+      kind: Deployment
+      name: posix-mapper-postgres
+    path: ../../base/postgres-deploy-patch.yaml
+  - target:
+      version: v1
+      kind: ConfigMap
+      name: posix-mapper-postgres-config
+    path: ../../base/remove-postgres-password-from-configmap-patch.yaml
+  #### skaha patches ####
+  - path: skaha-cert.yaml
+  #### scienceportal patches ####
+  # Patches the scienceportal ingress to use the cert provided by cert-manager
+  - path: scienceportal-cert.yaml
+  # Patches the cadc-registry.properties file in the science-portal-config ConfigMap and the science-portal-tomcat Deployment accordingly.
+  # While the helm chart provides an `existingSecretName`, this relies on a lookup at helm template generation time,
+  # which doesn't work without heavily patching ArgoCD as the reposerver doesn't have (by design) access to Kubernetes.
+  - target:
+      version: v1
+      kind: Deployment
+      name: science-portal-tomcat
+    path: ../../base/science-portal-tomcat-deployment-patch.yaml
+  #### cavern patches ####
+  # Patches the cavern ingress to use the cert provided by cert-manager
+  - path: cavern-cert.yaml
+  # The cavern postgres password secret patches reuse the ones from posixmapper: two for postgres, one for the catalina.properties file.
+  - target:
+      version: v1
+      kind: ConfigMap
+      name: skaha-cavern-uws-postgres-config
+    path: ../../base/remove-postgres-password-from-configmap-patch.yaml
+  - target:
+      version: v1
+      kind: Deployment
+      name: skaha-cavern-uws-postgres
+    path: ../../base/postgres-deploy-patch.yaml
+  - target:
+      version: v1
+      kind: Deployment
+      name: skaha-cavern-tomcat
+    path: ../../base/tomcat-postgres-deployment-patch.yaml
+  #### storage-ui patches ####
+  # Patches the cavern ingress to use the cert provided by cert-manager
+  - path: storageui-cert.yaml
+  - target:
+      version: v1
+      kind: Deployment
+      name: storage-ui-tomcat
+    path: ../../base/storage-ui-tomcat-deployment-patch.yaml

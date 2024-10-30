@@ -1,0 +1,5 @@
+deployment:
+  hostname: skaha.src.skach.org
+  cavern:
+    resourceID: "ivo://src.skach.org/cavern"
+    posixMapperResourceID: "ivo://src.skach.org/posix-mapper"

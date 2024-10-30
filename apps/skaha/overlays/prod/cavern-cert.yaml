@@ -1,0 +1,11 @@
+# strategicMergePatch for the posixmapper ingress, as it's not supported by the helm chart
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: skaha-cavern-ingress
+  namespace: skaha-system
+spec:
+  tls:
+  - hosts:
+    - skaha.src.skach.org
+    secretName: skaha.src.skach.org
