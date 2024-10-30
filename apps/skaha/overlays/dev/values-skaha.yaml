@@ -1,0 +1,4 @@
+deployment:
+  hostname: skaha.dev.skach.org
+  skaha:
+    posixMapperResourceID: "ivo://dev.skach.org/posix-mapper"

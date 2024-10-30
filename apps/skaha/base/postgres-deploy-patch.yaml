@@ -1,0 +1,8 @@
+- op: add
+  path: /spec/template/spec/containers/0/env
+  value:
+    - name: POSTGRES_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: skaha-secrets
+          key: postgres-password

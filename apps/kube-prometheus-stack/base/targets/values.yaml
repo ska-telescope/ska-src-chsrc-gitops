@@ -179,15 +179,27 @@ prometheus:
               environment: 'src'
 
           - targets:
-              - https://skaha.src.skach.org/
+              - https://skaha.src.skach.org/science-portal/
             labels:
               servicename: 'skaha'
               environment: 'prod'
 
           - targets:
-              - https://skaha.dev.skach.org/
+              - https://skaha.dev.skach.org/science-portal/
             labels:
               servicename: 'skaha'
+              environment: 'dev'
+
+          - targets:
+              - https://skaha.src.skach.org/storage/list/
+            labels:
+              servicename: 'cavern'
+              environment: 'prod'
+
+          - targets:
+              - https://skaha.dev.skach.org/storage/list/
+            labels:
+              servicename: 'cavern'
               environment: 'dev'
 
           - targets:

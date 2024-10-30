@@ -1,0 +1,12 @@
+deployment:
+  hostname: skaha.dev.skach.org
+  storageUI:
+    backend:
+      services:
+        cavern:
+          resourceID: "ivo://dev.skach.org/cavern"
+          nodeURIPrefix: "vos://dev.skach.org~cavern"
+    oidc:
+      clientID: facbbbce-04e4-447c-962b-9772accd3123
+      redirectURI: https://skaha.dev.skach.org/storage/oidc-callback
+      callbackURI: https://skaha.dev.skach.org/storage/list

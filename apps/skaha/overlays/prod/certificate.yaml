@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: skaha
+  namespace: skaha-system
+spec:
+  dnsNames:
+    - skaha.src.skach.org
+  secretName: skaha.src.skach.org
+  issuerRef:
+    name: letsencrypt-http01
+    kind: ClusterIssuer

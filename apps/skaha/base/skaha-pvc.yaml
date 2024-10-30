@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: skaha-pvc
+  namespace: skaha-system
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 20Gi
+  storageClassName: ceph-corbo-cephfs-retain
+---
+# TODO: The one below should map to the same volume as skaha-pvc
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: skaha-workload-cavern-pvc
+  namespace: skaha-workload
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 20Gi
+  storageClassName: ceph-corbo-cephfs-retain
