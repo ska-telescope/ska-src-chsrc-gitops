@@ -1,10 +1,6 @@
 image:
   tag: 1.6.2
 
-ingress:
-  enabled: false
-  host: "soda.src.skach.org"
-
 persistence:
   existingClaim: "rox-pvc"
   enabled: true

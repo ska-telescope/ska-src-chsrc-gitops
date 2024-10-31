@@ -18,7 +18,9 @@ config:
     ivoid_authority=test.skao
     ivoid_resource_key=datasets/fits
 
-ingress:
+ingress: # should not be exposed via ingress
+  enabled: false
+  host:
   proxyBodySize: 5000m
   proxyBuffering: "off"
   proxyRequestBuffering: "off"
