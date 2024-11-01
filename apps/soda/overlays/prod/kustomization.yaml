@@ -4,7 +4,6 @@ namespace: soda
 
 resources:
   - ../../base
-  - rox-pvc.yaml
   - rwx-pvc.yaml
 
 helmCharts:

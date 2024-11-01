@@ -27,4 +27,4 @@ ingress: # should not be exposed via ingress
 
 persistence:
   storageClass: ceph-corbo-cephfs
-  accessMode: ReadOnlyMany
+  accessMode: ReadWriteMany # ORIGINAL: ReadOnlyMany
