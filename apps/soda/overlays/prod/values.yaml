@@ -1,0 +1,7 @@
+image:
+  tag: 1.6.2
+
+persistence:
+  existingClaim: "rwx-pvc"
+  enabled: true
+  size: 10Gi

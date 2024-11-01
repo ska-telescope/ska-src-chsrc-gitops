@@ -1,0 +1,30 @@
+image:
+  repository: harbor.srcdev.skao.int/soda/visivo-vlkb-soda
+  pullPolicy: Always
+
+deployment:
+  namespace: soda # ORIGINAL: ska-src-soda
+
+extraEnv:
+  - name: SECURITY
+    value:
+  - name: ACCESS_CONTEXT_ROOT
+    value: ska#datasets
+
+config:
+  datasets: |-
+    fits_path_surveys=/srv/soda/datasets
+    fits_path_cutouts=/srv/soda/cutouts
+    ivoid_authority=test.skao
+    ivoid_resource_key=datasets/fits
+
+ingress: # should not be exposed via ingress
+  enabled: false
+  host:
+  proxyBodySize: 5000m
+  proxyBuffering: "off"
+  proxyRequestBuffering: "off"
+
+persistence:
+  storageClass: ceph-corbo-cephfs
+  accessMode: ReadWriteMany # ORIGINAL: ReadOnlyMany
