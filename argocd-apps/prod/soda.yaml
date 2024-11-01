@@ -7,9 +7,9 @@ spec:
   project: default
   sources:
     - repoURL: https://gitlab.com/ska-telescope/src/deployments/chsrc/ska-src-chsrc-services-cd.git
-      targetRevision: dev
+      targetRevision: prod
       ref: argorepo
-      path: apps/soda/overlays/dev
+      path: apps/soda/overlays/prod
   destination:
     server: https://kubernetes.default.svc
     namespace: soda
