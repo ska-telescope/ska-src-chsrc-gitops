@@ -1,0 +1,13 @@
+hub:
+  config:
+    GenericOAuthenticator:
+      client_id: "079b2525-7263-4a42-aa8b-8c9228da299f"
+      oauth_callback_url: "https://jupyterhub.src.skach.org/hub/oauth_callback"
+
+ingress:
+  hosts:
+    - "jupyterhub.src.skach.org"
+  tls:
+    - hosts:
+        - "jupyterhub.src.skach.org"
+      secretName: "jupyterhub.src.skach.org"
