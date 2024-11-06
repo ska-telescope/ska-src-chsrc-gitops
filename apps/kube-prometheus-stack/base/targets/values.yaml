@@ -372,16 +372,16 @@ prometheus:
               environment: 'dev/prod'
 
           - targets:
-              #- https://jupyterhub.espsrc.org/
+              - https://notebook.espsrc.iaa.csic.es/
             labels:
               servicename: 'jupyterhub'
-              environment: 'dev/prod'
+              environment: 'prod'
 
           - targets:
-              #- https://perfsonar.espsrc.org/
+              - https://perfsonar.espsrc.iaa.csic.es/
             labels:
               servicename: 'perfsonar'
-              environment: 'dev/prod'
+              environment: 'prod'
 
           - targets:
               #- https://gatekeeper.espsrc.org/
@@ -391,18 +391,48 @@ prometheus:
 
           - targets:
 
-              - https://spsrc25.iaa.csic.es/
+              #- https://spsrc25.iaa.csic.es/
             labels:
               servicename: 'spsrc25'
               environment: 'dev'
 
           - targets:
 
-              - https://spsrc26.iaa.csic.es/
+              #- https://spsrc26.iaa.csic.es/
             labels:
               servicename: 'spsrc26'
               environment: 'dev'
 
+          - targets:
+
+              - https://soda.espsrc.iaa.csic.es/
+            labels:
+              servicename: 'soda'
+              environment: 'dev'          
+
+          - targets:
+              - https://canfar.espsrc.iaa.csic.es/science-portal/
+            labels:
+              servicename: 'canfar'
+              environment: 'prod'
+
+          - targets:
+              - https://canfar.espsrc.iaa.csic.es/skaha/
+            labels:
+              servicename: 'skaha'
+              environment: 'prod'
+
+          - targets:
+              - https://canfar.espsrc.iaa.csic.es/cavern/
+            labels:
+              servicename: 'cavern'
+              environment: 'prod'
+
+          - targets:
+              - https://canfar.espsrc.iaa.csic.es/posix-mapper/
+            labels:
+              servicename: 'posix-mapper'
+              environment: 'prod'
 
 ##################################################
 #                                                #
