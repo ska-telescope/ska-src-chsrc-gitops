@@ -47,7 +47,7 @@ prometheus:
           - targets:
               #- https://gatekeeper.aussrc.org/
             labels:
-              servicename: 'gatekeeper-api'
+              servicename: 'gatekeeper'
               environment: 'dev/prod'
 
 
@@ -95,7 +95,7 @@ prometheus:
           - targets:
               #- https://gatekeeper.cansrc.org/
             labels:
-              servicename: 'gatekeeper-api'
+              servicename: 'gatekeeper'
               environment: 'dev/prod'
 
 
@@ -177,25 +177,25 @@ prometheus:
           - targets:
               - https://gatekeeper.dev.skach.org/
             labels:
-              servicename: 'gatekeeper-api'
+              servicename: 'gatekeeper'
               environment: 'dev'
 
           - targets:
               - https://gatekeeper.src.skach.org/
             labels:
-              servicename: 'gatekeeper-api'
+              servicename: 'gatekeeper'
               environment: 'src'
 
           - targets:
               - https://skaha.src.skach.org/science-portal/
             labels:
-              servicename: 'skaha'
+              servicename: 'science-portal'
               environment: 'prod'
 
           - targets:
               - https://skaha.dev.skach.org/science-portal/
             labels:
-              servicename: 'skaha'
+              servicename: 'science-portal'
               environment: 'dev'
 
           - targets:
@@ -290,7 +290,7 @@ prometheus:
           - targets:
               #- https://gatekeeper.cnsrc.org/
             labels:
-              servicename: 'gatekeeper-api'
+              servicename: 'gatekeeper'
               environment: 'dev/prod'
 
 
@@ -338,7 +338,7 @@ prometheus:
           - targets:
               #- https://gatekeeper.desrc.org/
             labels:
-              servicename: 'gatekeeper-api'
+              servicename: 'gatekeeper'
               environment: 'dev/prod'
 
 
@@ -386,25 +386,10 @@ prometheus:
           - targets:
               #- https://gatekeeper.espsrc.org/
             labels:
-              servicename: 'gatekeeper-api'
+              servicename: 'gatekeeper'
               environment: 'dev/prod'
 
           - targets:
-
-              #- https://spsrc25.iaa.csic.es/
-            labels:
-              servicename: 'spsrc25'
-              environment: 'dev'
-
-          - targets:
-
-              #- https://spsrc26.iaa.csic.es/
-            labels:
-              servicename: 'spsrc26'
-              environment: 'dev'
-
-          - targets:
-
               - https://soda.espsrc.iaa.csic.es/
             labels:
               servicename: 'soda'
@@ -413,7 +398,7 @@ prometheus:
           - targets:
               - https://canfar.espsrc.iaa.csic.es/science-portal/
             labels:
-              servicename: 'canfar'
+              servicename: 'science-portal'
               environment: 'prod'
 
           - targets:
@@ -478,7 +463,7 @@ prometheus:
           - targets:
               #- https://gatekeeper.frsrc.org/
             labels:
-              servicename: 'gatekeeper-api'
+              servicename: 'gatekeeper'
               environment: 'dev/prod'
 
 
@@ -526,7 +511,7 @@ prometheus:
           - targets:
               #- https://gatekeeper.insrc.org/
             labels:
-              servicename: 'gatekeeper-api'
+              servicename: 'gatekeeper'
               environment: 'dev/prod'
 
 
@@ -574,7 +559,7 @@ prometheus:
           - targets:
               #- https://gatekeeper.itsrc.org/
             labels:
-              servicename: 'gatekeeper-api'
+              servicename: 'gatekeeper'
               environment: 'dev/prod'
 
 
@@ -622,7 +607,7 @@ prometheus:
           - targets:
               #- https://gatekeeper.jpsrc.org/
             labels:
-              servicename: 'gatekeeper-api'
+              servicename: 'gatekeeper'
               environment: 'dev/prod'
 
 
@@ -670,7 +655,7 @@ prometheus:
           - targets:
               #- https://gatekeeper.krsrc.org/
             labels:
-              servicename: 'gatekeeper-api'
+              servicename: 'gatekeeper'
               environment: 'dev/prod'
 
 
@@ -718,7 +703,7 @@ prometheus:
           - targets:
               #- https://gatekeeper.nlsrc.org/
             labels:
-              servicename: 'gatekeeper-api'
+              servicename: 'gatekeeper'
               environment: 'dev/prod'
 
 
@@ -766,7 +751,7 @@ prometheus:
           - targets:
               #- https://gatekeeper.ptsrc.org/
             labels:
-              servicename: 'gatekeeper-api'
+              servicename: 'gatekeeper'
               environment: 'dev/prod'
 
 
@@ -814,7 +799,7 @@ prometheus:
           - targets:
               #- https://gatekeeper.sesrc.org/
             labels:
-              servicename: 'gatekeeper-api'
+              servicename: 'gatekeeper'
               environment: 'dev/prod'
 
 
@@ -862,7 +847,7 @@ prometheus:
           - targets:
               #- https://gatekeeper.uksrc.org/
             labels:
-              servicename: 'gatekeeper-api'
+              servicename: 'gatekeeper'
               environment: 'dev/prod'
 
 
@@ -910,5 +895,5 @@ prometheus:
           - targets:
               #- https://gatekeeper.zasrc.org/
             labels:
-              servicename: 'gatekeeper-api'
+              servicename: 'gatekeeper'
               environment: 'dev/prod'
