@@ -11,7 +11,7 @@ spec:
   # ArgoCD will interpret all files as raw kubernetes manifests instead of kustomize resources
   sources:
   - repoURL: https://gitlab.com/ska-telescope/src/deployments/chsrc/ska-src-chsrc-services-cd.git
-    targetRevision: dev
+    targetRevision: choc-0-outofsync-fix
     ref: argorepo
     path: apps/kube-prometheus-stack/overlays/dev
   destination:
@@ -23,4 +23,4 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-      - ServerSideApply=true #otherwise the metadata becomes too large
+      - ServerSideApply=true #otherwise the metadata becomes too large. Replace=true errors with resources such as CRBs that already exist
