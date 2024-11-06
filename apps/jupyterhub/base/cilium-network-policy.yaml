@@ -1,0 +1,21 @@
+kind: CiliumNetworkPolicy
+apiVersion: cilium.io/v2
+metadata:
+  name: allow-access-to-api-server
+  namespace: jupyterhub
+spec:
+  endpointSelector:
+    matchLabels: {}
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            k8s:io.kubernetes.pod.namespace: kube-system
+            k8s-app: kube-dns
+    - toEntities:
+        - kube-apiserver
+    - toPorts:
+        - ports:
+            - port: "6443"
+              protocol: TCP
+            - port: "53"
+              protocol: UDP
