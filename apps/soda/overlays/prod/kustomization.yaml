@@ -8,7 +8,7 @@ resources:
 
 helmCharts:
   - name: ska-src-soda
-    repo: https://gitlab.com/api/v4/projects/61396570/packages/helm/stable
+    repo: https://gitlab.com/api/v4/projects/61599309/packages/helm/stable
     version: 0.0.1
     namespace: soda
     valuesFile: ../../base/values.yaml
