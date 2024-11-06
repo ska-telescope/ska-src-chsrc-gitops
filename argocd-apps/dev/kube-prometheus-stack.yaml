@@ -23,4 +23,4 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-      - Replace=true # otherwise the metadata becomes too large. ServerSideApply creates outofsync with resources such as ExternalSecrets
+      - ServerSideApply=true #otherwise the metadata becomes too large
