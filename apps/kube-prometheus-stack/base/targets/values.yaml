@@ -189,13 +189,13 @@ prometheus:
           - targets:
               - https://skaha.src.skach.org/science-portal/
             labels:
-              servicename: 'skaha'
+              servicename: 'science-portal'
               environment: 'prod'
 
           - targets:
               - https://skaha.dev.skach.org/science-portal/
             labels:
-              servicename: 'skaha'
+              servicename: 'science-portal'
               environment: 'dev'
 
           - targets:
@@ -390,21 +390,6 @@ prometheus:
               environment: 'dev/prod'
 
           - targets:
-
-              #- https://spsrc25.iaa.csic.es/
-            labels:
-              servicename: 'spsrc25'
-              environment: 'dev'
-
-          - targets:
-
-              #- https://spsrc26.iaa.csic.es/
-            labels:
-              servicename: 'spsrc26'
-              environment: 'dev'
-
-          - targets:
-
               - https://soda.espsrc.iaa.csic.es/
             labels:
               servicename: 'soda'
@@ -413,7 +398,7 @@ prometheus:
           - targets:
               - https://canfar.espsrc.iaa.csic.es/science-portal/
             labels:
-              servicename: 'canfar'
+              servicename: 'science-portal'
               environment: 'prod'
 
           - targets:
