@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: jupyterhub.src.skach.org
+  namespace: jupyterhub
+spec:
+  dnsNames:
+    - jupyterhub.src.skach.org
+  secretName: jupyterhub.src.skach.org
+  issuerRef:
+    name: letsencrypt-http01
+    kind: ClusterIssuer
