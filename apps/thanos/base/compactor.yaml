@@ -1,0 +1,63 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: kube-metrics-compactor
+  namespace: monitoring
+spec:
+  # Run daily, midnight
+  schedule: "0 0 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: thanos-compactor
+              # Same image as in values.yaml
+              image: docker.io/bitnami/thanos:0.36.0-debian-12-r0
+              command:
+                - "/bin/sh"
+                - "-c"
+                - |
+                  thanos compact \
+                    --objstore.config-file=/etc/thanos/thanos-objstore-s3.yml \
+                    --data-dir=/data \
+                    --retention.resolution-raw=14d \
+                    --retention.resolution-5m=7d \
+                    --retention.resolution-1h=7d \
+                    --selector.relabel-config=/etc/thanos/kube-metrics-relabel.yml
+              volumeMounts:
+                - name: thanos-objstore-s3
+                  mountPath: /etc/thanos/thanos-objstore-s3.yml
+                  subPath: objstore.yml
+                - name: thanos-compactor
+                  mountPath: /data
+                - name: relabel-config
+                  mountPath: /etc/thanos/kube-metrics-relabel.yml
+                  subPath: kube-metrics-relabel.yml
+          restartPolicy: OnFailure
+          volumes:
+            - name: thanos-objstore-s3
+              secret:
+                secretName: thanos-objstore-s3
+                items:
+                  - key: objstore.yml
+                    path: objstore.yml
+            - name: thanos-compactor
+              persistentVolumeClaim:
+                claimName: thanos-compactor
+            - name: relabel-config
+              configMap:
+                name: kube-metrics-relabel
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kube-metrics-relabel
+  namespace: monitoring
+data:
+  kube-metrics-relabel.yml: |
+    - action: keep
+      source_labels: [kube_metric]
+      regex: true
