@@ -33,7 +33,7 @@ spec:
           yum install -y osg-ca-certs
           # Create and set permissions for necessary directories
           mkdir -p /var/spool/xrootd /run/xrootd
-          chown -R 1000:1000 /var/spool/xrootd /run/xrootd /data
+          chown -R 1000:1000 /var/spool/xrootd /run/xrootd
           # Kubernetes always symlinks secrets, and xrootd seems to check the file permissions.
           # Understandably, this results in xrootd checking the permissions of a link.
           # Kubernetes can not handle this scenario, so we have to copy the secrets during
