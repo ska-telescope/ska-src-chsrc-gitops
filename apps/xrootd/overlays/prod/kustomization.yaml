@@ -4,6 +4,7 @@ namespace: xrootd
 
 resources:
 - ../../base
+- pvc.yaml
 
 # Patching of regular resources
 patches:

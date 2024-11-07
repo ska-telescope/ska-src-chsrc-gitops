@@ -97,7 +97,7 @@ spec:
         emptyDir: {}
       - name: xrootd-data
         persistentVolumeClaim:
-          claimName: xrootd-data-pvc
+          claimName: xrootd-cephfs-pvc
       - name: spool-dir
         emptyDir: {}
       - name: run-dir
