@@ -779,28 +779,46 @@ prometheus:
 # Please DO add your targets below this line
         static_configs:
           - targets:
-              #- https://rucio.swesrc.org/
+              - https://xrootd-01.swesrc.chalmers.se/
             labels:
               servicename: 'rucio-storage-element'
-              environment: 'dev/prod'
+              environment: 'prod'
 
           - targets:
-              #- https://jupyterhub.sesrc.org/
+              - https://os152-36.c3se.chalmers.se/soda/datasets/
+            labels:
+              servicename: 'soda'
+              environment: 'dev'
+
+          - targets:
+              - https://os152-36.c3se.chalmers.se/jupyterhub/
             labels:
               servicename: 'jupyterhub'
-              environment: 'dev/prod'
+              environment: 'dev'
 
           - targets:
-              #- https://perfsonar.sesrc.org/
+              - https://os152-36.c3se.chalmers.se/science-portal/
+            labels:
+              servicename: 'science-portal'
+              environment: 'dev'
+
+          - targets:
+              - https://os152-36.c3se.chalmers.se/storage/
+            labels:
+              servicename: 'cavern'
+              environment: 'dev'
+
+          - targets:
+              - https://perfsonar.swesrc.chalmers.se
             labels:
               servicename: 'perfsonar'
-              environment: 'dev/prod'
+              environment: 'dev'
 
           - targets:
-              #- https://gatekeeper.sesrc.org/
+              #- https://gatekeeper.
             labels:
               servicename: 'gatekeeper'
-              environment: 'dev/prod'
+              environment: 'dev'
 
 
 ##################################################
