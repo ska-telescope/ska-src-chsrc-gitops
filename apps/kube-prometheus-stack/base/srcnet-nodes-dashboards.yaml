@@ -416,7 +416,7 @@ data:
                 "value": "ZASRC"
               }
             ],
-            "query": "AUSSRC, CANSRC, CHSRC, CNSRC, DESRC, ESPSRC, FRSRC, INSRC, ITSRC, JPSRC, KRSRC, NLSRC, PTSRC, SESRC, UKSRC, ZASRC",
+            "query": "AUSSRC, CANSRC, CHSRC, CNSRC, DESRC, ESPSRC, FRSRC, INSRC, ITSRC, JPSRC, KRSRC, NLSRC, PTSRC, SWESRC, UKSRC, ZASRC",
             "queryValue": "",
             "skipUrlSync": false,
             "type": "custom"
