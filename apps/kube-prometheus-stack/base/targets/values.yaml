@@ -366,10 +366,10 @@ prometheus:
 # Please DO add your targets below this line
         static_configs:
           - targets:
-              #- https://rucio.espsrc.org/
+              - https://spsrc14.iaa.csic.es:18027/
             labels:
               servicename: 'rucio-storage-element'
-              environment: 'dev/prod'
+              environment: 'prod'
 
           - targets:
               - https://notebook.espsrc.iaa.csic.es/
@@ -390,10 +390,10 @@ prometheus:
               environment: 'dev/prod'
 
           - targets:
-              - https://soda.espsrc.iaa.csic.es/
+              - https://soda.espsrc.iaa.csic.es/ska/datasets/availability
             labels:
               servicename: 'soda'
-              environment: 'dev'          
+              environment: 'prod'
 
           - targets:
               - https://canfar.espsrc.iaa.csic.es/science-portal/
@@ -418,6 +418,20 @@ prometheus:
             labels:
               servicename: 'posix-mapper'
               environment: 'prod'
+          
+          - targets:
+              - https://spsrc26.iaa.csic.es/
+            labels:
+              servicename: 'harbor'
+              environment: 'prod'
+
+          - targets:
+              - https://monitor.espsrc.iaa.csic.es
+            labels:
+              servicename: 'grafana'
+              environment: 'prod'
+
+          
 
 ##################################################
 #                                                #
