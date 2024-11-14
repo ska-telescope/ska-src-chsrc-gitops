@@ -12,8 +12,10 @@ nav:
     - procedures/gitops/new-app.md
     - procedures/gitops/delete-app.md
     - procedures/gitops/app-secrets.md
+    - procedures/gitops/sharing-pvc.md
   - Service Procedures:
     - procedures/services/central-monitoring.md
+    - procedures/services/xrootd.md
   - Bootstrapping:
     - bootstrap/argocd.md
     - bootstrap/vault.md

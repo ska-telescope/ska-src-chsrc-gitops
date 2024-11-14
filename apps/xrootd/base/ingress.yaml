@@ -3,6 +3,8 @@ kind: Ingress
 metadata:
   name: xrootd-ingress
   namespace: xrootd
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: "1000G" # 1TB limit for file sizes
 spec:
   ingressClassName: nginx
   rules:

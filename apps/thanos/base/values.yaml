@@ -2114,7 +2114,14 @@ compactor:
   ##     cpu: 3
   ##     memory: 1024Mi
   ##
-  resources: {}
+  # ORIGINAL # resources: {}
+  resources:
+    requests:
+      cpu: 2
+      memory: 512Mi
+    limits:
+      cpu: 3
+      memory: 2048Mi
   ## Configure extra options for Thanos Compactor containers' liveness and readiness probes
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/#configure-probes
   ## @param compactor.livenessProbe.enabled Enable livenessProbe on Thanos Compactor containers
