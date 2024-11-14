@@ -7,7 +7,7 @@ spec:
   project: default
   sources:
     - repoURL: https://gitlab.com/ska-telescope/src/deployments/chsrc/ska-src-chsrc-services-cd.git
-      targetRevision: choc-130-jh-rse-pvc
+      targetRevision: dev
       ref: argorepo
       path: apps/jupyterhub/overlays/dev
   destination:

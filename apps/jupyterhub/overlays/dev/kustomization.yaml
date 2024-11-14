@@ -5,6 +5,7 @@ namespace: jupyterhub
 resources:
   - ../../base
   - jupyterhub.dev.skach.org.yaml
+  - jupyterhub-rse-storage.yaml
 
 helmCharts:
   - name: jupyterhub
