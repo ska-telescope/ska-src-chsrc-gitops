@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: gatekeeper
+  namespace: gatekeeper
+spec:
+  dnsNames:
+    - gatekeeper.dev.skach.org
+  secretName: gatekeeper.dev.skach.org
+  issuerRef:
+    name: letsencrypt-gatekeeper-issuer
+    kind: ClusterIssuer
