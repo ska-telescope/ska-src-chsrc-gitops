@@ -2076,6 +2076,8 @@ kube-state-metrics:
   rbac:
     create: true
   releaseLabel: true
+  extraArgs:
+    - --metric-denylist=kube_pod_status_phase,kube_pod_status_scheduled,kube_pod_status_qos_class,kube_secret_type,kube_secret_info,kube_secret_metadata_resource_version
   prometheus:
     monitor:
       enabled: true
