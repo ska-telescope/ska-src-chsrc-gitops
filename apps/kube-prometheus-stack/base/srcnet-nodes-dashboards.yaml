@@ -516,8 +516,8 @@ data:
           {
             "current": {
               "selected": false,
-              "text": "dev",
-              "value": "dev"
+              "text": "prod",
+              "value": "prod"
             },
             "hide": 0,
             "includeAll": false,
@@ -527,16 +527,16 @@ data:
             "options": [
               {
                 "selected": true,
-                "text": "dev",
-                "value": "dev"
+                "text": "prod",
+                "value": "prod"
               },
               {
                 "selected": false,
-                "text": "prod",
-                "value": "prod"
+                "text": "dev",
+                "value": "dev"
               }
             ],
-            "query": "dev, prod",
+            "query": "prod, dev",
             "queryValue": "",
             "skipUrlSync": false,
             "type": "custom"
