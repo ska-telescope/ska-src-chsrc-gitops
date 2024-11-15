@@ -12,12 +12,11 @@ patches: []
 helmCharts:
   - name: ska-src-service-gatekeeper
     repo: https://gitlab.com/api/v4/projects/61396570/packages/helm/stable
-    version: 0.0.2
+    version: 0.0.3
     namespace: gatekeeper
     # base values file
     valuesFile: ../../base/values.yaml
     # overlay values file that will override the base
     additionalValuesFiles:
       - values.yaml
-    valuesInline:
-      fullnameOverride: gatekeeper
+    releaseName: gatekeeper
