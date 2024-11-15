@@ -7,7 +7,7 @@ spec:
   project: default
   sources:
     - repoURL: https://gitlab.com/ska-telescope/src/deployments/chsrc/ska-src-chsrc-services-cd.git
-      targetRevision: dev
+      targetRevision: choc-130-soda-rse-pvc
       ref: argorepo
       path: apps/soda/overlays/dev
   destination:

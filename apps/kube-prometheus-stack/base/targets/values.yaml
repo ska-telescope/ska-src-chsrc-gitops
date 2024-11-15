@@ -175,16 +175,16 @@ prometheus:
               module: tcp_connect
 
           - targets:
-              - https://gatekeeper.dev.skach.org/
+              - https://gatekeeper.dev.skach.org/availability
             labels:
               servicename: 'gatekeeper'
               environment: 'dev'
 
           - targets:
-              - https://gatekeeper.src.skach.org/
+              - https://gatekeeper.src.skach.org/availability
             labels:
               servicename: 'gatekeeper'
-              environment: 'src'
+              environment: 'prod'
 
           - targets:
               - https://skaha.src.skach.org/science-portal/

@@ -62,6 +62,15 @@ singleuser:
     capacity: 10Gi
     dynamic:
       storageClass: ceph-corbo-rbd-hdd
+    extraVolumes:
+      - name: rse-volume
+        persistentVolumeClaim:
+          claimName: jupyterhub-rse-pvc
+    extraVolumeMounts:
+      - name: rse-volume
+        mountPath: /home/jovyan/rse
+        subPath: deterministic
+        readOnly: true
     # extraVolumes:
     #   - name: <name>
     # extraVolumeMounts: # do we need to mount additional volumes, e.g. to read&write "large" data products?
