@@ -2,6 +2,5 @@ image:
   tag: 1.6.2
 
 persistence:
-  existingClaim: "rwx-pvc"
+  existingClaim: "soda-rse-pvc"
   enabled: true
-  size: 10Gi
