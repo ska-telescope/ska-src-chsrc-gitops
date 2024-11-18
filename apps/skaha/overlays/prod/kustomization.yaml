@@ -5,6 +5,7 @@ kind: Kustomization
 resources:
 - ../../base
 - certificate.yaml
+- skaha-workload-storage.yaml
 
 # Helm chart definition with values overlay
 helmCharts:
