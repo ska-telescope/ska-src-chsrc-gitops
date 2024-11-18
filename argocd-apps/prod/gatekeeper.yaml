@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gatekeeper
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://gitlab.com/ska-telescope/src/deployments/chsrc/ska-src-chsrc-services-cd.git
+      targetRevision: prod
+      ref: argorepo
+      path: apps/gatekeeper/overlays/prod
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: gatekeeper
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
