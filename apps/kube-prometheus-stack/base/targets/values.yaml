@@ -863,7 +863,7 @@ prometheus:
               environment: 'prod'
 
           - targets:
-              # - https://gatekeeper.ral.uksrc.org/
+              - https://gatekeeper.ral.uksrc.org/
             labels:
               servicename: 'gatekeeper'
               environment: 'prod'
