@@ -431,6 +431,12 @@ prometheus:
               servicename: 'grafana'
               environment: 'prod'
 
+          - targets:
+              - https://gatekeeper.espsrc.iaa.csic.es/ping/
+            labels:
+              servicename: 'gatekeeper'
+              environment: 'prod'          
+
           
 
 ##################################################
