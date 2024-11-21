@@ -4,7 +4,13 @@ namespace: soda
 
 resources:
   - ../../base
-  - rwx-pvc.yaml
+  - soda-rse-storage.yaml
+
+patches:
+  - target:
+      kind: Deployment
+      name: ska-src-soda
+    path: ../../base/pvc-patch.yaml
 
 helmCharts:
   - name: ska-src-soda

@@ -23,10 +23,10 @@
           mountPath: /patched-config
 
 - op: replace
-  path: /spec/template/spec/containers/0/volumeMounts
+  path: /spec/template/spec/containers/0/volumeMounts/0
   value:
-    - mountPath: "/config"
-      name: patched-config
+    mountPath: "/config"
+    name: patched-config
 
 - op: add
   path: /spec/template/spec/volumes/-

@@ -10,7 +10,27 @@ need to point to the same underlying volume.
 
 Similarly, when the **RSE** data store is deployed as a PVC, an easy way to share RSE data with services is to share the PVC across namespaces.
 
-## Steps for sharing a PVC
+To share PVCs across namespaces, **one needs to create a new PV and PVC pair for each new namespace**,
+where the new PV points to the original PV under the hood.
+Even though PVs are not namespaced, it's not possible to create new PVCs that point to the same PV.
+
+## Quickstart
+
+To create a new PV/PVC pair for a namespace that point to an existing PV in a different namespace,
+you can use a helper tool that automates the patching, under the `scripts/shared-pvc` directory.
+
+For instance, to setup this tool and create a new PV/PVC pair (namespace soda, new pvc name: soda-rse-pvc) that points to the xrootd-cephfs-pvc in the xrootd namespace:
+
+```bash
+python3 -m venv env
+source env/bin/activate
+pip install -r scripts/shared-pvc/requirements.txt
+python3 scripts/shared-pvc/create-shared-pvc.py xrootd/xrootd-cephfs-pvc soda/soda-rse-pvc
+```
+
+This would output the corresponding yaml for the new PV/PVC pair.
+
+## Detailed steps for sharing a PVC
 
 The steps to create a shared PVC across namespaces is similar to [this Confluence doc](https://confluence.skatelescope.org/display/SRCSC/Sharing+storage+between+PVCs+across+namespaces),
 except there are some caveats to make it work on our infrastructure. We're using ceph-csi while the linked instructions use Manila.
