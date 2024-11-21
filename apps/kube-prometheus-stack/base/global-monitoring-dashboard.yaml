@@ -26,7 +26,6 @@ data:
       "editable": true,
       "fiscalYearStartMonth": 0,
       "graphTooltip": 0,
-      "id": 57,
       "links": [],
       "panels": [
         {
@@ -63,7 +62,7 @@ data:
             "content": "# DDM & Monitoring",
             "mode": "markdown"
           },
-          "pluginVersion": "10.4.0",
+          "pluginVersion": "11.1.0",
           "targets": [
             {
               "alias": "",
@@ -116,7 +115,7 @@ data:
             "content": "# AuthN/Z",
             "mode": "markdown"
           },
-          "pluginVersion": "10.4.0",
+          "pluginVersion": "11.1.0",
           "targets": [
             {
               "alias": "",
@@ -169,7 +168,7 @@ data:
             "content": "# IVOA",
             "mode": "markdown"
           },
-          "pluginVersion": "10.4.0",
+          "pluginVersion": "11.1.0",
           "targets": [
             {
               "alias": "",
@@ -222,7 +221,7 @@ data:
             "content": "# Supporting Services",
             "mode": "markdown"
           },
-          "pluginVersion": "10.4.0",
+          "pluginVersion": "11.1.0",
           "targets": [
             {
               "alias": "",
@@ -255,10 +254,7 @@ data:
           "type": "text"
         },
         {
-          "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "fdq0zu7jmtr0gc"
-          },
+          "datasource": {},
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -316,6 +312,7 @@ data:
             "graphMode": "area",
             "justifyMode": "auto",
             "orientation": "vertical",
+            "percentChangeColorMode": "standard",
             "reduceOptions": {
               "calcs": [
                 "lastNotNull"
@@ -327,7 +324,7 @@ data:
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "10.4.0",
+          "pluginVersion": "11.1.0",
           "targets": [
             {
               "columns": [
@@ -348,10 +345,17 @@ data:
                 "type": "yesoreyeram-infinity-datasource",
                 "uid": "fdq0zu7jmtr0gc"
               },
+              "disableTextWrap": false,
+              "editorMode": "builder",
+              "expr": "probe_success",
               "filters": [],
               "format": "as-is",
+              "fullMetaSearch": false,
               "global_query_id": "",
+              "includeNullMetadata": true,
+              "legendFormat": "__auto",
               "parser": "backend",
+              "range": true,
               "refId": "A",
               "root_selector": "",
               "source": "url",
@@ -360,7 +364,8 @@ data:
               "url_options": {
                 "data": "",
                 "method": "GET"
-              }
+              },
+              "useBackend": false
             }
           ],
           "title": "Rucio",
@@ -383,8 +388,8 @@ data:
         },
         {
           "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "edq1740ulj8qoc"
+            "type": "prometheus",
+            "uid": "prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -394,12 +399,12 @@ data:
               "mappings": [
                 {
                   "options": {
-                    "DOWN": {
+                    "0": {
                       "color": "dark-red",
                       "index": 1,
                       "text": "DOWN"
                     },
-                    "UP": {
+                    "1": {
                       "color": "green",
                       "index": 0,
                       "text": "UP"
@@ -423,7 +428,7 @@ data:
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
+                    "color": "purple",
                     "value": null
                   }
                 ]
@@ -442,19 +447,20 @@ data:
             "colorMode": "background_solid",
             "graphMode": "area",
             "justifyMode": "auto",
-            "orientation": "vertical",
+            "orientation": "auto",
+            "percentChangeColorMode": "standard",
             "reduceOptions": {
               "calcs": [
                 "lastNotNull"
               ],
-              "fields": "/.*/",
+              "fields": "",
               "values": false
             },
             "showPercentChange": false,
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "10.4.0",
+          "pluginVersion": "11.1.0",
           "targets": [
             {
               "columns": [
@@ -469,10 +475,19 @@ data:
                 "type": "yesoreyeram-infinity-datasource",
                 "uid": "edq1740ulj8qoc"
               },
+              "disableTextWrap": false,
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "last_over_time(probe_success{location=\"global\", servicename=\"ska-iam\"}[10m])",
               "filters": [],
-              "format": "as-is",
+              "format": "time_series",
+              "fullMetaSearch": false,
               "global_query_id": "",
+              "includeNullMetadata": true,
+              "instant": false,
+              "legendFormat": "__auto",
               "parser": "backend",
+              "range": true,
               "refId": "A",
               "root_selector": "",
               "source": "url",
@@ -481,22 +496,15 @@ data:
               "url_options": {
                 "data": "",
                 "method": "GET"
-              }
+              },
+              "useBackend": false
             }
           ],
           "title": "IAM (SKA)",
           "transformations": [
             {
-              "id": "organize",
-              "options": {
-                "excludeByName": {},
-                "includeByName": {},
-                "indexByName": {
-                  "status": 0,
-                  "version": 1
-                },
-                "renameByName": {}
-              }
+              "id": "merge",
+              "options": {}
             }
           ],
           "transparent": true,
@@ -564,6 +572,7 @@ data:
             "graphMode": "area",
             "justifyMode": "auto",
             "orientation": "vertical",
+            "percentChangeColorMode": "standard",
             "reduceOptions": {
               "calcs": [
                 "count"
@@ -575,7 +584,7 @@ data:
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "10.4.0",
+          "pluginVersion": "11.1.0",
           "targets": [
             {
               "columns": [
@@ -675,6 +684,7 @@ data:
             "graphMode": "area",
             "justifyMode": "auto",
             "orientation": "vertical",
+            "percentChangeColorMode": "standard",
             "reduceOptions": {
               "calcs": [
                 "lastNotNull"
@@ -686,7 +696,7 @@ data:
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "10.4.0",
+          "pluginVersion": "11.1.0",
           "targets": [
             {
               "columns": [
@@ -796,6 +806,7 @@ data:
             "graphMode": "area",
             "justifyMode": "auto",
             "orientation": "vertical",
+            "percentChangeColorMode": "standard",
             "reduceOptions": {
               "calcs": [
                 "lastNotNull"
@@ -807,7 +818,7 @@ data:
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "10.4.0",
+          "pluginVersion": "11.1.0",
           "targets": [
             {
               "columns": [
@@ -904,6 +915,7 @@ data:
             "graphMode": "area",
             "justifyMode": "auto",
             "orientation": "vertical",
+            "percentChangeColorMode": "standard",
             "reduceOptions": {
               "calcs": [
                 "lastNotNull"
@@ -915,7 +927,7 @@ data:
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "10.4.0",
+          "pluginVersion": "11.1.0",
           "targets": [
             {
               "columns": [
@@ -1028,6 +1040,7 @@ data:
             "graphMode": "area",
             "justifyMode": "auto",
             "orientation": "vertical",
+            "percentChangeColorMode": "standard",
             "reduceOptions": {
               "calcs": [
                 "lastNotNull"
@@ -1039,7 +1052,7 @@ data:
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "10.4.0",
+          "pluginVersion": "11.1.0",
           "targets": [
             {
               "columns": [
@@ -1139,6 +1152,7 @@ data:
             "graphMode": "area",
             "justifyMode": "auto",
             "orientation": "vertical",
+            "percentChangeColorMode": "standard",
             "reduceOptions": {
               "calcs": [
                 "lastNotNull"
@@ -1150,7 +1164,7 @@ data:
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "10.4.0",
+          "pluginVersion": "11.1.0",
           "targets": [
             {
               "columns": [
@@ -1250,6 +1264,7 @@ data:
             "graphMode": "area",
             "justifyMode": "auto",
             "orientation": "vertical",
+            "percentChangeColorMode": "standard",
             "reduceOptions": {
               "calcs": [
                 "lastNotNull"
@@ -1261,7 +1276,7 @@ data:
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "10.4.0",
+          "pluginVersion": "11.1.0",
           "targets": [
             {
               "columns": [
@@ -1361,6 +1376,7 @@ data:
             "graphMode": "area",
             "justifyMode": "auto",
             "orientation": "vertical",
+            "percentChangeColorMode": "standard",
             "reduceOptions": {
               "calcs": [
                 "lastNotNull"
@@ -1372,7 +1388,7 @@ data:
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "10.4.0",
+          "pluginVersion": "11.1.0",
           "targets": [
             {
               "columns": [
@@ -1470,6 +1486,7 @@ data:
             "graphMode": "area",
             "justifyMode": "center",
             "orientation": "vertical",
+            "percentChangeColorMode": "standard",
             "reduceOptions": {
               "calcs": [
                 "lastNotNull"
@@ -1481,7 +1498,7 @@ data:
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "10.4.0",
+          "pluginVersion": "11.1.0",
           "targets": [
             {
               "columns": [
@@ -1578,6 +1595,7 @@ data:
             "graphMode": "area",
             "justifyMode": "center",
             "orientation": "vertical",
+            "percentChangeColorMode": "standard",
             "reduceOptions": {
               "calcs": [
                 "lastNotNull"
@@ -1589,7 +1607,7 @@ data:
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "10.4.0",
+          "pluginVersion": "11.1.0",
           "targets": [
             {
               "columns": [
@@ -1686,6 +1704,7 @@ data:
             "graphMode": "area",
             "justifyMode": "center",
             "orientation": "vertical",
+            "percentChangeColorMode": "standard",
             "reduceOptions": {
               "calcs": [
                 "lastNotNull"
@@ -1697,7 +1716,7 @@ data:
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "10.4.0",
+          "pluginVersion": "11.1.0",
           "targets": [
             {
               "columns": [
@@ -1794,6 +1813,7 @@ data:
             "graphMode": "area",
             "justifyMode": "center",
             "orientation": "vertical",
+            "percentChangeColorMode": "standard",
             "reduceOptions": {
               "calcs": [
                 "lastNotNull"
@@ -1805,7 +1825,7 @@ data:
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "10.4.0",
+          "pluginVersion": "11.1.0",
           "targets": [
             {
               "columns": [
@@ -1918,6 +1938,7 @@ data:
             "graphMode": "none",
             "justifyMode": "center",
             "orientation": "auto",
+            "percentChangeColorMode": "standard",
             "reduceOptions": {
               "calcs": [
                 "lastNotNull"
@@ -1929,7 +1950,7 @@ data:
             "textMode": "value",
             "wideLayout": true
           },
-          "pluginVersion": "10.4.0",
+          "pluginVersion": "11.1.0",
           "targets": [
             {
               "alias": "",
@@ -2025,8 +2046,7 @@ data:
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2108,6 +2128,6 @@ data:
       "timezone": "browser",
       "title": "Central Monitoring / Global Services",
       "uid": "cdfjn9jl986iod",
-      "version": 41,
+      "version": 1,
       "weekStart": ""
     }
