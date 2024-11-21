@@ -859,29 +859,34 @@ prometheus:
 # Please DO add your targets below this line
         static_configs:
           - targets:
-              #- https://rucio.uksrc.org/
+              # - https://rucio.uksrc.org/
             labels:
               servicename: 'rucio-storage-element'
-              environment: 'dev/prod'
+              environment: 'prod'
 
           - targets:
-              #- https://jupyterhub.uksrc.org/
+              - https://jupyterhub.ral.uksrc.org/
             labels:
               servicename: 'jupyterhub'
-              environment: 'dev/prod'
+              environment: 'prod'
 
           - targets:
-              #- https://perfsonar.uksrc.org/
+              - https://perfsonar01.jc.rl.ac.uk/
             labels:
               servicename: 'perfsonar'
-              environment: 'dev/prod'
+              environment: 'prod'
 
           - targets:
-              #- https://gatekeeper.uksrc.org/
+              - https://gatekeeper.ral.uksrc.org/
             labels:
               servicename: 'gatekeeper'
-              environment: 'dev/prod'
+              environment: 'prod'
 
+          - targets:
+              - https://canfar.ral.uksrc.org/science-portal/
+            labels:
+              servicename: 'science-portal'
+              environment: 'prod'
 
 ##################################################
 #                                                #
