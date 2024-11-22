@@ -1021,7 +1021,7 @@ prometheus:
               environment: 'prod'
 
           - targets:
-              - grafana.src.skach.org
+              - https://grafana.src.skach.org
             labels:
               servicename: 'grafana'
               environment: 'prod'
