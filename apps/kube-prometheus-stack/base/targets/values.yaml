@@ -991,12 +991,6 @@ prometheus:
               environment: 'prod'
 
           - targets:
-              - https://dachs.ivoa.srcdev.skao.int/
-            labels:
-              servicename: 'ivoa-tap'
-              environment: 'prod'
-
-          - targets:
               - https://permissions.srcdev.skao.int/api/v1:443
             labels:
               servicename: 'permissions-api'
