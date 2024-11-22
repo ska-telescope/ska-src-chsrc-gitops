@@ -985,7 +985,7 @@ prometheus:
               environment: 'prod'
 
           - targets:
-              - https://datalink.ivoa.srcdev.skao.int/rucio/links:443
+              - https://datalink.ivoa.srcdev.skao.int/
             labels:
               servicename: 'ivoa-datalink'
               environment: 'prod'
