@@ -378,16 +378,10 @@ prometheus:
               environment: 'prod'
 
           - targets:
-              - https://perfsonar.espsrc.iaa.csic.es/
+              - https://perfsonar.espsrc.iaa.csic.es/grafana/
             labels:
               servicename: 'perfsonar'
               environment: 'prod'
-
-          - targets:
-              #- https://gatekeeper.espsrc.org/
-            labels:
-              servicename: 'gatekeeper'
-              environment: 'dev/prod'
 
           - targets:
               - https://soda.espsrc.iaa.csic.es/ska/datasets/availability
@@ -437,7 +431,13 @@ prometheus:
               servicename: 'gatekeeper'
               environment: 'prod'          
 
-          
+          - targets:
+              - https://echo.espsrc.iaa.csic.es/
+            labels:
+              servicename: 'echo'
+              environment: 'prod'          
+
+
 
 ##################################################
 #                                                #
