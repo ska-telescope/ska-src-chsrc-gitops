@@ -811,7 +811,7 @@ prometheus:
 # Please DO add your targets below this line
         static_configs:
           - targets:
-              - https://xrootd-01.swesrc.chalmers.se/
+              - https://xrootd-01.swesrc.chalmers.se:80/
             labels:
               servicename: 'rucio-storage-element'
               environment: 'prod'
