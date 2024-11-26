@@ -366,17 +366,11 @@ prometheus:
               environment: 'prod'
 
           - targets:
-              - https://perfsonar.espsrc.iaa.csic.es/
+              - https://perfsonar.espsrc.iaa.csic.es/grafana/d/ff439cb3-6042-43b5-a999-674681d80395/perfsonar-main?orgId=1
             labels:
               servicename: 'perfsonar'
               environment: 'prod'
-
-          - targets:
-              #- https://gatekeeper.espsrc.org/
-            labels:
-              servicename: 'gatekeeper'
-              environment: 'dev/prod'
-
+              
           - targets:
               - https://canfar.espsrc.iaa.csic.es/science-portal/
             labels:
@@ -419,7 +413,13 @@ prometheus:
               servicename: 'gatekeeper'
               environment: 'prod'          
 
-          
+          - targets:
+              - https://echo.espsrc.iaa.csic.es/
+            labels:
+              servicename: 'echo'
+              environment: 'prod'          
+
+
 
 ##################################################
 #                                                #
