@@ -852,7 +852,7 @@ prometheus:
 # Please DO add your targets below this line
         static_configs:
           - targets:
-              # - https://rucio.uksrc.org/
+              - http://xrootd01.uksrc.rl.ac.uk:1094/static/liveness
             labels:
               servicename: 'rucio-storage-element'
               environment: 'prod'
@@ -880,6 +880,20 @@ prometheus:
             labels:
               servicename: 'science-portal'
               environment: 'prod'
+
+          - targets:
+              - https://ska-iam.stfc.ac.uk/actuator/health
+            labels:
+              servicename: 'IAM'
+              environment: 'prod'
+              scope: 'global'
+
+          - targets:
+              - https://fts3-ska.scd.rl.ac.uk:8446/
+            labels:
+              servicename: 'FTS'
+              environment: 'prod'
+              scope: 'global'
 
 ##################################################
 #                                                #
