@@ -75,10 +75,10 @@ prometheus:
 # Please DO add your targets below this line
         static_configs:
           - targets:
-              #- https://rucio.cansrc.org/
+              - https://humpback.rcs.uvic.ca/
             labels:
               servicename: 'rucio-storage-element'
-              environment: 'dev/prod'
+              environment: 'prod'
 
           - targets:
               #- https://jupyterhub.cansrc.org/
@@ -87,16 +87,16 @@ prometheus:
               environment: 'dev/prod'
 
           - targets:
-              #- https://perfsonar.cansrc.org/
+              - http://bdw-arbutus.computecanada.ca/
             labels:
               servicename: 'perfsonar'
-              environment: 'dev/prod'
+              environment: 'prod'
 
           - targets:
-              #- https://gatekeeper.cansrc.org/
+              - https://rc-src.canfar.net/gatekeeper
             labels:
               servicename: 'gatekeeper'
-              environment: 'dev/prod'
+              environment: 'dev'
 
 
 ##################################################
