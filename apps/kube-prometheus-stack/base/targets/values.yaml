@@ -75,10 +75,10 @@ prometheus:
 # Please DO add your targets below this line
         static_configs:
           - targets:
-              #- https://rucio.cansrc.org/
+              - https://humpback.rcs.uvic.ca/
             labels:
               servicename: 'rucio-storage-element'
-              environment: 'dev/prod'
+              environment: 'prod'
 
           - targets:
               #- https://jupyterhub.cansrc.org/
@@ -87,16 +87,16 @@ prometheus:
               environment: 'dev/prod'
 
           - targets:
-              #- https://perfsonar.cansrc.org/
+              - http://bdw-arbutus.computecanada.ca/
             labels:
               servicename: 'perfsonar'
-              environment: 'dev/prod'
+              environment: 'prod'
 
           - targets:
-              #- https://gatekeeper.cansrc.org/
+              - https://rc-src.canfar.net/gatekeeper
             labels:
               servicename: 'gatekeeper'
-              environment: 'dev/prod'
+              environment: 'dev'
 
 
 ##################################################
@@ -787,25 +787,31 @@ prometheus:
 # Please DO add your targets below this line
         static_configs:
           - targets:
-              - https://xrootd-01.swesrc.chalmers.se/
+              - https://xrootd-01.swesrc.chalmers.se:80/
             labels:
               servicename: 'rucio-storage-element'
               environment: 'prod'
 
           - targets:
-              - https://os152-36.c3se.chalmers.se/jupyterhub/
+              - https://services.swesrc.chalmers.se/http-echo
+            labels:
+              servicename: 'echo'
+              environment: 'dev'
+
+          - targets:
+              - https://services.swesrc.chalmers.se/jupyterhub/
             labels:
               servicename: 'jupyterhub'
               environment: 'dev'
 
           - targets:
-              - https://os152-36.c3se.chalmers.se/science-portal/
+              - https://services.swesrc.chalmers.se/science-portal/
             labels:
               servicename: 'science-portal'
               environment: 'dev'
 
           - targets:
-              - https://os152-36.c3se.chalmers.se/storage/
+              - https://services.swesrc.chalmers.se/storage/list
             labels:
               servicename: 'cavern'
               environment: 'dev'
@@ -817,11 +823,10 @@ prometheus:
               environment: 'dev'
 
           - targets:
-              #- https://gatekeeper.
+              - https://gatekeeper.swesrc.chalmers.se/availability
             labels:
               servicename: 'gatekeeper'
               environment: 'dev'
-
 
 ##################################################
 #                                                #
@@ -847,7 +852,7 @@ prometheus:
 # Please DO add your targets below this line
         static_configs:
           - targets:
-              # - https://rucio.uksrc.org/
+              - http://xrootd01.uksrc.rl.ac.uk:1094/static/liveness
             labels:
               servicename: 'rucio-storage-element'
               environment: 'prod'
@@ -875,6 +880,20 @@ prometheus:
             labels:
               servicename: 'science-portal'
               environment: 'prod'
+
+          - targets:
+              - https://ska-iam.stfc.ac.uk/actuator/health
+            labels:
+              servicename: 'IAM'
+              environment: 'prod'
+              scope: 'global'
+
+          - targets:
+              - https://fts3-ska.scd.rl.ac.uk:8446/
+            labels:
+              servicename: 'FTS'
+              environment: 'prod'
+              scope: 'global'
 
 ##################################################
 #                                                #
