@@ -370,12 +370,6 @@ prometheus:
             labels:
               servicename: 'perfsonar'
               environment: 'prod'
-
-          - targets:
-              - https://soda.espsrc.iaa.csic.es/ska/datasets/availability
-            labels:
-              servicename: 'soda'
-              environment: 'prod'
               
           - targets:
               - https://canfar.espsrc.iaa.csic.es/science-portal/
