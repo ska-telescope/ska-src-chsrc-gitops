@@ -793,12 +793,6 @@ prometheus:
               environment: 'prod'
 
           - targets:
-              - https://services.swesrc.chalmers.se/soda/soda/datasets/
-            labels:
-              servicename: 'soda'
-              environment: 'dev'
-
-          - targets:
               - https://services.swesrc.chalmers.se/http-echo
             labels:
               servicename: 'echo'
