@@ -223,18 +223,6 @@ prometheus:
               environment: 'prod'
 
           - targets:
-              - https://soda.dev.skach.org/
-            labels:
-              servicename: 'soda'
-              environment: 'dev'
-
-          - targets:
-              - https://soda.src.skach.org/
-            labels:
-              servicename: 'soda'
-              environment: 'prod'
-
-          - targets:
               - https://echo.dev.skach.org/
             labels:
               servicename: 'echo'
@@ -378,23 +366,11 @@ prometheus:
               environment: 'prod'
 
           - targets:
-              - https://perfsonar.espsrc.iaa.csic.es/
+              - https://perfsonar.espsrc.iaa.csic.es/grafana/d/ff439cb3-6042-43b5-a999-674681d80395/perfsonar-main?orgId=1
             labels:
               servicename: 'perfsonar'
               environment: 'prod'
-
-          - targets:
-              #- https://gatekeeper.espsrc.org/
-            labels:
-              servicename: 'gatekeeper'
-              environment: 'dev/prod'
-
-          - targets:
-              - https://soda.espsrc.iaa.csic.es/ska/datasets/availability
-            labels:
-              servicename: 'soda'
-              environment: 'prod'
-
+              
           - targets:
               - https://canfar.espsrc.iaa.csic.es/science-portal/
             labels:
@@ -437,7 +413,13 @@ prometheus:
               servicename: 'gatekeeper'
               environment: 'prod'          
 
-          
+          - targets:
+              - https://echo.espsrc.iaa.csic.es/
+            labels:
+              servicename: 'echo'
+              environment: 'prod'          
+
+
 
 ##################################################
 #                                                #
@@ -635,12 +617,6 @@ prometheus:
             labels:
               servicename: 'science-portal'
               environment: 'dev'
-              
-          - targets:
-              - shion.mtk.nao.ac.jp/soda/
-            labels:
-              servicename: 'soda'
-              environment: 'dev'
 
 
 ##################################################
@@ -815,12 +791,6 @@ prometheus:
             labels:
               servicename: 'rucio-storage-element'
               environment: 'prod'
-
-          - targets:
-              - https://os152-36.c3se.chalmers.se/soda/datasets/
-            labels:
-              servicename: 'soda'
-              environment: 'dev'
 
           - targets:
               - https://os152-36.c3se.chalmers.se/jupyterhub/
