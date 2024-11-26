@@ -985,27 +985,27 @@ prometheus:
               environment: 'prod'
 
           - targets:
-              - https://datalink.ivoa.srcdev.skao.int/
+              - https://datalink.ivoa.srcdev.skao.int/rucio/ping
             labels:
               servicename: 'ivoa-datalink'
               environment: 'prod'
 
           - targets:
-              - https://permissions.srcdev.skao.int/api/v1:443
+              - https://permissions.srcdev.skao.int/api/v1/ping
             labels:
               servicename: 'permissions-api'
               environment: 'prod'
 
           - targets:
-              - https://data-management.srcdev.skao.int/api/v1:443
+              - https://data-management.srcdev.skao.int/api/v1/ping
             labels:
               servicename: 'data-management-api'
               environment: 'prod'
 
           - targets:
-              - https://fts3-ska.scd.rl.ac.uk:8446
+              - https://rucio.srcdev.skao.int/ping
             labels:
-              servicename: 'fts'
+              servicename: 'rucio'
               environment: 'prod'
 
           - targets:
