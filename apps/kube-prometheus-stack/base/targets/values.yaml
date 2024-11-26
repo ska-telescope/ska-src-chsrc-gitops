@@ -817,25 +817,31 @@ prometheus:
               environment: 'prod'
 
           - targets:
-              - https://os152-36.c3se.chalmers.se/soda/datasets/
+              - https://services.swesrc.chalmers.se/soda/soda/datasets/
             labels:
               servicename: 'soda'
               environment: 'dev'
 
           - targets:
-              - https://os152-36.c3se.chalmers.se/jupyterhub/
+              - https://services.swesrc.chalmers.se/http-echo
+            labels:
+              servicename: 'echo'
+              environment: 'dev'
+
+          - targets:
+              - https://services.swesrc.chalmers.se/jupyterhub/
             labels:
               servicename: 'jupyterhub'
               environment: 'dev'
 
           - targets:
-              - https://os152-36.c3se.chalmers.se/science-portal/
+              - https://services.swesrc.chalmers.se/science-portal/
             labels:
               servicename: 'science-portal'
               environment: 'dev'
 
           - targets:
-              - https://os152-36.c3se.chalmers.se/storage/
+              - https://services.swesrc.chalmers.se/storage/list
             labels:
               servicename: 'cavern'
               environment: 'dev'
@@ -847,11 +853,10 @@ prometheus:
               environment: 'dev'
 
           - targets:
-              #- https://gatekeeper.
+              - https://gatekeeper.swesrc.chalmers.se/availability
             labels:
               servicename: 'gatekeeper'
               environment: 'dev'
-
 
 ##################################################
 #                                                #
