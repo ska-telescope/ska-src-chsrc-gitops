@@ -895,6 +895,18 @@ prometheus:
               environment: 'prod'
               scope: 'global'
 
+          - targets:
+              - https://canfar.ral.uksrc.org/storage/list/
+            labels:
+              servicename: 'cavern'
+              environment: 'prod'
+
+          - targets:
+              - https://grafana.ral.uksrc.org/
+            labels:
+              servicename: 'grafana'
+              environment: 'prod'
+
 ##################################################
 #                                                #
 #                    ZASRC                       #
