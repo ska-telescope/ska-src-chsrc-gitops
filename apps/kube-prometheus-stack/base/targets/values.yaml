@@ -883,7 +883,7 @@ prometheus:
           - targets:
               - https://grafana.ral.uksrc.org/
             labels:
-              servicename: 'kube-prometheus-stack-prometheus'
+              servicename: 'grafana'
               environment: 'prod'
 ##################################################
 #                                                #
