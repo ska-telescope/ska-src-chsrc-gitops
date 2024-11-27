@@ -170,8 +170,10 @@ config:
         valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
         follow_redirects: true
         preferred_ip_protocol: "ip4"
-        fail_if_not_ssl: true # @ORIGINAL: added
+        fail_if_not_ssl: false # @ORIGINAL: added #This is potentially only temporarily false as we do not want to police ssl status (at least not at this point), defaults to false
         valid_status_codes: [200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 403] # Accept all 2xx codes and 403 # @ORIGINAL: added
+        tls_config: # @ORIGINAL: added  
+          insecure_skip_verify: true #This skips TLS certificate checks
     tcp_connect:
       prober: tcp
       timeout: 5s
