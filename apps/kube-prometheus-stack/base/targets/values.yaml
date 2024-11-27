@@ -874,6 +874,17 @@ prometheus:
               servicename: 'science-portal'
               environment: 'prod'
 
+          - targets:
+              - https://canfar.ral.uksrc.org/storage/list/
+            labels:
+              servicename: 'cavern'
+              environment: 'prod'
+
+          - targets:
+              - https://grafana.ral.uksrc.org/
+            labels:
+              servicename: 'kube-prometheus-stack-prometheus'
+              environment: 'prod'
 ##################################################
 #                                                #
 #                    ZASRC                       #
