@@ -539,7 +539,7 @@ data:
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "probe_success{location=\"global\", servicename=\"ivoa-tap\"}",
+              "expr": "sum by(servicename) (probe_success{location=\"global\", servicename=\"ivoa-tap\"})",
               "filterExpression": "",
               "filters": [],
               "format": "as-is",
@@ -1402,6 +1402,6 @@ data:
       "timezone": "browser",
       "title": "Central Monitoring / Global Services",
       "uid": "cdfjn9jl986iod",
-      "version": 2,
+      "version": 4,
       "weekStart": ""
     }
