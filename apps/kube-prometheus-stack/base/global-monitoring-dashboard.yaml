@@ -202,59 +202,9 @@ data:
         },
         {
           "datasource": {
-            "type": "elasticsearch",
-            "uid": "ads0mdoz162o0c"
+            "type": "prometheus",
+            "uid": "prometheus"
           },
-          "gridPos": {
-            "h": 2,
-            "w": 5,
-            "x": 12,
-            "y": 1
-          },
-          "id": 33,
-          "options": {
-            "code": {
-              "language": "plaintext",
-              "showLineNumbers": false,
-              "showMiniMap": false
-            },
-            "content": "# Supporting Services",
-            "mode": "markdown"
-          },
-          "pluginVersion": "11.1.0",
-          "targets": [
-            {
-              "alias": "",
-              "bucketAggs": [
-                {
-                  "field": "created_at",
-                  "id": "2",
-                  "settings": {
-                    "interval": "auto"
-                  },
-                  "type": "date_histogram"
-                }
-              ],
-              "datasource": {
-                "type": "elasticsearch",
-                "uid": "ads0mdoz162o0c"
-              },
-              "metrics": [
-                {
-                  "id": "1",
-                  "type": "count"
-                }
-              ],
-              "query": "",
-              "refId": "A",
-              "timeField": "created_at"
-            }
-          ],
-          "transparent": true,
-          "type": "text"
-        },
-        {
-          "datasource": {},
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -263,12 +213,12 @@ data:
               "mappings": [
                 {
                   "options": {
-                    "DOWN": {
+                    "0": {
                       "color": "dark-red",
                       "index": 1,
                       "text": "DOWN"
                     },
-                    "UP": {
+                    "1": {
                       "color": "green",
                       "index": 0,
                       "text": "UP"
@@ -317,7 +267,7 @@ data:
               "calcs": [
                 "lastNotNull"
               ],
-              "fields": "/.*/",
+              "fields": "",
               "values": false
             },
             "showPercentChange": false,
@@ -347,7 +297,7 @@ data:
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "probe_success",
+              "expr": "last_over_time(probe_success{servicename=\"rucio\"}[$__interval])",
               "filters": [],
               "format": "as-is",
               "fullMetaSearch": false,
@@ -369,20 +319,6 @@ data:
             }
           ],
           "title": "Rucio",
-          "transformations": [
-            {
-              "id": "organize",
-              "options": {
-                "excludeByName": {},
-                "includeByName": {},
-                "indexByName": {
-                  "status": 0,
-                  "version": 1
-                },
-                "renameByName": {}
-              }
-            }
-          ],
           "transparent": true,
           "type": "stat"
         },
@@ -512,8 +448,8 @@ data:
         },
         {
           "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "fdq13plfs8wsgd"
+            "type": "prometheus",
+            "uid": "prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -575,9 +511,9 @@ data:
             "percentChangeColorMode": "standard",
             "reduceOptions": {
               "calcs": [
-                "count"
+                "lastNotNull"
               ],
-              "fields": "/^obs_id$/",
+              "fields": "",
               "values": false
             },
             "showPercentChange": false,
@@ -601,11 +537,18 @@ data:
                 "type": "yesoreyeram-infinity-datasource",
                 "uid": "fdq13plfs8wsgd"
               },
+              "disableTextWrap": false,
+              "editorMode": "builder",
+              "expr": "probe_success{location=\"global\", servicename=\"ivoa-tap\"}",
               "filterExpression": "",
               "filters": [],
               "format": "as-is",
+              "fullMetaSearch": false,
               "global_query_id": "",
+              "includeNullMetadata": true,
+              "legendFormat": "__auto",
               "parser": "backend",
+              "range": true,
               "refId": "A",
               "root_selector": "",
               "source": "url",
@@ -616,7 +559,8 @@ data:
                 "body_type": "raw",
                 "data": "",
                 "method": "GET"
-              }
+              },
+              "useBackend": false
             }
           ],
           "title": "IVOA / TAP",
@@ -625,8 +569,8 @@ data:
         },
         {
           "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "edrfspog8jsowe"
+            "type": "prometheus",
+            "uid": "prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -636,150 +580,18 @@ data:
               "mappings": [
                 {
                   "options": {
-                    "false": {
+                    "0": {
                       "color": "dark-red",
                       "index": 1,
                       "text": "DOWN"
                     },
-                    "true": {
+                    "1": {
                       "color": "green",
                       "index": 0,
                       "text": "UP"
                     }
                   },
                   "type": "value"
-                },
-                {
-                  "options": {
-                    "match": "null",
-                    "result": {
-                      "color": "dark-red",
-                      "index": 2
-                    }
-                  },
-                  "type": "special"
-                }
-              ],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  }
-                ]
-              }
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 4,
-            "w": 4,
-            "x": 12,
-            "y": 3
-          },
-          "id": 28,
-          "options": {
-            "colorMode": "background_solid",
-            "graphMode": "area",
-            "justifyMode": "auto",
-            "orientation": "vertical",
-            "percentChangeColorMode": "standard",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "/^status_bool$/",
-              "values": false
-            },
-            "showPercentChange": false,
-            "textMode": "auto",
-            "wideLayout": true
-          },
-          "pluginVersion": "11.1.0",
-          "targets": [
-            {
-              "columns": [
-                {
-                  "selector": "status",
-                  "text": "status",
-                  "type": "string"
-                }
-              ],
-              "computed_columns": [
-                {
-                  "selector": "status == \"healthy\"",
-                  "text": "status_bool",
-                  "type": "string"
-                }
-              ],
-              "datasource": {
-                "type": "yesoreyeram-infinity-datasource",
-                "uid": "edrfspog8jsowe"
-              },
-              "filterExpression": "",
-              "filters": [],
-              "format": "dataframe",
-              "global_query_id": "",
-              "groq": "",
-              "parser": "backend",
-              "refId": "A",
-              "root_selector": "",
-              "source": "url",
-              "transformations": [],
-              "type": "json",
-              "url": "https://harbor.srcdev.skao.int/api/v2.0/health",
-              "url_options": {
-                "data": "",
-                "method": "GET"
-              }
-            }
-          ],
-          "title": "Harbor",
-          "transparent": true,
-          "type": "stat"
-        },
-        {
-          "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "cdq2wo4w63nk0e"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "mappings": [
-                {
-                  "options": {
-                    "green": {
-                      "color": "green",
-                      "index": 0,
-                      "text": "OK"
-                    },
-                    "red": {
-                      "color": "dark-red",
-                      "index": 2,
-                      "text": "CRITICAL"
-                    },
-                    "yellow": {
-                      "color": "yellow",
-                      "index": 1,
-                      "text": "WARNING"
-                    }
-                  },
-                  "type": "value"
-                },
-                {
-                  "options": {
-                    "match": "null",
-                    "result": {
-                      "color": "dark-red",
-                      "index": 3,
-                      "text": "DOWN"
-                    }
-                  },
-                  "type": "special"
                 }
               ],
               "thresholds": {
@@ -811,7 +623,7 @@ data:
               "calcs": [
                 "lastNotNull"
               ],
-              "fields": "/.*/",
+              "fields": "",
               "values": false
             },
             "showPercentChange": false,
@@ -832,11 +644,18 @@ data:
                 "type": "yesoreyeram-infinity-datasource",
                 "uid": "cdq2wo4w63nk0e"
               },
+              "disableTextWrap": false,
+              "editorMode": "builder",
+              "expr": "last_over_time(probe_success{servicename=\"grafana\", location=\"global\"}[$__interval])",
               "filters": [],
               "format": "dataframe",
+              "fullMetaSearch": false,
               "global_query_id": "",
               "groq": "",
+              "includeNullMetadata": true,
+              "legendFormat": "__auto",
               "parser": "backend",
+              "range": true,
               "refId": "A",
               "root_selector": "",
               "source": "url",
@@ -846,17 +665,24 @@ data:
               "url_options": {
                 "data": "",
                 "method": "GET"
-              }
+              },
+              "useBackend": false
             }
           ],
-          "title": "Monitoring / Elasticsearch",
+          "title": "Monitoring / Grafana",
+          "transformations": [
+            {
+              "id": "groupBy",
+              "options": {}
+            }
+          ],
           "transparent": true,
           "type": "stat"
         },
         {
           "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "bdq10slp1xy4gc"
+            "type": "prometheus",
+            "uid": "prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -866,12 +692,12 @@ data:
               "mappings": [
                 {
                   "options": {
-                    "DOWN": {
+                    "0": {
                       "color": "dark-red",
                       "index": 1,
                       "text": "DOWN"
                     },
-                    "UP": {
+                    "1": {
                       "color": "green",
                       "index": 0,
                       "text": "UP"
@@ -920,7 +746,7 @@ data:
               "calcs": [
                 "lastNotNull"
               ],
-              "fields": "/.*/",
+              "fields": "",
               "values": false
             },
             "showPercentChange": false,
@@ -946,10 +772,17 @@ data:
                 "type": "yesoreyeram-infinity-datasource",
                 "uid": "bdq10slp1xy4gc"
               },
+              "disableTextWrap": false,
+              "editorMode": "builder",
+              "expr": "probe_success{location=\"global\", servicename=\"ivoa-datalink\"}",
               "filters": [],
               "format": "as-is",
+              "fullMetaSearch": false,
               "global_query_id": "",
+              "includeNullMetadata": true,
+              "legendFormat": "__auto",
               "parser": "backend",
+              "range": true,
               "refId": "A",
               "root_selector": "",
               "source": "url",
@@ -958,7 +791,8 @@ data:
               "url_options": {
                 "data": "",
                 "method": "GET"
-              }
+              },
+              "useBackend": false
             }
           ],
           "title": "IVOA / Datalink ",
@@ -980,8 +814,8 @@ data:
         },
         {
           "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "cdfjmgkepspa8c"
+            "type": "prometheus",
+            "uid": "prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -991,12 +825,12 @@ data:
               "mappings": [
                 {
                   "options": {
-                    "DOWN": {
+                    "0": {
                       "color": "dark-red",
                       "index": 1,
                       "text": "DOWN"
                     },
-                    "UP": {
+                    "1": {
                       "color": "green",
                       "index": 0,
                       "text": "UP"
@@ -1045,7 +879,7 @@ data:
               "calcs": [
                 "lastNotNull"
               ],
-              "fields": "/.*/",
+              "fields": "",
               "values": false
             },
             "showPercentChange": false,
@@ -1071,10 +905,17 @@ data:
                 "type": "yesoreyeram-infinity-datasource",
                 "uid": "cdfjmgkepspa8c"
               },
+              "disableTextWrap": false,
+              "editorMode": "builder",
+              "expr": "probe_success{location=\"global\", servicename=\"data-management-api\"}",
               "filters": [],
               "format": "as-is",
+              "fullMetaSearch": false,
               "global_query_id": "",
+              "includeNullMetadata": true,
+              "legendFormat": "__auto",
               "parser": "backend",
+              "range": true,
               "refId": "A",
               "root_selector": "",
               "source": "url",
@@ -1083,7 +924,8 @@ data:
               "url_options": {
                 "data": "",
                 "method": "GET"
-              }
+              },
+              "useBackend": false
             }
           ],
           "title": "Data Management",
@@ -1092,8 +934,8 @@ data:
         },
         {
           "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "cdfjmgkepspa8c"
+            "type": "prometheus",
+            "uid": "prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -1103,12 +945,12 @@ data:
               "mappings": [
                 {
                   "options": {
-                    "DOWN": {
+                    "0": {
                       "color": "dark-red",
                       "index": 1,
                       "text": "DOWN"
                     },
-                    "UP": {
+                    "1": {
                       "color": "green",
                       "index": 0,
                       "text": "UP"
@@ -1157,7 +999,7 @@ data:
               "calcs": [
                 "lastNotNull"
               ],
-              "fields": "/.*/",
+              "fields": "",
               "values": false
             },
             "showPercentChange": false,
@@ -1183,10 +1025,17 @@ data:
                 "type": "yesoreyeram-infinity-datasource",
                 "uid": "cdfjmgkepspa8c"
               },
+              "disableTextWrap": false,
+              "editorMode": "builder",
+              "expr": "probe_success{location=\"global\", servicename=\"site-capabilities-api\"}",
               "filters": [],
               "format": "as-is",
+              "fullMetaSearch": false,
               "global_query_id": "",
+              "includeNullMetadata": true,
+              "legendFormat": "__auto",
               "parser": "backend",
+              "range": true,
               "refId": "A",
               "root_selector": "",
               "source": "url",
@@ -1195,7 +1044,8 @@ data:
               "url_options": {
                 "data": "",
                 "method": "GET"
-              }
+              },
+              "useBackend": false
             }
           ],
           "title": "Site Capabilities",
@@ -1204,8 +1054,8 @@ data:
         },
         {
           "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "cdfjmgkepspa8c"
+            "type": "prometheus",
+            "uid": "prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -1215,12 +1065,12 @@ data:
               "mappings": [
                 {
                   "options": {
-                    "DOWN": {
+                    "0": {
                       "color": "dark-red",
                       "index": 1,
                       "text": "DOWN"
                     },
-                    "UP": {
+                    "1": {
                       "color": "green",
                       "index": 0,
                       "text": "UP"
@@ -1269,7 +1119,7 @@ data:
               "calcs": [
                 "lastNotNull"
               ],
-              "fields": "/.*/",
+              "fields": "",
               "values": false
             },
             "showPercentChange": false,
@@ -1295,10 +1145,17 @@ data:
                 "type": "yesoreyeram-infinity-datasource",
                 "uid": "cdfjmgkepspa8c"
               },
+              "disableTextWrap": false,
+              "editorMode": "builder",
+              "expr": "probe_success{location=\"global\", servicename=\"permissions-api\"}",
               "filters": [],
               "format": "as-is",
+              "fullMetaSearch": false,
               "global_query_id": "",
+              "includeNullMetadata": true,
+              "legendFormat": "__auto",
               "parser": "backend",
+              "range": true,
               "refId": "A",
               "root_selector": "",
               "source": "url",
@@ -1307,7 +1164,8 @@ data:
               "url_options": {
                 "data": "",
                 "method": "GET"
-              }
+              },
+              "useBackend": false
             }
           ],
           "title": "Permissions",
@@ -1316,8 +1174,8 @@ data:
         },
         {
           "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "cdfjmgkepspa8c"
+            "type": "prometheus",
+            "uid": "prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -1327,12 +1185,12 @@ data:
               "mappings": [
                 {
                   "options": {
-                    "DOWN": {
+                    "0": {
                       "color": "dark-red",
                       "index": 1,
                       "text": "DOWN"
                     },
-                    "UP": {
+                    "1": {
                       "color": "green",
                       "index": 0,
                       "text": "UP"
@@ -1381,7 +1239,7 @@ data:
               "calcs": [
                 "lastNotNull"
               ],
-              "fields": "/.*/",
+              "fields": "",
               "values": false
             },
             "showPercentChange": false,
@@ -1407,10 +1265,17 @@ data:
                 "type": "yesoreyeram-infinity-datasource",
                 "uid": "cdfjmgkepspa8c"
               },
+              "disableTextWrap": false,
+              "editorMode": "builder",
+              "expr": "probe_success{location=\"global\", servicename=\"auth-api\"}",
               "filters": [],
               "format": "as-is",
+              "fullMetaSearch": false,
               "global_query_id": "",
+              "includeNullMetadata": true,
+              "legendFormat": "__auto",
               "parser": "backend",
+              "range": true,
               "refId": "A",
               "root_selector": "",
               "source": "url",
@@ -1419,7 +1284,8 @@ data:
               "url_options": {
                 "data": "",
                 "method": "GET"
-              }
+              },
+              "useBackend": false
             }
           ],
           "title": "Auth",
@@ -1428,497 +1294,49 @@ data:
         },
         {
           "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "cdfjmgkepspa8c"
+            "type": "prometheus",
+            "uid": "prometheus"
           },
           "fieldConfig": {
             "defaults": {
               "color": {
                 "mode": "thresholds"
               },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "dark-blue",
-                    "value": null
-                  }
-                ]
-              }
-            },
-            "overrides": [
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "Uptime"
+              "custom": {
+                "fillOpacity": 70,
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
                 },
-                "properties": [
-                  {
-                    "id": "unit",
-                    "value": "dtdurations"
-                  }
-                ]
-              },
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "Number of requests"
-                },
-                "properties": [
-                  {
-                    "id": "unit",
-                    "value": "short"
-                  }
-                ]
-              }
-            ]
-          },
-          "gridPos": {
-            "h": 4,
-            "w": 3,
-            "x": 0,
-            "y": 16
-          },
-          "id": 9,
-          "options": {
-            "colorMode": "background_solid",
-            "graphMode": "area",
-            "justifyMode": "center",
-            "orientation": "vertical",
-            "percentChangeColorMode": "standard",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "/.*/",
-              "values": false
-            },
-            "showPercentChange": false,
-            "textMode": "auto",
-            "wideLayout": true
-          },
-          "pluginVersion": "11.1.0",
-          "targets": [
-            {
-              "columns": [
-                {
-                  "selector": "uptime",
-                  "text": "Uptime",
-                  "type": "number"
-                },
-                {
-                  "selector": "number_of_managed_requests",
-                  "text": "Number of requests",
-                  "type": "number"
-                }
-              ],
-              "datasource": {
-                "type": "yesoreyeram-infinity-datasource",
-                "uid": "cdfjmgkepspa8c"
-              },
-              "filters": [],
-              "format": "as-is",
-              "global_query_id": "",
-              "parser": "backend",
-              "refId": "A",
-              "root_selector": "",
-              "source": "url",
-              "type": "json",
-              "url": "https://data-management.srcdev.skao.int/api/v1/health",
-              "url_options": {
-                "data": "",
-                "method": "GET"
-              }
-            }
-          ],
-          "transparent": true,
-          "type": "stat"
-        },
-        {
-          "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "cdfjmgkepspa8c"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "dark-blue",
-                    "value": null
-                  }
-                ]
-              }
-            },
-            "overrides": [
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "Uptime"
-                },
-                "properties": [
-                  {
-                    "id": "unit",
-                    "value": "dtdurations"
-                  }
-                ]
-              },
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "Number of requests"
-                },
-                "properties": [
-                  {
-                    "id": "unit",
-                    "value": "short"
-                  }
-                ]
-              }
-            ]
-          },
-          "gridPos": {
-            "h": 4,
-            "w": 3,
-            "x": 3,
-            "y": 16
-          },
-          "id": 10,
-          "options": {
-            "colorMode": "background_solid",
-            "graphMode": "area",
-            "justifyMode": "center",
-            "orientation": "vertical",
-            "percentChangeColorMode": "standard",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "/.*/",
-              "values": false
-            },
-            "showPercentChange": false,
-            "textMode": "auto",
-            "wideLayout": true
-          },
-          "pluginVersion": "11.1.0",
-          "targets": [
-            {
-              "columns": [
-                {
-                  "selector": "uptime",
-                  "text": "Uptime",
-                  "type": "number"
-                },
-                {
-                  "selector": "number_of_managed_requests",
-                  "text": "Number of requests",
-                  "type": "number"
-                }
-              ],
-              "datasource": {
-                "type": "yesoreyeram-infinity-datasource",
-                "uid": "cdfjmgkepspa8c"
-              },
-              "filters": [],
-              "format": "as-is",
-              "global_query_id": "",
-              "parser": "backend",
-              "refId": "A",
-              "root_selector": "",
-              "source": "url",
-              "type": "json",
-              "url": "https://site-capabilities.srcdev.skao.int/api/v1/health",
-              "url_options": {
-                "data": "",
-                "method": "GET"
-              }
-            }
-          ],
-          "transparent": true,
-          "type": "stat"
-        },
-        {
-          "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "cdfjmgkepspa8c"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "dark-blue",
-                    "value": null
-                  }
-                ]
-              }
-            },
-            "overrides": [
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "Uptime"
-                },
-                "properties": [
-                  {
-                    "id": "unit",
-                    "value": "dtdurations"
-                  }
-                ]
-              },
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "Number of requests"
-                },
-                "properties": [
-                  {
-                    "id": "unit",
-                    "value": "short"
-                  }
-                ]
-              }
-            ]
-          },
-          "gridPos": {
-            "h": 4,
-            "w": 3,
-            "x": 6,
-            "y": 16
-          },
-          "id": 11,
-          "options": {
-            "colorMode": "background_solid",
-            "graphMode": "area",
-            "justifyMode": "center",
-            "orientation": "vertical",
-            "percentChangeColorMode": "standard",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "/.*/",
-              "values": false
-            },
-            "showPercentChange": false,
-            "textMode": "auto",
-            "wideLayout": true
-          },
-          "pluginVersion": "11.1.0",
-          "targets": [
-            {
-              "columns": [
-                {
-                  "selector": "uptime",
-                  "text": "Uptime",
-                  "type": "number"
-                },
-                {
-                  "selector": "number_of_managed_requests",
-                  "text": "Number of requests",
-                  "type": "number"
-                }
-              ],
-              "datasource": {
-                "type": "yesoreyeram-infinity-datasource",
-                "uid": "cdfjmgkepspa8c"
-              },
-              "filters": [],
-              "format": "as-is",
-              "global_query_id": "",
-              "parser": "backend",
-              "refId": "A",
-              "root_selector": "",
-              "source": "url",
-              "type": "json",
-              "url": "https://permissions.srcdev.skao.int/api/v1/health",
-              "url_options": {
-                "data": "",
-                "method": "GET"
-              }
-            }
-          ],
-          "transparent": true,
-          "type": "stat"
-        },
-        {
-          "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "cdfjmgkepspa8c"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "dark-blue",
-                    "value": null
-                  }
-                ]
-              }
-            },
-            "overrides": [
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "Uptime"
-                },
-                "properties": [
-                  {
-                    "id": "unit",
-                    "value": "dtdurations"
-                  }
-                ]
-              },
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "Number of requests"
-                },
-                "properties": [
-                  {
-                    "id": "unit",
-                    "value": "short"
-                  }
-                ]
-              }
-            ]
-          },
-          "gridPos": {
-            "h": 4,
-            "w": 3,
-            "x": 9,
-            "y": 16
-          },
-          "id": 7,
-          "options": {
-            "colorMode": "background_solid",
-            "graphMode": "area",
-            "justifyMode": "center",
-            "orientation": "vertical",
-            "percentChangeColorMode": "standard",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "/.*/",
-              "values": false
-            },
-            "showPercentChange": false,
-            "textMode": "auto",
-            "wideLayout": true
-          },
-          "pluginVersion": "11.1.0",
-          "targets": [
-            {
-              "columns": [
-                {
-                  "selector": "uptime",
-                  "text": "Uptime",
-                  "type": "number"
-                },
-                {
-                  "selector": "number_of_managed_requests",
-                  "text": "Number of requests",
-                  "type": "number"
-                }
-              ],
-              "datasource": {
-                "type": "yesoreyeram-infinity-datasource",
-                "uid": "cdfjmgkepspa8c"
-              },
-              "filters": [],
-              "format": "as-is",
-              "global_query_id": "",
-              "parser": "backend",
-              "refId": "A",
-              "root_selector": "",
-              "source": "url",
-              "type": "json",
-              "url": "https://authn.srcdev.skao.int/api/v1/health",
-              "url_options": {
-                "data": "",
-                "method": "GET"
-              }
-            }
-          ],
-          "transparent": true,
-          "type": "stat"
-        },
-        {
-          "collapsed": false,
-          "gridPos": {
-            "h": 1,
-            "w": 24,
-            "x": 0,
-            "y": 20
-          },
-          "id": 29,
-          "panels": [],
-          "title": "Tasks",
-          "type": "row"
-        },
-        {
-          "datasource": {
-            "type": "elasticsearch",
-            "uid": "ads0mdoz162o0c"
-          },
-          "description": "",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
+                "insertNulls": false,
+                "lineWidth": 0,
+                "spanNulls": false
               },
               "mappings": [
                 {
                   "options": {
                     "0": {
-                      "color": "dark-red",
                       "index": 0,
-                      "text": "IAM<->Rucio account sync FAILING"
+                      "text": "Down"
+                    },
+                    "1": {
+                      "index": 1,
+                      "text": "Up"
                     }
                   },
                   "type": "value"
-                },
-                {
-                  "options": {
-                    "from": 1,
-                    "result": {
-                      "color": "green",
-                      "index": 1,
-                      "text": "IAM<->Rucio account sync OK"
-                    },
-                    "to": 1e+58
-                  },
-                  "type": "range"
                 }
               ],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "dark-red",
+                    "color": "semi-dark-red",
                     "value": null
                   },
                   {
-                    "color": "green",
+                    "color": "semi-dark-green",
                     "value": 1
                   }
                 ]
@@ -1927,191 +1345,47 @@ data:
             "overrides": []
           },
           "gridPos": {
-            "h": 2,
-            "w": 3,
+            "h": 8,
+            "w": 20,
             "x": 0,
-            "y": 21
+            "y": 16
           },
-          "id": 30,
+          "id": 35,
           "options": {
-            "colorMode": "background_solid",
-            "graphMode": "none",
-            "justifyMode": "center",
-            "orientation": "auto",
-            "percentChangeColorMode": "standard",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "/^Count$/",
-              "values": false
+            "alignValue": "left",
+            "legend": {
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
             },
-            "showPercentChange": false,
-            "textMode": "value",
-            "wideLayout": true
+            "mergeValues": true,
+            "rowHeight": 0.8,
+            "showValue": "auto",
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
           },
-          "pluginVersion": "11.1.0",
           "targets": [
             {
-              "alias": "",
-              "bucketAggs": [
-                {
-                  "field": "created_at",
-                  "id": "2",
-                  "settings": {
-                    "interval": "30m"
-                  },
-                  "type": "date_histogram"
-                }
-              ],
               "datasource": {
-                "type": "elasticsearch",
-                "uid": "ads0mdoz162o0c"
+                "type": "prometheus",
+                "uid": "prometheus"
               },
-              "metrics": [
-                {
-                  "id": "1",
-                  "type": "count"
-                }
-              ],
-              "query": "created_at: [now-30m TO now]",
+              "disableTextWrap": false,
+              "editorMode": "builder",
+              "expr": "probe_success{location=\"global\"}",
+              "fullMetaSearch": false,
+              "includeNullMetadata": true,
+              "instant": false,
+              "legendFormat": "{{servicename}}",
+              "range": true,
               "refId": "A",
-              "timeField": "created_at"
+              "useBackend": false
             }
           ],
-          "transparent": true,
-          "type": "stat"
-        },
-        {
-          "collapsed": false,
-          "gridPos": {
-            "h": 1,
-            "w": 24,
-            "x": 0,
-            "y": 23
-          },
-          "id": 27,
-          "panels": [],
-          "title": "Tests",
-          "type": "row"
-        },
-        {
-          "datasource": {
-            "type": "elasticsearch",
-            "uid": "edq5ranfc01kwa"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "mappings": [
-                {
-                  "options": {
-                    "from": 0,
-                    "result": {
-                      "color": "red",
-                      "index": 0,
-                      "text": "Ingestion FAILING"
-                    },
-                    "to": 0.8
-                  },
-                  "type": "range"
-                },
-                {
-                  "options": {
-                    "from": 0.8,
-                    "result": {
-                      "color": "green",
-                      "index": 1,
-                      "text": "Ingestion OK"
-                    },
-                    "to": 1
-                  },
-                  "type": "range"
-                },
-                {
-                  "options": {
-                    "match": "null",
-                    "result": {
-                      "color": "dark-red",
-                      "index": 2,
-                      "text": "Ingestion FAILING"
-                    }
-                  },
-                  "type": "special"
-                }
-              ],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              }
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 2,
-            "w": 3,
-            "x": 0,
-            "y": 24
-          },
-          "id": 26,
-          "options": {
-            "colorMode": "background_solid",
-            "graphMode": "none",
-            "justifyMode": "center",
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showPercentChange": false,
-            "textMode": "value",
-            "wideLayout": true
-          },
-          "pluginVersion": "10.4.0",
-          "targets": [
-            {
-              "alias": "",
-              "bucketAggs": [
-                {
-                  "field": "attempted_at",
-                  "id": "2",
-                  "settings": {
-                    "interval": "1h"
-                  },
-                  "type": "date_histogram"
-                }
-              ],
-              "datasource": {
-                "type": "elasticsearch",
-                "uid": "edq5ranfc01kwa"
-              },
-              "metrics": [
-                {
-                  "field": "success_rate",
-                  "id": "1",
-                  "type": "avg"
-                }
-              ],
-              "query": "",
-              "refId": "A",
-              "timeField": "attempted_at"
-            }
-          ],
-          "transparent": true,
-          "type": "stat"
+          "title": "Panel Title",
+          "type": "state-timeline"
         }
       ],
       "refresh": "",
@@ -2128,6 +1402,6 @@ data:
       "timezone": "browser",
       "title": "Central Monitoring / Global Services",
       "uid": "cdfjn9jl986iod",
-      "version": 1,
+      "version": 2,
       "weekStart": ""
     }
