@@ -297,7 +297,7 @@ data:
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "last_over_time(probe_success{servicename=\"rucio\"}[$__interval])",
+              "expr": "last_over_time(probe_success{servicename=\"rucio\", location=\"global\"}[$__interval])",
               "filters": [],
               "format": "as-is",
               "fullMetaSearch": false,
