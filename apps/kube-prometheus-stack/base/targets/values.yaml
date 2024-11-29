@@ -979,7 +979,7 @@ prometheus:
 # Please DO add your targets below this line
         static_configs:
           - targets:
-              - https://dachs.ivoa.srcdev.skao.int/
+              - https://dachs.ivoa.srcdev.skao.int/__system__/tap/run/sync?REQUEST=doQuery&LANG=ADQL&FORMAT=CSV&QUERY=SELECT TOP 1 * FROM ivoa.obscore
             labels:
               servicename: 'ivoa-tap'
               environment: 'prod'
