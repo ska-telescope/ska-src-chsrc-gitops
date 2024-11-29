@@ -1374,7 +1374,7 @@ data:
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "probe_success{location=\"global\"}",
+              "expr": "sum by(servicename) (probe_success{location=\"global\"})",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
