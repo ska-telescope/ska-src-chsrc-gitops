@@ -1001,6 +1001,18 @@ prometheus:
             labels:
               servicename: 'data-management-api'
               environment: 'prod'
+              
+          - targets:
+              - https://site-capabilities.srcdev.skao.int/api/v1/ping
+            labels:
+              servicename: 'site-capabilities-api'
+              environment: 'prod'
+
+          - targets:
+              - https://authn.srcdev.skao.int/api/v1/ping
+            labels:
+              servicename: 'auth-api'
+              environment: 'prod'
 
           - targets:
               - https://rucio.srcdev.skao.int/ping
