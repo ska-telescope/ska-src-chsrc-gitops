@@ -191,13 +191,25 @@ defaultRules:
 
 ## Provide custom recording or alerting rules to be deployed into the cluster.
 ##
-additionalPrometheusRulesMap: {}
+# ORIGINAL # additionalPrometheusRulesMap: {}
 #  rule-name:
 #    groups:
 #    - name: my_group
 #      rules:
 #      - record: my_record
 #        expr: 100 * my_record
+additionalPrometheusRulesMap:
+  src-site-probe-success:
+    groups:
+      - name: src-site-probe-success
+        rules:
+          - alert: ProbeFailure
+            expr: probe_success == 0
+            for: 1m
+            labels:
+              severity: critical
+            annotations:
+              summary: "Service Down"
 
 ##
 global:
@@ -303,19 +315,40 @@ alertmanager:
   config:
     global:
       resolve_timeout: 5m
-      # The secret value will be mounted in /etc/alertmanager/secrets/secret-name/key
-      slack_api_url_file: '/etc/alertmanager/secrets/slack-api-url/slack-api-url'
+    inhibit_rules:
+      - source_matchers:
+          - 'severity = critical'
+        target_matchers:
+          - 'severity =~ warning|info'
+        equal:
+          - 'namespace'
+          - 'alertname'
+      - source_matchers:
+          - 'severity = warning'
+        target_matchers:
+          - 'severity = info'
+        equal:
+          - 'namespace'
+          - 'alertname'
+      - source_matchers:
+          - 'alertname = InfoInhibitor'
+        target_matchers:
+          - 'severity = info'
+        equal:
+          - 'namespace'
+      - target_matchers:
+          - 'alertname = InfoInhibitor'
     route:
-      group_by: ['namespace']
+      group_by: ['alertname', 'location', 'instance', 'environment']
       group_wait: 30s
       group_interval: 5m
       repeat_interval: 12h
-      receiver: 'slack-receiver'
+      routes:
+      - receiver: 'null'
+        matchers:
+          - alertname = "Watchdog"
     receivers:
-    - name: 'slack-receiver'
-      slack_configs:
-      - channel: '#chsrc-alerts-dev'
-        send_resolved: true
+    - name: 'null'
     templates:
     - '/etc/alertmanager/config/*.tmpl'
 
