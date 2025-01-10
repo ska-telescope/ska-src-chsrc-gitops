@@ -17,17 +17,12 @@ alertmanager:
       group_wait: 30s
       group_interval: 5m
       repeat_interval: 12h
-      #receiver: 'slack'
       routes:
-      - receiver: 'null'
-        matchers:
-          - alertname = "Watchdog"
       - receiver: 'slack-dev'
         matchers:
           - alertname = "ProbeFailure"
           - environment = "dev"
     receivers:
-    - name: 'null'
     - name: 'slack-dev'
       slack_configs:
       - channel: '#chsrc-alerts-dev'
