@@ -13,32 +13,43 @@ grafana:
 alertmanager:
   config:
     route:
+      group_by: ['alertname', 'location', 'instance', 'environment']
+      group_wait: 30s
+      group_interval: 5m
+      repeat_interval: 1m
+      #receiver: 'slack'
       routes:
+      - receiver: 'null'
+        matchers:
+          - alertname = "Watchdog"
       - receiver: 'slack-dev'
         matchers:
           - alertname = "ProbeFailure"
           - environment = "dev"
     receivers:
-      - name: 'slack-dev'
-        slack_configs:
-        - channel: '#chsrc-alerts-dev'
-          send_resolved: true
-          title: >
-            {{ if eq .Status "resolved" }}
-            :white_check_mark: Service {{ .CommonLabels.servicename }} in {{ .CommonLabels.location }} {{ .CommonLabels.environment }} has recovered
-            {{ else }}
-            :alert: Service {{ .CommonLabels.servicename }} in {{ .CommonLabels.location }} {{ .CommonLabels.environment }} is down
-            {{ end }}
-          title_link: 'https://grafana.dev.skach.org/d/site_specific_services/central-monitoring-srcnet-site-services?orgId=1'
-          text: >
-            {{ if eq .Status "resolved" }}
-            *Site timeline*: https://grafana.dev.skach.org/d/site_specific_services/central-monitoring-srcnet-site-services?orgId=1&var-sitename={{ .CommonLabels.location }}&var-environment={{ .CommonLabels.environment }}&viewPanel=2
-            *Site overview*: https://grafana.dev.skach.org/d/site_specific_services/central-monitoring-srcnet-site-services?orgId=1&var-sitename={{ .CommonLabels.location }}&var-environment={{ .CommonLabels.environment }}
+    - name: 'null'
+    - name: 'slack-dev'
+      slack_configs:
+      - channel: '#chsrc-alerts-dev'
+        send_resolved: true
+        title: >
+          {{ if eq .Status "resolved" }}
+          :white_check_mark: Service {{ .CommonLabels.servicename }} in {{ .CommonLabels.location }} {{ .CommonLabels.environment }} has recovered
+          {{ else }}
+          :alert: Service {{ .CommonLabels.servicename }} in {{ .CommonLabels.location }} {{ .CommonLabels.environment }} is down
+          {{ end }}
+        title_link: 'https://grafana.dev.skach.org/d/site_specific_services/central-monitoring-srcnet-site-services?orgId=1'
+        text: >
+          {{ if eq .Status "resolved" }}
+          *Site timeline*: https://grafana.dev.skach.org/d/site_specific_services/central-monitoring-srcnet-site-services?orgId=1&var-sitename={{ .CommonLabels.location }}&var-environment={{ .CommonLabels.environment }}&viewPanel=2
+          *Site overview*: https://grafana.dev.skach.org/d/site_specific_services/central-monitoring-srcnet-site-services?orgId=1&var-sitename={{ .CommonLabels.location }}&var-environment={{ .CommonLabels.environment }}
 
-            The service has recovered and is back online.
-            *Instance*: {{ .CommonLabels.instance }} {{ .CommonLabels.environment }}
-            {{ else }}
-            *Site timeline*: https://grafana.dev.skach.org/d/site_specific_services/central-monitoring-srcnet-site-services?orgId=1&var-sitename={{ .CommonLabels.location }}&var-environment={{ .CommonLabels.environment }}&viewPanel=2
-            *Site overview*: https://grafana.dev.skach.org/d/site_specific_services/central-monitoring-srcnet-site-services?orgId=1&var-sitename={{ .CommonLabels.location }}&var-environment={{ .CommonLabels.environment }}
-            *Instance*: {{ .CommonLabels.instance }} {{ .CommonLabels.environment }}
-            {{ end }}
+          The service has recovered and is back online.
+          *Instance*: {{ .CommonLabels.instance }} {{ .CommonLabels.environment }}
+          {{ else }}
+          *Site timeline*: https://grafana.dev.skach.org/d/site_specific_services/central-monitoring-srcnet-site-services?orgId=1&var-sitename={{ .CommonLabels.location }}&var-environment={{ .CommonLabels.environment }}&viewPanel=2
+          *Site overview*: https://grafana.dev.skach.org/d/site_specific_services/central-monitoring-srcnet-site-services?orgId=1&var-sitename={{ .CommonLabels.location }}&var-environment={{ .CommonLabels.environment }}
+          *Instance*: {{ .CommonLabels.instance }} {{ .CommonLabels.environment }}
+          {{ end }}
+    templates:
+    - '/etc/alertmanager/config/*.tmpl'
