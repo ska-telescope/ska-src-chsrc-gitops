@@ -35,13 +35,13 @@ alertmanager:
           title_link: 'https://grafana.src.skach.org/d/site_specific_services/central-monitoring-srcnet-site-services?orgId=1'
           text: |
             {{ if eq .Status "resolved" }}
-            *Site timeline*: <https://grafana.src.skach.org/d/site_specific_services/central-monitoring-srcnet-site-services?orgId=1&var-sitename={{ .CommonLabels.location }}&var-environment={{ .CommonLabels.environment }}&viewPanel=2|Link to Grafana>
-            *Site overview*: <https://grafana.src.skach.org/d/site_specific_services/central-monitoring-srcnet-site-services?orgId=1&var-sitename={{ .CommonLabels.location }}&var-environment={{ .CommonLabels.environment }}|Link to Grafana>
+            *Site timeline*: https://grafana.src.skach.org/d/site_specific_services/central-monitoring-srcnet-site-services?orgId=1&var-sitename={{ .CommonLabels.location }}&var-environment={{ .CommonLabels.environment }}&viewPanel=2
+            *Site overview*: https://grafana.src.skach.org/d/site_specific_services/central-monitoring-srcnet-site-services?orgId=1&var-sitename={{ .CommonLabels.location }}&var-environment={{ .CommonLabels.environment }}
 
             The service has recovered and is back online.
             *Instance*: {{ .CommonLabels.instance }} {{ .CommonLabels.environment }}
             {{ else }}
-            *Site timeline*: <https://grafana.src.skach.org/d/site_specific_services/central-monitoring-srcnet-site-services?orgId=1&var-sitename={{ .CommonLabels.location }}&var-environment={{ .CommonLabels.environment }}&viewPanel=2|Link to Grafana>
-            *Site overview*: <https://grafana.src.skach.org/d/site_specific_services/central-monitoring-srcnet-site-services?orgId=1&var-sitename={{ .CommonLabels.location }}&var-environment={{ .CommonLabels.environment }}|Link to Grafana>
+            *Site timeline*: https://grafana.src.skach.org/d/site_specific_services/central-monitoring-srcnet-site-services?orgId=1&var-sitename={{ .CommonLabels.location }}&var-environment={{ .CommonLabels.environment }}&viewPanel=2
+            *Site overview*: https://grafana.src.skach.org/d/site_specific_services/central-monitoring-srcnet-site-services?orgId=1&var-sitename={{ .CommonLabels.location }}&var-environment={{ .CommonLabels.environment }}
             *Instance*: {{ .CommonLabels.instance }} {{ .CommonLabels.environment }}
             {{ end }}
