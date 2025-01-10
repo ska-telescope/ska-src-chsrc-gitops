@@ -191,13 +191,25 @@ defaultRules:
 
 ## Provide custom recording or alerting rules to be deployed into the cluster.
 ##
-additionalPrometheusRulesMap: {}
+# ORIGINAL # additionalPrometheusRulesMap: {}
 #  rule-name:
 #    groups:
 #    - name: my_group
 #      rules:
 #      - record: my_record
 #        expr: 100 * my_record
+additionalPrometheusRulesMap:
+  src-site-probe-success:
+    groups:
+      - name: src-site-probe-success
+        rules:
+          - alert: ProbeFailure
+            expr: probe_success == 0
+            for: 1m
+            labels:
+              severity: critical
+            annotations:
+              summary: "Service Down"
 
 ##
 global:
@@ -302,6 +314,8 @@ alertmanager:
   ##
   config:
     global:
+      # The secret value will be mounted in /etc/alertmanager/secrets/secret-name/key
+      slack_api_url_file: '/etc/alertmanager/secrets/slack-api-url/slack-api-url'
       resolve_timeout: 5m
     inhibit_rules:
       - source_matchers:
@@ -327,11 +341,10 @@ alertmanager:
       - target_matchers:
           - 'alertname = InfoInhibitor'
     route:
-      group_by: ['namespace']
+      group_by: ['alertname', 'location', 'instance', 'environment']
       group_wait: 30s
-      group_interval: 5m
-      repeat_interval: 12h
-      receiver: 'null'
+      group_interval: 1m
+      repeat_interval: 1m
       routes:
       - receiver: 'null'
         matchers:
@@ -665,7 +678,9 @@ alertmanager:
     ## Secrets is a list of Secrets in the same namespace as the Alertmanager object, which shall be mounted into the
     ## Alertmanager Pods. The Secrets are mounted into /etc/alertmanager/secrets/.
     ##
-    secrets: []
+    # ORIGINAL # secrets: []
+    secrets:
+      - slack-api-url
 
     ## If false then the user will opt out of automounting API credentials.
     ##
