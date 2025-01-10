@@ -17,12 +17,18 @@ alertmanager:
       group_wait: 30s
       group_interval: 5m
       repeat_interval: 12h
+      # CHOC-162: The null route must be defined here and not in base, the overlay overwrites the full section.
       routes:
+      - receiver: 'null'
+        matchers:
+          - alertname = "Watchdog"
       - receiver: 'slack-dev'
         matchers:
           - alertname = "ProbeFailure"
           - environment = "dev"
     receivers:
+    # CHOC-162: The null receiver must be defined here and not in base, the overlay overwrites the full section.
+    - name: 'null'
     - name: 'slack-dev'
       slack_configs:
       - channel: '#chsrc-alerts-dev'

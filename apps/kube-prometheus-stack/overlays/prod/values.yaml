@@ -17,7 +17,7 @@ alertmanager:
       group_wait: 30s
       group_interval: 5m
       repeat_interval: 12h
-      #receiver: 'slack'
+      # CHOC-162: The null route must be defined here and not in base, the overlay overwrites the full section.
       routes:
       - receiver: 'null'
         matchers:
@@ -27,6 +27,7 @@ alertmanager:
           - alertname = "ProbeFailure"
           - environment = "prod"
     receivers:
+    # CHOC-162: The null receiver must be defined here and not in base, the overlay overwrites the full section.
     - name: 'null'
     - name: 'slack-prod'
       slack_configs:
