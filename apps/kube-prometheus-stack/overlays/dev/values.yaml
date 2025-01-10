@@ -31,10 +31,13 @@ alertmanager:
           title_link: 'https://grafana.dev.skach.org/d/site_specific_services/central-monitoring-srcnet-site-services?orgId=1'
           text: >
             {{ if eq .Status "resolved" }}
-            *Note*: Click title for Grafana dashboard.
+            *Site timeline*: https://grafana.dev.skach.org/d/site_specific_services/central-monitoring-srcnet-site-services?orgId=1&var-sitename={{ .CommonLabels.location }}&var-environment={{ .CommonLabels.environment }}&viewPanel=2
+            *Site overview*: https://grafana.dev.skach.org/d/site_specific_services/central-monitoring-srcnet-site-services?orgId=1&var-sitename={{ .CommonLabels.location }}&var-environment={{ .CommonLabels.environment }}
+
             The service has recovered and is back online.
             *Instance*: {{ .CommonLabels.instance }} {{ .CommonLabels.environment }}
             {{ else }}
-            *Note*: Click title for Grafana dashboard. This message can be customized.
+            *Site timeline*: https://grafana.dev.skach.org/d/site_specific_services/central-monitoring-srcnet-site-services?orgId=1&var-sitename={{ .CommonLabels.location }}&var-environment={{ .CommonLabels.environment }}&viewPanel=2
+            *Site overview*: https://grafana.dev.skach.org/d/site_specific_services/central-monitoring-srcnet-site-services?orgId=1&var-sitename={{ .CommonLabels.location }}&var-environment={{ .CommonLabels.environment }}
             *Instance*: {{ .CommonLabels.instance }} {{ .CommonLabels.environment }}
             {{ end }}
