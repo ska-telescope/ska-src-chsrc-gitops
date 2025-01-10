@@ -13,6 +13,7 @@ grafana:
 alertmanager:
   config:
     route:
+      routes:
       - receiver: 'slack-dev'
         matchers:
           - alertname = "ProbeFailure"
