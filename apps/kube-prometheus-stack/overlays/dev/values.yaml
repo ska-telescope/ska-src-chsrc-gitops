@@ -39,7 +39,7 @@ alertmanager:
           :alert: Service {{ .CommonLabels.servicename }} in {{ .CommonLabels.location }} {{ .CommonLabels.environment }} is down
           {{ end }}
         title_link: 'https://grafana.dev.skach.org/d/site_specific_services/central-monitoring-srcnet-site-services?orgId=1'
-        text: >
+        text: |
           {{ if eq .Status "resolved" }}
           *Site timeline*: <https://grafana.dev.skach.org/d/site_specific_services/central-monitoring-srcnet-site-services?orgId=1&var-sitename={{ .CommonLabels.location }}&var-environment={{ .CommonLabels.environment }}&viewPanel=2|Link to Grafana>
           *Site overview*: <https://grafana.dev.skach.org/d/site_specific_services/central-monitoring-srcnet-site-services?orgId=1&var-sitename={{ .CommonLabels.location }}&var-environment={{ .CommonLabels.environment }}|Link to Grafana>
