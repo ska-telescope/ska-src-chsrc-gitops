@@ -14,7 +14,7 @@ configuration both in Prometheus and in Alertmanager.
 ### Prometheus configuration
 To add a new alert, you need to decide which metric and which value it will react
 on. The alerts are added to the Prometheus configuration as [alerting rules](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/)
-under `additionalPrometheusRulesMap` in the `values.yaml`.
+under `additionalPrometheusRulesMap` in the `values.yaml` found [here](https://gitlab.com/ska-telescope/src/deployments/chsrc/ska-src-chsrc-services-cd/-/blob/dev/apps/kube-prometheus-stack/base/values.yaml).
 
 To ensure that the alert is being picked up by the Prometheus configuration you
 can see the Rules section in the Prometheus web interface.
@@ -29,7 +29,7 @@ rule to open it in the query editor and trigger a query.
 ![](../../images/alerting/prometheus-rule-alert.png)
 
 ### Alertmanager configuration
-When the alert is added to Prometheus you can set up routing for this alert in
+When the alert is added to Prometheus, you can set up routing for this alert in
 alertmanager. This is configured in the `alertmanager.config.route` section. The
 routing can route an alert that matches specific labels to a specific receiver.
 The receiver is set up in the `alertmanager.config.receivers` section. In the
@@ -47,14 +47,14 @@ See the documentation for more details and settings for routing and receivers:
     sharing or filtering the alerts as needed.
 
 The alerts can be customized to contain links to dashboards, emojis, links to
-documentation for how to resolve a type of alert etc. It is also possible to
+documentation for how to resolve a type of alert, etc. It is also possible to
 send a customized message when the alerting metric has recovered.
 
 ![](../../images/alerting/recovering-alert.png)
 
 #### Silencing an alert
 When debugging, it can be useful to silence an alert. This can be done in the
-Alertmanager web interface by selecting the filter for which alerts to silence
+Alertmanager web interface by filtering which alerts to silence
 and creating a Silence. It is time-limited and any alerts will resume when the
 Silence expires.
 
@@ -84,7 +84,7 @@ The existing webhook can be edited in the Incoming Webhooks configuration menu.
 
 You can list all the webhooks in the slack instance, but only the ones you own
 are editable. The `slack-api-url` can be regenerated when you edit the webhook.
-If it is regenerated the old link will stop working and alerts will not be sent
+If it is regenerated, the old link will stop working and alerts will not be sent
 until the credential has been updated in Vault and Alertmanager has picked up
 the changed secret.
 ![](../../images/alerting/edit-webhook.png)
