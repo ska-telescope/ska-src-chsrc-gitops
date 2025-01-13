@@ -64,5 +64,8 @@ The existing webhook can be edited in the Incoming Webhooks configuration menu.
     a new webhook and update the slack-api-url secret accordingly in Vault.
 
 You can list all the webhooks in the slack instance, but only the ones you own
-are editable.
+are editable. The `slack-api-url` can be regenerated when you edit the webhook.
+If it is regenerated the old link will stop working and alerts will not be sent
+until the credential has been updated in Vault and Alertmanager has picked up
+the changed secret.
 ![](../../images/alerting/edit-webhook.png)
