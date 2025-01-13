@@ -39,7 +39,7 @@ which credentials to use, and the layout of the message that will be sent.
 See the documentation for more details and settings for routing and receivers:
 
 - [Routing configuration](https://prometheus.io/docs/alerting/latest/configuration/#route-related-settings)  
-- [Reveiver configuration](https://prometheus.io/docs/alerting/latest/configuration/#general-receiver-related-settings)
+- [Receiver configuration](https://prometheus.io/docs/alerting/latest/configuration/#general-receiver-related-settings)
 
 !!! Tip "Routing alerts"
     Note that the same alert can be routed to multiple slack channels, for
