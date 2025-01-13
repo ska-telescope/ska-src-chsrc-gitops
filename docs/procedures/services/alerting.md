@@ -1,7 +1,7 @@
 # Alerting
 This page describes the current alerting setup for CHSRC.
 
-__TOC__
+[TOC]
 
 # Alertmanager alerts
 This section describes how to create an Alertmanager alert for a Prometheus
