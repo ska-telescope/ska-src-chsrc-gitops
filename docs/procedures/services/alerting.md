@@ -37,14 +37,15 @@ See the documentation for more details and settings for routing and receivers:
 The alerts can be customized to contain links to dashboards, emojis, links to
 documentation for how to resolve a type of alert etc. It is also possible to
 send a customized message when the alerting metric has recovered.
-![](../../images/alerting/recovering-alert.png){: style="width:40%;" .shadow}
+
+![](../../images/alerting/recovering-alert.png){: style="width:80%;" .shadow}
 
 
 ## Configuring Slack integration
 The Slack integration is set up using an Incoming Webhook that is defined in the
 Slack instance itself in Automations -> Apps -> Incoming Webhooks.
 
-![](../../images/alerting/slack-webhook.png){: style="width:40%;" .shadow}
+![](../../images/alerting/slack-webhook.png){: style="width:80%;" .shadow}
 
 Adding a new webhook generates a URL that is stored as a secret in Vault
 (apps/alertmanager). The secret is mounted in the alertmanager instance and referred to using
@@ -53,7 +54,7 @@ Adding a new webhook generates a URL that is stored as a secret in Vault
 ### Editing an existing webhook
 The existing webhook can be edited in the Incoming Webhooks configuration menu.
 
-![](../../images/alerting/configure-webhook.png){: style="width:40%;" .shadow}
+![](../../images/alerting/configure-webhook.png){: style="width:80%;" .shadow}
 
 #### How to regenerate the slack-api-url
 !!! Tip "Ownership of the webhook"
@@ -64,4 +65,4 @@ The existing webhook can be edited in the Incoming Webhooks configuration menu.
 
 You can list all the webhooks in the slack instance, but only the ones you own
 are editable.
-![](../../images/alerting/edit-webhook.png){: style="width:40%;" .shadow}
+![](../../images/alerting/edit-webhook.png){: style="width:80%;" .shadow}
