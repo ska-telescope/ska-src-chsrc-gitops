@@ -16,6 +16,18 @@ To add a new alert, you need to decide which metric and which value it will reac
 on. The alerts are added to the Prometheus configuration as [alerting rules](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/)
 under `additionalPrometheusRulesMap` in the `values.yaml`.
 
+To ensure that the alert is being picked up by the Prometheus configuration you
+can see the Rules section in the Prometheus web interface.
+
+![](../../images/alerting/prometheus-rules.png)
+
+The rule section will reflect the configuration that has been set up. It is also
+possible to debug the rule using the Prometheus query editor to check whether
+there are values that would trigger the rule or not. Click the expression in the
+rule to open it in the query editor and trigger a query.
+
+![](../../images/alerting/prometheus-rule-alert.png)
+
 ### Alertmanager configuration
 When the alert is added to Prometheus you can set up routing for this alert in
 alertmanager. This is configured in the `alertmanager.config.route` section. The
@@ -40,6 +52,13 @@ send a customized message when the alerting metric has recovered.
 
 ![](../../images/alerting/recovering-alert.png)
 
+#### Silencing an alert
+When debugging, it can be useful to silence an alert. This can be done in the
+Alertmanager web interface by selecting the filter for which alerts to silence
+and creating a Silence. It is time-limited and any alerts will resume when the
+Silence expires.
+
+![](../../images/alerting/silencing-alerts.png)
 
 # Configuring Slack integration
 The Slack integration is set up using an Incoming Webhook that is defined in the
