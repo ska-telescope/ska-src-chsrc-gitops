@@ -41,7 +41,7 @@ send a customized message when the alerting metric has recovered.
 ![](../../images/alerting/recovering-alert.png){: style="width:80%;" .shadow}
 
 
-## Configuring Slack integration
+# Configuring Slack integration
 The Slack integration is set up using an Incoming Webhook that is defined in the
 Slack instance itself in Automations -> Apps -> Incoming Webhooks.
 
@@ -51,12 +51,12 @@ Adding a new webhook generates a URL that is stored as a secret in Vault
 (apps/alertmanager). The secret is mounted in the alertmanager instance and referred to using
 `alertmanager.config.global.slack_api_url_file`.
 
-### Editing an existing webhook
+## Editing an existing webhook
 The existing webhook can be edited in the Incoming Webhooks configuration menu.
 
 ![](../../images/alerting/configure-webhook.png){: style="width:80%;" .shadow}
 
-#### How to regenerate the slack-api-url
+## How to regenerate the slack-api-url
 !!! Tip "Ownership of the webhook"
     Note that only the owner of the webhook can edit it and manage the Slack API
     URL link, as well as the channel to which the alert is sent. This is not
