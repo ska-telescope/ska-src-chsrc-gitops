@@ -1,12 +1,14 @@
 # Alerting
 This page describes the current alerting setup for CHSRC.
 
+__TOC__
+
 # Alertmanager alerts
 This section describes how to create an Alertmanager alert for a Prometheus
 metric and sending the alerts to Slack.
 
 ## Adding a new alert with notifications
-To add a new alert and send notifications to a Slack channel requires some
+Adding a new alert and sending notifications to a Slack channel requires some
 configuration both in Prometheus and in Alertmanager.
 
 ### Prometheus configuration
