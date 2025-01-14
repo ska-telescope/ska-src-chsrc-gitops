@@ -1224,6 +1224,10 @@ grafana:
     #   replacement: $1
     #   action: replace
 
+    alerting:
+      samplealert.yaml:
+        file: alerting/samplealert.yaml
+
 ## Flag to disable all the kubernetes component scrapers
 ##
 kubernetesServiceMonitors:
