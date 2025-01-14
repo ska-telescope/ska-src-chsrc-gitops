@@ -5,4 +5,8 @@ namespace: monitoring
 resources:
 - secrets.yaml
 - srcnet-nodes-dashboards.yaml
+<<<<<<< HEAD
 - global-monitoring-dashboard.yaml
+=======
+- grafana-alerts.yaml
+>>>>>>> 7593b73 (CHOC-161: Add grafana alerts to resources to be deployed)
