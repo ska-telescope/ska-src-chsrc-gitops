@@ -1093,6 +1093,12 @@ grafana:
        role_attribute_path: "contains(groups[*], 'src/chsrc/admins') && 'Admin' || 'Viewer'"
 
   sidecar:
+    alerts:
+      label: grafana_alert
+      enabled: true
+      searchNamespace: ALL
+      labelValue: "1"
+      
     dashboards:
       enabled: true
       label: grafana_dashboard
@@ -1223,10 +1229,6 @@ grafana:
     #   targetLabel: nodename
     #   replacement: $1
     #   action: replace
-
-    alerting:
-      samplealert.yaml:
-        file: alerting/samplealert.yaml
 
 ## Flag to disable all the kubernetes component scrapers
 ##
