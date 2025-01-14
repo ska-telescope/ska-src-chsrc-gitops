@@ -6,4 +6,13 @@ metadata:
   labels:
     grafana_alert: "1"
 data:
-  grafana-alert.yaml: |-
+  grafana-alert.yaml: |
+    apiVersion: 1
+    alerting:
+      - name: Example Alert
+        expr: avg(rate(http_requests_total{status="500"}[5m])) > 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Just an example, expecting fail"
