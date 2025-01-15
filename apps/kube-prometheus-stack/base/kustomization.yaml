@@ -2,20 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: monitoring
 
-secretGenerator:
-- name: grafana-alerting-secret
-  envs:
-  - grafana-alert.txt
-
 resources:
 - secrets.yaml
 - srcnet-nodes-dashboards.yaml
-<<<<<<< HEAD
-<<<<<<< HEAD
 - global-monitoring-dashboard.yaml
-=======
 - grafana-alerts.yaml
->>>>>>> 7593b73 (CHOC-161: Add grafana alerts to resources to be deployed)
-=======
-#- grafana-alerts.yaml
->>>>>>> 97b36c7 (CHOC-161: Comment out working alerts yaml so it is not in the way of trial and error)
