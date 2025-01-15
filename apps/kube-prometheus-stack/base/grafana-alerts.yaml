@@ -70,6 +70,15 @@ data:
               annotations: {}
               labels: {}
               isPaused: false
-              notification_settings:
-                receiver: grafana-default-email
+          notification_settings:
+            receiver: skao-slack-dev
 
+    notification_channels:
+      - uid: skao-slack-dev 
+        name: SKAO Slack Dev
+        type: slack
+        settings:
+          url: |-
+            kubectl get secret argocd-secret -n argocd -o jsonpath="{.data.admin\.password}" | base64 --decode
+          username: "Alertmanager"
+          recipient: "#chsrc-alerts-dev"
