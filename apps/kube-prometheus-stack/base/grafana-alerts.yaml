@@ -8,11 +8,68 @@ metadata:
 data:
   grafana-alert.yaml: |
     apiVersion: 1
-    alerting:
-      - name: Example Alert
-        expr: avg(rate(http_requests_total{status="500"}[5m])) > 0
-        for: 1m
-        labels:
-          severity: critical
-        annotations:
-          summary: "Just an example, expecting fail"
+    groups:
+        - orgId: 1
+          name: TestGroup
+          folder: TestFolder
+          interval: 1m
+          rules:
+            - uid: bea1u0lw5ps74b
+              title: TestRule
+              condition: C
+              data:
+                - refId: A
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: prometheus
+                  model:
+                    disableTextWrap: false
+                    editorMode: builder
+                    expr: probe_success{instance="https://echo.src.skach.org/"}
+                    fullMetaSearch: false
+                    includeNullMetadata: true
+                    instant: true
+                    intervalMs: 1000
+                    legendFormat: __auto
+                    maxDataPoints: 43200
+                    range: false
+                    refId: A
+                    useBackend: false
+                - refId: C
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: __expr__
+                  model:
+                    conditions:
+                        - evaluator:
+                            params:
+                                - 0
+                            type: gt
+                          operator:
+                            type: and
+                          query:
+                            params:
+                                - C
+                          reducer:
+                            params: []
+                            type: last
+                          type: query
+                    datasource:
+                        type: __expr__
+                        uid: __expr__
+                    expression: A
+                    intervalMs: 1000
+                    maxDataPoints: 43200
+                    refId: C
+                    type: threshold
+              noDataState: NoData
+              execErrState: Error
+              for: 1m
+              annotations: {}
+              labels: {}
+              isPaused: false
+              notification_settings:
+                receiver: grafana-default-email
+
