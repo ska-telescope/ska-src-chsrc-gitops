@@ -10,4 +10,4 @@ secretGenerator:
 resources:
 - secrets.yaml
 - srcnet-nodes-dashboards.yaml
-- grafana-alerts.yaml
+#- grafana-alerts.yaml
