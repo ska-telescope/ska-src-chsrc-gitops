@@ -870,7 +870,7 @@ prometheus:
               environment: 'prod'
 
           - targets:
-              - https://gatekeeper.ral.uksrc.org/
+              - https://gatekeeper.ral.uksrc.org/ping
             labels:
               servicename: 'gatekeeper'
               environment: 'prod'
@@ -879,6 +879,24 @@ prometheus:
               - https://canfar.ral.uksrc.org/science-portal/
             labels:
               servicename: 'science-portal'
+              environment: 'prod'
+
+          - targets:
+              - https://canfar.ral.uksrc.org/skaha/
+            labels:
+              servicename: 'skaha'
+              environment: 'prod'
+
+          - targets:
+              - https://canfar.ral.uksrc.org/cavern/
+            labels:
+              servicename: 'cavern'
+              environment: 'prod'
+
+          - targets:
+              - https://canfar.ral.uksrc.org/posix-mapper/
+            labels:
+              servicename: 'posix-mapper'
               environment: 'prod'
 
           - targets:
@@ -894,12 +912,6 @@ prometheus:
               servicename: 'FTS'
               environment: 'prod'
               scope: 'global'
-
-          - targets:
-              - https://canfar.ral.uksrc.org/storage/list/
-            labels:
-              servicename: 'cavern'
-              environment: 'prod'
 
           - targets:
               - https://grafana.ral.uksrc.org/
