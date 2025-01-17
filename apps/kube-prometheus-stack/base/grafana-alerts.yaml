@@ -77,8 +77,8 @@ data:
       - orgId: 2 
         name: skao-slack-dev
         receivers:
-          type: slack
-          settings:
-            recipient: chsrc-alerts-dev
-            username: Alertmanager
-            url: $(slack-api-url)
+          - type: slack
+            settings:
+              recipient: chsrc-alerts-dev
+              username: Alertmanager
+              url: $(slack-api-url)
