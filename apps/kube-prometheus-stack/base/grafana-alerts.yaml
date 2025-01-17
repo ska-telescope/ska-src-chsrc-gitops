@@ -74,7 +74,7 @@ data:
             receiver: skao-slack-dev
 
     contactPoints:
-      - orgId: 2 
+      - orgId: 1
         name: skao-slack-dev
         receivers:
           - uid: skao-slack-webhook-uid
