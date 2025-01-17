@@ -82,4 +82,4 @@ data:
             settings:
               username: grafana_bot
               recipient: chsrc-alerts-dev
-              url: https://www.samplewebhook.com
+              url: $(slack-api-url)
