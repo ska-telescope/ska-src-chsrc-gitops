@@ -73,14 +73,13 @@ data:
           notification_settings:
             receiver: skao-slack-dev
 
-#contactPoints:
-#      - orgId: 1
-#        name: skao-slack-dev
-#        receivers:
-#          - uid: skao-slack-webhook-uid
-#            type: slack
-#            settings:
-#              username: grafana_bot
-#              recipient: chsrc-alerts-dev
-#              url: https://www.samplewebhook.com
-
+    contactPoints:
+      - orgId: 1
+        name: skao-slack-dev
+        receivers:
+          - uid: skao-slack-webhook-uid
+            type: slack
+            settings:
+              username: grafana_bot
+              recipient: chsrc-alerts-dev
+              url: $(slack-api-url)
