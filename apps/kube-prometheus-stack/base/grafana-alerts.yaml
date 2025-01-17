@@ -76,6 +76,7 @@ data:
     contactPoints:
       - orgId: 2 
         name: skao-slack-dev
+        uid: skao-slack-webhook-uid
         receivers:
           - type: slack
             settings:
