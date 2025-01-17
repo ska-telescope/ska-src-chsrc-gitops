@@ -4,5 +4,6 @@ namespace: monitoring
 
 resources:
 - secrets.yaml
+#- webhook-env-deployment.yaml
 - srcnet-nodes-dashboards.yaml
-- grafana-alerts.yaml
+- global-monitoring-dashboard.yaml
