@@ -765,7 +765,7 @@ prometheus:
 
 ##################################################
 #                                                #
-#                    SWESRC                       #
+#                    SWESRC                      #
 #                                                #
 ##################################################
       - job_name: 'swesrc-blackbox'
@@ -965,3 +965,100 @@ prometheus:
             labels:
               servicename: 'gatekeeper'
               environment: 'dev/prod'
+
+
+##################################################
+#                                                #
+#                    GLOBAL                      #
+#                                                #
+##################################################
+      - job_name: 'global-blackbox'
+# DO NOT edit these values unless instructed otherwise 
+        metrics_path: /probe
+        params:
+          module: [http_2xx]
+        relabel_configs:
+          - source_labels: [__address__]
+            target_label: __param_target
+          - source_labels: [__param_target]
+            target_label: instance
+          - source_labels: [module]
+            target_label: __param_module
+          - target_label: __address__
+            replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
+          - target_label: location
+            replacement: 'global'
+# Please DO add your targets below this line
+        static_configs:
+          - targets:
+              - https://dachs.ivoa.srcdev.skao.int/
+            labels:
+              servicename: 'ivoa-tap'
+              environment: 'prod'
+
+          - targets:
+              - https://datalink.ivoa.srcdev.skao.int/rucio/ping
+            labels:
+              servicename: 'ivoa-datalink'
+              environment: 'prod'
+
+          - targets:
+              - https://permissions.srcdev.skao.int/api/v1/ping
+            labels:
+              servicename: 'permissions-api'
+              environment: 'prod'
+
+          - targets:
+              - https://data-management.srcdev.skao.int/api/v1/ping
+            labels:
+              servicename: 'data-management-api'
+              environment: 'prod'
+              
+          - targets:
+              - https://site-capabilities.srcdev.skao.int/api/v1/ping
+            labels:
+              servicename: 'site-capabilities-api'
+              environment: 'prod'
+
+          - targets:
+              - https://authn.srcdev.skao.int/api/v1/ping
+            labels:
+              servicename: 'auth-api'
+              environment: 'prod'
+
+          - targets:
+              - https://rucio.srcdev.skao.int/ping
+            labels:
+              servicename: 'rucio'
+              environment: 'prod'
+
+          - targets:
+              - https://ska-iam.stfc.ac.uk/actuator/health
+            labels:
+              servicename: 'ska-iam'
+              environment: 'prod'
+
+          - targets:
+              - https://grafana.src.skach.org
+            labels:
+              servicename: 'grafana'
+              environment: 'prod'
+
+          - targets:
+              #- https://ska-iam.stfc.ac.uk/:443
+            labels:
+              servicename: 'science-gateway'
+              environment: 'prod'
+
+          - targets:
+              - #https://ska-iam.stfc.ac.uk/:443
+            labels:
+              servicename: 'gms'
+              environment: 'prod'
+              
+          - targets:
+              - #https://ska-iam.stfc.ac.uk/:443
+            labels:
+              servicename: 'cvmfs'
+              environment: 'prod'
+
