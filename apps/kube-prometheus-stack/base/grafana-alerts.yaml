@@ -73,12 +73,10 @@ data:
           notification_settings:
             receiver: skao-slack-dev
 
-    #contactPoints::
-    #  - orgId: 1 
-    #    name: skao-slack-dev
-    #    receivers:
-    #      type: slack
-    #      settings:
-    #        recipient: chsrc-alerts-dev
-    #        username: Alertmanager
-    #        url: https://hooks.slack.com/services/testurl
+    contactPoints:
+      - orgId: 1 
+        name: skao-slack-dev
+        receivers:
+          type: slack
+          settings:
+            url: ${SLACK_WEBHOOK_URL}
