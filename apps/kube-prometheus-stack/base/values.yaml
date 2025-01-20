@@ -1059,7 +1059,7 @@ grafana:
     create: true
     autoMount: true
 
-  envFromSecret: grafana-ska-iam-secret
+  envFromSecret: grafana
 
   grafana.ini:
     paths:
