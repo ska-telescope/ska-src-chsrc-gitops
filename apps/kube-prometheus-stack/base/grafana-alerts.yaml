@@ -80,6 +80,4 @@ data:
           - uid: skao-slack-webhook-uid
             type: slack
             settings:
-              username: grafana_bot
-              recipient: chsrc-alerts-dev
-              url: ${slack-api-url}
+              url: $SLACK_WEBHOOK_DEV
