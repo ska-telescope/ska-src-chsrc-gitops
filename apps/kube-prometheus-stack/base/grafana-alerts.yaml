@@ -10,13 +10,13 @@ data:
     apiVersion: 1
     groups:
         - orgId: 1
-          name: TestGroup
-          folder: TestFolder
-          interval: 1m
+          name: Samples
+          folder: Samples
+          interval: 1h
           rules:
-            - uid: bea1u0lw5ps74b
-              title: TestRule
-              condition: C
+            - uid: deakebwyh7bpcd
+              title: UK Canfar Low
+              condition: B
               data:
                 - refId: A
                   relativeTimeRange:
@@ -26,7 +26,7 @@ data:
                   model:
                     disableTextWrap: false
                     editorMode: builder
-                    expr: probe_success{instance="https://echo.src.skach.org/"}
+                    expr: avg_over_time(probe_success{instance="https://canfar.ral.uksrc.org/cavern/"}[24h]) * 100
                     fullMetaSearch: false
                     includeNullMetadata: true
                     instant: true
@@ -36,7 +36,7 @@ data:
                     range: false
                     refId: A
                     useBackend: false
-                - refId: C
+                - refId: B
                   relativeTimeRange:
                     from: 600
                     to: 0
@@ -45,8 +45,8 @@ data:
                     conditions:
                         - evaluator:
                             params:
-                                - 0
-                            type: gt
+                                - 90
+                            type: lt
                           operator:
                             type: and
                           query:
@@ -56,22 +56,26 @@ data:
                             params: []
                             type: last
                           type: query
+                          unloadEvaluator:
+                            params:
+                                - 95
+                            type: gt
                     datasource:
                         type: __expr__
                         uid: __expr__
                     expression: A
                     intervalMs: 1000
                     maxDataPoints: 43200
-                    refId: C
+                    refId: B
                     type: threshold
               noDataState: NoData
               execErrState: Error
-              for: 1m
+              for: 2h
               annotations: {}
               labels: {}
               isPaused: false
-          notification_settings:
-            receiver: skao-slack-dev
+              notification_settings:
+                receiver: skao-slack-dev
 
     contactPoints:
       - orgId: 1
