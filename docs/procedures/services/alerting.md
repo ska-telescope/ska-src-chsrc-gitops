@@ -62,6 +62,30 @@ Silence expires.
 
 ![](../../images/alerting/silencing-alerts.png)
 
+# Grafana alerts
+This section describes how to create an alert for Grafana
+metrics and sending those alerts to Slack. Grafana alerts allow for more complex alert rules and
+potentially the creation of a scheduled status overview directly to slack.
+
+## Adding a new alert
+While it is possible to leverage the chsrc gitops to directly add an alert as code only,
+it is recommended to use the grafana frontend to create the alert and then export it.
+
+Creating a new alert (or *alert rule*, to be percise) is done in the Alert rules section.
+![](../../images/alerting/grafana-new-alert.png)
+
+After going through the form (make sure to select the correct contact point) and saving the new rule
+the rule or the full set of rules can be exported. The latter is easier to make sure nothing existing is overwritten.
+The exported rules can then be added to the `grafana-alerts.yaml`.
+
+The alerts should now be automatically synced through ArgoCD and automatically provisioned in case grafana is redeployed.
+
+## Silencing an alert
+When debugging, it can be useful to silence an alert. This can be done in the
+Grafana web interface by either finding an alerting rule that needs to be silenced in the `Alert rules` section
+or by opening the `Silences` section and filtering to silence multiple alerts at once for a specified duration.
+
+
 # Configuring Slack integration
 The Slack integration is set up using an Incoming Webhook that is defined in the
 Slack instance itself in Automations -> Apps -> Incoming Webhooks.
