@@ -80,6 +80,12 @@ The exported rules can then be added to the `grafana-alerts.yaml`.
 
 The alerts should now be automatically synced through ArgoCD and automatically provisioned in case grafana is redeployed.
 
+## Editing or updating an existing alert
+ArgoCD provisioned alerts cannot be directly edited. Instead the alert can be exported with modifications (see image)
+![](../../images/alerting/grafana-export-modify.png)
+This will open a form that allows for changed to be made prior to an export.
+The exported yaml can then be used to overwrite the original settings in the above mentioned `grafana-alerts.yaml` file.
+
 ## Silencing an alert
 When debugging, it can be useful to silence an alert. This can be done in the
 Grafana web interface by either finding an alerting rule that needs to be silenced in the `Alert rules` section
