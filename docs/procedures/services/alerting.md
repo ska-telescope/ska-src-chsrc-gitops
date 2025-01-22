@@ -68,7 +68,7 @@ metrics and sending those alerts to Slack. Grafana alerts allow for more complex
 potentially the creation of a scheduled status overview directly to slack.
 
 ## Adding a new alert
-While it is possible to leverage the chsrc gitops to directly add an alert as code only,
+While it is possible to leverage the CHSRC GitOps to directly add an alert as code only,
 it is recommended to use the grafana frontend to create the alert and then export it.
 
 Creating a new alert (or *alert rule*, to be precise) is done in the Alert rules section.
