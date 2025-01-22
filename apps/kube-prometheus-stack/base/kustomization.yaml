@@ -6,4 +6,3 @@ resources:
 - secrets.yaml
 - srcnet-nodes-dashboards.yaml
 - global-monitoring-dashboard.yaml
-- grafana-alerts.yaml
