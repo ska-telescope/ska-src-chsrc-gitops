@@ -71,7 +71,7 @@ potentially the creation of a scheduled status overview directly to slack.
 While it is possible to leverage the chsrc gitops to directly add an alert as code only,
 it is recommended to use the grafana frontend to create the alert and then export it.
 
-Creating a new alert (or *alert rule*, to be percise) is done in the Alert rules section.
+Creating a new alert (or *alert rule*, to be precise) is done in the Alert rules section.
 ![](../../images/alerting/grafana-new-alert.png)
 
 After going through the form (make sure to select the correct contact point) and saving the new rule
