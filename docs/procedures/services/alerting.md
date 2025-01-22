@@ -62,6 +62,36 @@ Silence expires.
 
 ![](../../images/alerting/silencing-alerts.png)
 
+# Grafana alerts
+This section describes how to create an alert for Grafana
+metrics and sending those alerts to Slack. Grafana alerts allow for more complex alert rules and
+potentially the creation of a scheduled status overview directly to slack.
+
+## Adding a new alert
+While it is possible to leverage the CHSRC GitOps to directly add an alert as code only,
+it is recommended to use the Grafana frontend to create the alert and then export it.
+
+Creating a new alert (or *alert rule*, to be precise) is done in the Alert rules section.
+![](../../images/alerting/grafana-new-alert.png)
+
+After going through the form (make sure to select the correct contact point) and saving the new rule
+the rule or the full set of rules can be exported. The latter is easier to make sure nothing existing is overwritten.
+The exported rules can then be added to the `grafana-alerts.yaml`.
+
+The alerts should now be automatically synced through ArgoCD and automatically provisioned in case Grafana is redeployed.
+
+## Editing or updating an existing alert
+ArgoCD provisioned alerts cannot be directly edited. Instead the alert can be exported with modifications (see image)
+![](../../images/alerting/grafana-export-modify.png)
+This will open a form that allows for changes to be made prior to an export.
+The exported yaml can then be used to overwrite the original settings in the above mentioned `grafana-alerts.yaml` file.
+
+## Silencing an alert
+When debugging, it can be useful to silence an alert. This can be done in the
+Grafana web interface by either finding an alerting rule that needs to be silenced in the `Alert rules` section
+or by opening the `Silences` [(dev)](https://grafana.dev.skach.org/alerting/silences) [(prod)](https://grafana.src.skach.org/alerting/silences) section and filtering to silence multiple alerts at once for a specified duration.
+
+
 # Configuring Slack integration
 The Slack integration is set up using an Incoming Webhook that is defined in the
 Slack instance itself in Automations -> Apps -> Incoming Webhooks.

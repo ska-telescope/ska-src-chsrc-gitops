@@ -1059,7 +1059,7 @@ grafana:
     create: true
     autoMount: true
 
-  envFromSecret: grafana-ska-iam-secret
+  envFromSecret: grafana
 
   grafana.ini:
     paths:
@@ -1093,6 +1093,12 @@ grafana:
        role_attribute_path: "contains(groups[*], 'src/chsrc/admins') && 'Admin' || 'Viewer'"
 
   sidecar:
+    alerts:
+      label: grafana_alert
+      enabled: true
+      searchNamespace: ALL
+      labelValue: "1"
+      
     dashboards:
       enabled: true
       label: grafana_dashboard
