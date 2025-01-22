@@ -89,7 +89,7 @@ The exported yaml can then be used to overwrite the original settings in the abo
 ## Silencing an alert
 When debugging, it can be useful to silence an alert. This can be done in the
 Grafana web interface by either finding an alerting rule that needs to be silenced in the `Alert rules` section
-or by opening the `Silences` (dev)](https://grafana.dev.skach.org/alerting/silences) (prod)](https://grafana.src.skach.org/alerting/silences) section and filtering to silence multiple alerts at once for a specified duration.
+or by opening the `Silences` [(dev)](https://grafana.dev.skach.org/alerting/silences) [(prod)](https://grafana.src.skach.org/alerting/silences) section and filtering to silence multiple alerts at once for a specified duration.
 
 
 # Configuring Slack integration
