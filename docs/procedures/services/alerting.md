@@ -78,7 +78,7 @@ After going through the form (make sure to select the correct contact point) and
 the rule or the full set of rules can be exported. The latter is easier to make sure nothing existing is overwritten.
 The exported rules can then be added to the `grafana-alerts.yaml`.
 
-The alerts should now be automatically synced through ArgoCD and automatically provisioned in case grafana is redeployed.
+The alerts should now be automatically synced through ArgoCD and automatically provisioned in case Grafana is redeployed.
 
 ## Editing or updating an existing alert
 ArgoCD provisioned alerts cannot be directly edited. Instead the alert can be exported with modifications (see image)
