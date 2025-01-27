@@ -24,7 +24,7 @@ nameOverride: ""
 #
 # -- (string)
 # Overrides the full name of the release.
-fullnameOverride: ""
+fullnameOverride: "slinky" # ORIGINAL ""
 
 #
 # -- (string)
