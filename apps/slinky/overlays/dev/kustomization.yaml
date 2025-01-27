@@ -11,7 +11,7 @@ helmCharts:
     repo: oci://ghcr.io/slinkyproject/charts
     version: 0.1.0
     namespace: slinky
-    includeCRDs: true
+    includeCRDs: false # These need to be installed by hand with kubectl create (not apply), as otherwise the nodeset CRD will exceed the max length.
     # base values file
     valuesFile: ../../base/values-operator.yaml
     # overlay values file that will override the base
