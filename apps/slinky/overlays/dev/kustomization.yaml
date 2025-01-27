@@ -12,7 +12,16 @@ helmCharts:
     version: 0.1.0
     namespace: slinky
     # base values file
-    valuesFile: ../../base/values.yaml
+    valuesFile: ../../base/values-operator.yaml
     # overlay values file that will override the base
     additionalValuesFiles:
-      - values.yaml
+      - values-operator.yaml
+  - name: slurm
+    repo: oci://ghcr.io/slinkyproject/charts
+    version: 0.1.0
+    namespace: slinky
+    # base values file
+    valuesFile: ../../base/values-slurm.yaml
+    # overlay values file that will override the base
+    additionalValuesFiles:
+      - values-slurm.yaml
