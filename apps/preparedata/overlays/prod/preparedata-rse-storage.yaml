@@ -38,3 +38,9 @@ metadata:
 spec:
   accessModes:
     - ReadWriteMany
+  resources:
+    requests:
+      storage: 1000Gi
+  storageClassName: ceph-corbo-cephfs-retain
+  volumeMode: Filesystem
+  volumeName: pvc-527ab3e9-00ec-4b5b-8015-355124c75313-preparedata
