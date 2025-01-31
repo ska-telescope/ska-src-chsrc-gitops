@@ -5,3 +5,4 @@ namespace: preparedata
 resources:
   - ../../base
   - cavern-user-space.yaml
+  - preparedata-rse-storage.yaml
