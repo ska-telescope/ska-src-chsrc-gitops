@@ -27,14 +27,14 @@ spec:
             - name: PREPARE_DATA_APPROACH
               value: "copy_to_user_area"
             - name: ABS_PATH_USER_AREA_ROOT
-              value: "/users/cavern/home"
+              value: "/mnt/cavern/home"
             - name: RSE_ROOT
-              value: /rse
+              value: /mnt
           volumeMounts:
             - name: userspace-volume
-              mountPath: /users
+              mountPath: /mnt
             - name: rse-volume
-              mountPath: /rse
+              mountPath: /mnt
               readOnly: true
           readinessProbe:
             tcpSocket:
