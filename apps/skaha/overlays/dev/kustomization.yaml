@@ -140,3 +140,6 @@ patches:
       kind: Deployment
       name: storage-ui-tomcat
     path: ../../base/storage-ui-tomcat-deployment-patch.yaml
+  #### Namespace label patches ####
+  # Adds labels to the skaha-system and skaha-workload namespaces
+  - path: namespace-labels-patch.yaml
