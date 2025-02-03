@@ -1,3 +1,6 @@
-- op: add
-  path: /metadata/labels/field.cattle.io~1projectId
-  value: p-qvdqp
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: gatekeeper
+  labels:
+    field.cattle.io/projectId: p-z6jsk
