@@ -1,0 +1,3 @@
+- op: add
+  path: /metadata/labels/field.cattle.io~1projectId
+  value: p-qvdqp
