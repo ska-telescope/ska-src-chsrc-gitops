@@ -18,3 +18,8 @@ spec:
     server: https://kubernetes.default.svc
     namespace: skach-external-dns
   syncPolicy:
+    managedNamespaceMetadata:
+      labels:
+        field.cattle.io/projectId: p-qvdqp
+    syncOptions:
+    - CreateNamespace=true
