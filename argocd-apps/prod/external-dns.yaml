@@ -18,6 +18,9 @@ spec:
     server: https://kubernetes.default.svc
     namespace: skach-external-dns
   syncPolicy:
+    managedNamespaceMetadata:
+      labels:
+        field.cattle.io/projectId: p-z6jsk
     automated:
       prune: true
       selfHeal: true
