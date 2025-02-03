@@ -14,6 +14,9 @@ spec:
     server: https://kubernetes.default.svc
     namespace: jupyterhub
   syncPolicy:
+    managedNamespaceMetadata:
+      labels:
+        field.cattle.io/projectId: p-qvdqp
     automated:
       prune: true
       selfHeal: true

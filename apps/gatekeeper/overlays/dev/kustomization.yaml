@@ -6,7 +6,12 @@ resources:
 - certificate.yaml
 
 # Patching of regular resources
-patches: []
+patches:
+  - path: namespace-label-patch.yaml
+    target:
+      version: v1
+      kind: Namespace
+      name: ska-src-gatekeeper-echo
 
 # Helm chart definition with values overlay
 helmCharts:

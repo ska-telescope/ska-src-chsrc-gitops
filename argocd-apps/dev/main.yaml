@@ -25,6 +25,9 @@ spec:
     server: 'https://kubernetes.default.svc'
   project: default
   syncPolicy:
+    managedNamespaceMetadata:
+      labels:
+        field.cattle.io/projectId: p-qvdqp
     automated:
       prune: true
       selfHeal: true
