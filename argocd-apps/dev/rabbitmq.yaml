@@ -16,7 +16,7 @@ spec:
     path: apps/rabbitmq/overlays/dev
   destination:
     server: https://kubernetes.default.svc
-    namespace: perparedata
+    namespace: preparedata
   syncPolicy:
     managedNamespaceMetadata:
       labels:
