@@ -247,14 +247,14 @@ memoryHighWatermark:
   enabled: false
   ## @param memoryHighWatermark.type Memory high watermark type. Either `absolute` or `relative`
   ##
-  type: "absolute"
+  type: "relative"
   ## Memory high watermark value.
   ## @param memoryHighWatermark.value Memory high watermark value
   ## The default value of 0.4 stands for 40% of available RAM
   ## Note: the memory relative limit is applied to the resource.limits.memory to calculate the memory threshold
   ## You can also use an absolute value, e.g.: 256Mi
   ##
-  value: 256MiB # ORIGINAL 0.4 -> value below the limit defined above
+  value: 0.4
 ## @param plugins List of default plugins to enable (should only be altered to remove defaults; for additional plugins use `extraPlugins`)
 ##
 plugins: "rabbitmq_management rabbitmq_peer_discovery_k8s"
@@ -801,7 +801,7 @@ containerSecurityContext:
 ## @param resourcesPreset Set container resources according to one common preset (allowed values: none, nano, micro, small, medium, large, xlarge, 2xlarge). This is ignored if resources is set (resources is recommended for production).
 ## More information: https://github.com/bitnami/charts/blob/main/bitnami/common/templates/_resources.tpl#L15
 ##
-resourcesPreset: "micro"
+resourcesPreset: "medium"
 ## @param resources Set container requests and limits for different resources like CPU or memory (essential for production workloads)
 ## Example:
 ## resources:
