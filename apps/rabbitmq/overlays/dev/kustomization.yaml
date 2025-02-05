@@ -9,7 +9,7 @@ resources:
 helmCharts:
   - name: rabbitmq
     repo: oci://registry-1.docker.io/bitnamicharts
-    namespace: perparedata
+    namespace: preparedata
     releaseName: rabbitmq
     # base values file
     valuesFile: ../../base/values.yaml
