@@ -5,3 +5,4 @@ namespace: preparedata
 resources:
   - deployment.yaml
   - service.yaml
+  - sqlite-pvc.yaml

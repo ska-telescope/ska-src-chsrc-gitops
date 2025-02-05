@@ -57,8 +57,10 @@ spec:
           image: registry.gitlab.com/ska-telescope/src/src-dm/ska-src-dm-local-data-preparer/ska-src-local-data-preparer-celery-worker:async-job-submission-2
           imagePullPolicy: IfNotPresent
           env:
+            - name: BROKER_TRANSPORT
+              value: "sqlalchemy"
             - name: CELERY_BROKER_URL
-              value: amqp://guest@ska-src-local-data-preparer-rabbitmq//
+              value: "sqlite:////var/lib/sqlite/celery_broker.db" # TODO: This no longer works. What's the way to integrate sqlite?
             - name: ABS_PATH_CELERY_RESULTS
               value: /var/celery/results
           command:
@@ -67,6 +69,9 @@ spec:
             - "prepare_data.worker"
             - "worker"
             - "--loglevel=info"
+          volumeMounts:
+            - name: sqlite-storage
+              mountPath: /var/lib/sqlite
           resources:
             limits:
               cpu: "1000m"
@@ -74,6 +79,12 @@ spec:
             requests:
               cpu: "500m"
               memory: "512Mi"
+        - name: sqlite
+          image: alpine/sqlite
+          command: ["sqlite3", "/var/lib/sqlite/celery_broker.db"]
+          volumeMounts:
+            - name: sqlite-storage
+              mountPath: /var/lib/sqlite
       volumes:
         - name: userspace-volume
           persistentVolumeClaim:
@@ -81,3 +92,6 @@ spec:
         - name: rse-volume
           persistentVolumeClaim:
             claimName: preparedata-rse-pvc
+        - name: sqlite-storage
+          persistentVolumeClaim:
+            claimName: sqlite-pvc
