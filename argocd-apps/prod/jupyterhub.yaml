@@ -15,8 +15,8 @@ spec:
     namespace: jupyterhub
   syncPolicy:
     managedNamespaceMetadata:
-      labels:
-        field.cattle.io/projectId: p-z6jsk
+      annotations:
+        field.cattle.io/projectId: c-m-g4gg2jck:p-z6jsk
     automated:
       prune: true
       selfHeal: true
