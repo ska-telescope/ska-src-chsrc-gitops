@@ -3,4 +3,4 @@ kind: Namespace
 metadata:
   name: gatekeeper
   annotations:
-    field.cattle.io/projectId: c-m-g4gg2jck:p-z6jsk 
+    field.cattle.io/projectId: c-m-g4gg2jck:p-z6jsk

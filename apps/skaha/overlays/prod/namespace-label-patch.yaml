@@ -3,11 +3,11 @@ kind: Namespace
 metadata:
   name: skaha-system
   annotations:
-    field.cattle.io/projectId: c-m-g4gg2jck:p-z6jsk 
+    field.cattle.io/projectId: c-m-g4gg2jck:p-z6jsk
 ---
 apiVersion: v1
 kind: Namespace
 metadata:
   name: skaha-workload
   annotations:
-    field.cattle.io/projectId: c-m-g4gg2jck:p-z6jsk 
+    field.cattle.io/projectId: c-m-g4gg2jck:p-z6jsk
