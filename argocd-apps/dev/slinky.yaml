@@ -19,8 +19,8 @@ spec:
     namespace: slinky
   syncPolicy:
     managedNamespaceMetadata:
-      labels:
-        field.cattle.io/projectId: p-qvdqp
+      annotations:
+        field.cattle.io/projectId: c-m-87s92m9v:p-qvdqp
     automated:
       prune: true
       selfHeal: true
