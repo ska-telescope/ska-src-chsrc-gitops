@@ -21,4 +21,4 @@ helmCharts:
     fullnameOverride: harbor
 
 patches:
-  - path: remove-database-secret.yaml
+  - path: ../../remove-database-secret.yaml

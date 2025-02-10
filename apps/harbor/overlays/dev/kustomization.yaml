@@ -22,4 +22,4 @@ helmCharts:
 
 # This kind of patch is unlikely to work in base, only overlay
 patches:
-  - path: remove-database-secret.yaml
+  - path: ../../remove-database-secret.yaml

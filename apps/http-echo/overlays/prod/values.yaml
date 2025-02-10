@@ -1,5 +1,5 @@
 ---
-text: "Hello SKACH dev cluster"
+text: "Hello SKACH prod cluster"
 ingress:
   main:
     hosts:
