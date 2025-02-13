@@ -16,7 +16,7 @@ spec:
   syncPolicy:
     managedNamespaceMetadata:
       annotations:
-        field.cattle.io/projectId: c-m-87s92m9v:qvdqp
+        field.cattle.io/projectId: c-m-87s92m9v:p-qvdqp
     automated:
       prune: true
       selfHeal: true
