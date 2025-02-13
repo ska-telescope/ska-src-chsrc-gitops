@@ -11,13 +11,16 @@ spec:
   # ArgoCD will interpret all files as raw kubernetes manifests instead of kustomize resources
   sources:
   - repoURL: https://gitlab.com/ska-telescope/src/deployments/chsrc/ska-src-chsrc-services-cd.git
-    targetRevision: choc-110-global-dashboard
+    targetRevision: dev
     ref: argorepo
     path: apps/kube-prometheus-stack/overlays/dev
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
   syncPolicy:
+    managedNamespaceMetadata:
+      annotations:
+        field.cattle.io/projectId: c-m-87s92m9v:p-qvdqp
     automated:
       prune: true
       selfHeal: true

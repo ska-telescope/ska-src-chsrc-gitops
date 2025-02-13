@@ -7,13 +7,16 @@ spec:
   project: default
   sources:
     - repoURL: https://gitlab.com/ska-telescope/src/deployments/chsrc/ska-src-chsrc-services-cd.git
-      targetRevision: dev
+      targetRevision: choc-178-preparedata
       ref: argorepo
       path: apps/gatekeeper/overlays/dev
   destination:
     server: https://kubernetes.default.svc
     namespace: gatekeeper
   syncPolicy:
+    managedNamespaceMetadata:
+      annotations:
+        field.cattle.io/projectId: c-m-87s92m9v:p-qvdqp
     automated:
       prune: true
       selfHeal: true

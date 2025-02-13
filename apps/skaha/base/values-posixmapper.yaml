@@ -85,5 +85,6 @@ postgresql:
     schema: mapping
   storage:
     spec:
-      hostPath:
-        path: "/posix-mapper/data"
+      hostPath: null # ORIGINAL values sets a hostPath, but we want to use a pvc instead (below)
+      persistentVolumeClaim:
+        claimName: postgresdb-pvc

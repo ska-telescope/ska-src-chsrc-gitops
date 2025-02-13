@@ -1,0 +1,87 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-alerting
+  namespace: monitoring
+  labels:
+    grafana_alert: "1"
+data:
+  grafana-alert.yaml: |
+    apiVersion: 1
+    groups:
+        - orgId: 1
+          name: Samples
+          folder: Samples
+          interval: 1h
+          rules:
+            - uid: deakebwyh7bpcd
+              title: UK Canfar Low
+              condition: B
+              data:
+                - refId: A
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: prometheus
+                  model:
+                    disableTextWrap: false
+                    editorMode: builder
+                    expr: avg_over_time(probe_success{instance="https://canfar.ral.uksrc.org/cavern/"}[24h]) * 100
+                    fullMetaSearch: false
+                    includeNullMetadata: true
+                    instant: true
+                    intervalMs: 1000
+                    legendFormat: __auto
+                    maxDataPoints: 43200
+                    range: false
+                    refId: A
+                    useBackend: false
+                - refId: B
+                  relativeTimeRange:
+                    from: 600
+                    to: 0
+                  datasourceUid: __expr__
+                  model:
+                    conditions:
+                        - evaluator:
+                            params:
+                                - 90
+                            type: lt
+                          operator:
+                            type: and
+                          query:
+                            params:
+                                - C
+                          reducer:
+                            params: []
+                            type: last
+                          type: query
+                          unloadEvaluator:
+                            params:
+                                - 95
+                            type: gt
+                    datasource:
+                        type: __expr__
+                        uid: __expr__
+                    expression: A
+                    intervalMs: 1000
+                    maxDataPoints: 43200
+                    refId: B
+                    type: threshold
+              noDataState: NoData
+              execErrState: Error
+              for: 2h
+              annotations: {}
+              labels: {}
+              isPaused: false
+              notification_settings:
+                receiver: skao-slack-dev
+
+    contactPoints:
+      - orgId: 1
+        name: skao-slack-dev
+        receivers:
+          - uid: skao-slack-webhook-uid
+            type: slack
+            settings:
+              url: $SLACK_WEBHOOK_DEV

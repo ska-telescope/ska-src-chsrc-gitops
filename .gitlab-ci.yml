@@ -81,5 +81,7 @@ pages:
   artifacts:
     paths:
       - public
+  pages:
+    expire_in: never
 #  only:
 #    - main

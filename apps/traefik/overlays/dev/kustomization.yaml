@@ -9,6 +9,7 @@ resources:
 helmCharts:
   - name: traefik
     repo: https://traefik.github.io/charts
+    includeCRDs: true
     version: 25.0.0
     namespace: traefik
     # base values file

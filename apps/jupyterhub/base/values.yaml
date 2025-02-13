@@ -81,3 +81,5 @@ singleuser:
   #   guarantee: 1G  # current default [3.3.8 - 07-24]
   # networkPolicy:
   #   allowedIngressPorts: [ssh]  # allow ssh &| sftp?
+  cloudMetadata:
+    blockWithIptables: false

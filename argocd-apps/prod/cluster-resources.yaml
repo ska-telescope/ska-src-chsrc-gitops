@@ -18,6 +18,9 @@ spec:
     server: https://kubernetes.default.svc
     namespace: cluster-resources
   syncPolicy:
+    managedNamespaceMetadata:
+      annotations:
+        field.cattle.io/projectId: c-m-g4gg2jck:p-z6jsk
     automated:
       prune: true
       selfHeal: true
