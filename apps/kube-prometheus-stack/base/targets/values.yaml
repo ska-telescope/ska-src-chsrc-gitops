@@ -766,6 +766,72 @@ prometheus:
 
 ##################################################
 #                                                #
+#                    SKAOSRC                     #
+#                                                #
+##################################################
+      - job_name: 'skaosrc-blackbox'
+# DO NOT edit these values unless instructed otherwise 
+        metrics_path: /probe
+        params:
+          module: [http_2xx]
+        relabel_configs:
+          - source_labels: [__address__]
+            target_label: __param_target
+          - source_labels: [__param_target]
+            target_label: instance
+          - source_labels: [module]
+            target_label: __param_module
+          - target_label: __address__
+            replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
+          - target_label: location
+            replacement: 'SKAOSRC'
+# Please DO add your targets below this line
+        static_configs:
+          - targets:
+              - https://storm.srcdev.skao.int/
+            labels:
+              servicename: 'rucio-storage-element'
+              environment: 'prod'
+
+          - targets:
+              - https://jupyterhub.srcdev.skao.int/
+            labels:
+              servicename: 'jupyterhub'
+              environment: 'dev'
+
+          - targets:
+              - https://canfar.srcdev.skao.int/science-portal/
+            labels:
+              servicename: 'science-portal'
+              environment: 'dev'
+
+          - targets:
+              - https://canfar.srcdev.skao.int/storage/list
+            labels:
+              servicename: 'cavern'
+              environment: 'dev'
+
+          - targets:
+              - https://perfsonar.srcdev.skao.int/
+            labels:
+              servicename: 'perfsonar'
+              environment: 'dev'
+
+          - targets:
+              - https://harbor.srcdev.skao.int/
+            labels:
+              servicename: 'harbor'
+              environment: 'dev'
+
+          - targets:
+              - https://monit.srcdev.skao.int/grafana
+            labels:
+              servicename: 'grafana'
+              environment: 'dev'
+
+
+##################################################
+#                                                #
 #                    SWESRC                      #
 #                                                #
 ##################################################
