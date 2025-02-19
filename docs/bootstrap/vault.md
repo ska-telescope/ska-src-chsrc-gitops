@@ -14,19 +14,25 @@ In order to initialise Vault, one will need to:
 
 ## Connect to Vault
 
-First, establish a connection to Vault.
+First, establish a connection to Vault. If you're interacting with Vault from ela, be sure that your Vault commands are on the same node where you port-forwarded to vault service.
 
-```
+```bash
 kubectl port-forward svc/vault -n vault 8200:8200
+```
+
+From second shell on the same node. **Set histcontrol to ignoreboth and lead the ignore cmd with a whitespace to not expose VAULT_TOKEN to bash-history!**
+```bash
 export VAULT_ADDR=http://127.0.0.1:8200
 export VAULT_SKIP_VERIFY=true
+HISTCONTROL=ignoreboth
+ export VAULT_TOKEN="<Initial Root Token>"
 ```
 
 ## Initialisation (Unseal)
 
 This will initialise Vault and generate new unseal keys.
 
-```
+```bash
 vault operator init | tee secrets-delme.txt
 ```
 
@@ -40,13 +46,13 @@ Save the output to a secret in the Vault namespace,
 and then immediately delete the local copy of the secrets.
 This will allow anybody with admin rights to the cluster to recover Vault.
 
-```
+```bash
 kubectl create secret generic unseal-keys --from-file=keys=secrets-delme.txt --namespace=vault && rm secrets-delme.txt
 ```
 
 Now it's time to unseal. Run the following command until Vault is unsealed. By default it will take 3 runs using 3 different unseal keys.
 
-```
+```bash
 vault operator unseal
 ```
 
@@ -54,7 +60,7 @@ vault operator unseal
 
 If one ever needs to recover the token or keys, one can read it from the `unseal-keys` secret in the `vault` namespace, as follows:
 
-```
+```bash
 # Get the token to log in with
 kubectl get secret unseal-keys -n vault -o jsonpath='{.data}' | jq -r 'to_entries[] | "\(.key): \(.value | @base64d)"'
 ```
@@ -78,12 +84,12 @@ or simply not import the secrets and create them by hand.
 The following assumes that one previously created a [backup](#exportbackup-config) of all Vault
 configuration and secrets under `scripts/vault/export` using the provided export scripts.
 
-```
+```bash
 cd scripts/vault/export
-../import/import-authconfig.sh
-../import/import-policies.sh
-../import/import-roles.sh
-../import/import-secrets.sh
+../import-authconfig.sh
+../import-policies.sh
+../import-roles.sh
+../import-secrets.sh
 ```
 
 !!! Tip
@@ -98,7 +104,7 @@ To backup the Vault config, one can use the scripts under `scripts/vault/`.
 The scripts will just write to the working directory, so create a new directory to store the export.
 For instance:
 
-```
+```bash
 cd scripts/vault
 mkdir export
 cd export
@@ -110,9 +116,11 @@ Each of them saves a different part of the Vault configuration as different
 files to the working dir, the last one being the secrets themselves,
 so be careful to not leave them in your hard drive unprotected for long.
 
-```
+```bash
 ../export-authconfig.sh
 ../export-roles.sh
 ../export-policies.sh
 ../export-secrets.sh
 ```
+
+It is expected that exporting/importing root doesn't work.
