@@ -28,6 +28,8 @@ HISTCONTROL=ignoreboth
  export VAULT_TOKEN="<Initial Root Token>"
 ```
 
+Now you can use [vault cli](https://developer.hashicorp.com/vault/install) from ela (e.g. by running the scripts from the cloned repo).
+
 ## Initialisation (Unseal)
 
 This will initialise Vault and generate new unseal keys.
