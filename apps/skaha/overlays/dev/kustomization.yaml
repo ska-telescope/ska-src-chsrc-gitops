@@ -90,6 +90,8 @@ patches:
       name: posix-mapper-tomcat
     path: ../../base/tomcat-postgres-deployment-patch.yaml
   # The following two patches ensure the postgres deployment uses POSTGRES_PASSWORD env from the secret, not from the configmap as defined by Helm.
+  # It also will ensure that postgres doesn't directly use the root dir of the PVC, but a subdirectory "db".
+  # This is because provisioned volumes contain a "lost+found" directory, and postgres fails to start if the directory is not empty. By creating a subdir we work around this.
   - target:
       version: v1
       kind: Deployment

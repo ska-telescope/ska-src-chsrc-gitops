@@ -1,8 +1,30 @@
-- op: add
-  path: /spec/template/spec/containers/0/env
-  value:
-    - name: POSTGRES_PASSWORD
-      valueFrom:
-        secretKeyRef:
-          name: skaha-secrets
-          key: postgres-password
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: posix-mapper-postgres
+spec:
+  template:
+    spec:
+      # 1) Add an initContainer (will be created/merged automatically)
+      initContainers:
+        - name: init-db-dir
+          image: busybox
+          command: ["/bin/sh", "-c", "mkdir -p /var/lib/postgresql/data/db && chown -R 999:999 /var/lib/postgresql/data/db"]
+          volumeMounts:
+            - name: postgresdb
+              mountPath: /var/lib/postgresql/data
+
+      # 2) Patch the existing container named 'postgres'
+      containers:
+        - name: postgres  # Must match the existing container's name
+          volumeMounts:
+            - name: postgresdb  # Must match existing volumeMount's name
+              mountPath: /var/lib/postgresql/data
+              subPath: db
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: skaha-secrets
+                  key: postgres-password
