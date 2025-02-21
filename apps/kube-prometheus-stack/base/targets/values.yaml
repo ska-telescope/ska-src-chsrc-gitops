@@ -1058,7 +1058,7 @@ prometheus:
 # Please DO add your targets below this line
         static_configs:
           - targets:
-              - https://dachs.ivoa.srcdev.skao.int/
+              - https://dachs.ivoa.srcnet.skao.int/
             labels:
               servicename: 'ivoa-tap'
               environment: 'prod'
@@ -1094,7 +1094,7 @@ prometheus:
               environment: 'prod'
 
           - targets:
-              - https://rucio.srcdev.skao.int/ping
+              - https://rucio.srcnet.skao.int/ping
             labels:
               servicename: 'rucio'
               environment: 'prod'
