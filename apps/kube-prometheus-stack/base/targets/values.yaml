@@ -797,37 +797,37 @@ prometheus:
               - https://jupyterhub.srcdev.skao.int/
             labels:
               servicename: 'jupyterhub'
-              environment: 'dev'
+              environment: 'prod'
 
           - targets:
               - https://canfar.srcdev.skao.int/science-portal/
             labels:
               servicename: 'science-portal'
-              environment: 'dev'
+              environment: 'prod'
 
           - targets:
               - https://canfar.srcdev.skao.int/storage/list
             labels:
               servicename: 'cavern'
-              environment: 'dev'
+              environment: 'prod'
 
           - targets:
               - https://perfsonar.srcdev.skao.int/
             labels:
               servicename: 'perfsonar'
-              environment: 'dev'
+              environment: 'prod'
 
           - targets:
               - https://harbor.srcdev.skao.int/
             labels:
               servicename: 'harbor'
-              environment: 'dev'
+              environment: 'prod'
 
           - targets:
               - https://monit.srcdev.skao.int/grafana
             labels:
               servicename: 'grafana'
-              environment: 'dev'
+              environment: 'prod'
 
 
 ##################################################
@@ -1058,7 +1058,7 @@ prometheus:
 # Please DO add your targets below this line
         static_configs:
           - targets:
-              - https://dachs.ivoa.srcdev.skao.int/
+              - https://dachs.ivoa.srcnet.skao.int/
             labels:
               servicename: 'ivoa-tap'
               environment: 'prod'
@@ -1094,7 +1094,7 @@ prometheus:
               environment: 'prod'
 
           - targets:
-              - https://rucio.srcdev.skao.int/ping
+              - https://rucio.srcnet.skao.int/ping
             labels:
               servicename: 'rucio'
               environment: 'prod'
