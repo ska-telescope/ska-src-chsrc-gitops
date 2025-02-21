@@ -494,6 +494,11 @@ data:
               },
               {
                 "selected": false,
+                "text": "SKAOSRC",
+                "value": "SKAOSRC"
+              },
+              {
+                "selected": false,
                 "text": "SWESRC",
                 "value": "SWESRC"
               },
