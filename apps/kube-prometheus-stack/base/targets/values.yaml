@@ -797,37 +797,37 @@ prometheus:
               - https://jupyterhub.srcdev.skao.int/
             labels:
               servicename: 'jupyterhub'
-              environment: 'dev'
+              environment: 'prod'
 
           - targets:
               - https://canfar.srcdev.skao.int/science-portal/
             labels:
               servicename: 'science-portal'
-              environment: 'dev'
+              environment: 'prod'
 
           - targets:
               - https://canfar.srcdev.skao.int/storage/list
             labels:
               servicename: 'cavern'
-              environment: 'dev'
+              environment: 'prod'
 
           - targets:
               - https://perfsonar.srcdev.skao.int/
             labels:
               servicename: 'perfsonar'
-              environment: 'dev'
+              environment: 'prod'
 
           - targets:
               - https://harbor.srcdev.skao.int/
             labels:
               servicename: 'harbor'
-              environment: 'dev'
+              environment: 'prod'
 
           - targets:
               - https://monit.srcdev.skao.int/grafana
             labels:
               servicename: 'grafana'
-              environment: 'dev'
+              environment: 'prod'
 
 
 ##################################################
