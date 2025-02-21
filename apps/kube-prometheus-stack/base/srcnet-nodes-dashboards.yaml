@@ -494,6 +494,11 @@ data:
               },
               {
                 "selected": false,
+                "text": "SKAOSRC",
+                "value": "SKAOSRC"
+              },
+              {
+                "selected": false,
                 "text": "SWESRC",
                 "value": "SWESRC"
               },
@@ -544,7 +549,7 @@ data:
         ]
       },
       "time": {
-        "from": "now-5m",
+        "from": "now-24h",
         "to": "now"
       },
       "timepicker": {
