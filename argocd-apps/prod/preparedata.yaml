@@ -9,7 +9,7 @@ spec:
     - repoURL: https://gitlab.com/ska-telescope/src/deployments/chsrc/ska-src-chsrc-services-cd.git
       targetRevision: prod
       ref: argorepo
-      path: apps/preparedata/overlays/dev
+      path: apps/preparedata/overlays/prod
   destination:
     server: https://kubernetes.default.svc
     namespace: preparedata
