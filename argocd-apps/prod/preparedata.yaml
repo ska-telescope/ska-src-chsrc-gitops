@@ -1,22 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: gatekeeper
+  name: preparedata
   namespace: argocd
 spec:
   project: default
   sources:
     - repoURL: https://gitlab.com/ska-telescope/src/deployments/chsrc/ska-src-chsrc-services-cd.git
-      targetRevision: dev
+      targetRevision: prod
       ref: argorepo
-      path: apps/gatekeeper/overlays/dev
+      path: apps/preparedata/overlays/dev
   destination:
     server: https://kubernetes.default.svc
-    namespace: gatekeeper
+    namespace: preparedata
   syncPolicy:
-    managedNamespaceMetadata:
-      annotations:
-        field.cattle.io/projectId: c-m-87s92m9v:p-qvdqp
     automated:
       prune: true
       selfHeal: true

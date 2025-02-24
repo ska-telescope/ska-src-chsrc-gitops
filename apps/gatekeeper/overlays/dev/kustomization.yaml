@@ -12,6 +12,9 @@ patches:
       version: v1
       kind: Namespace
       name: ska-src-gatekeeper-echo
+  - path: ../../base/remove-resolver-patch.yaml
+    target:
+      kind: Ingress
 
 # Helm chart definition with values overlay
 helmCharts:
