@@ -96,7 +96,12 @@ patches:
       version: v1
       kind: Deployment
       name: posix-mapper-postgres
-    path: ../../base/postgres-deploy-patch.yaml
+    path: ../../base/postgres-deploy-password-patch.yaml
+  - target:
+      version: v1
+      kind: Deployment
+      name: posix-mapper-postgres
+    path: ../../base/postgres-deploy-volume-patch.yaml
   - target:
       version: v1
       kind: ConfigMap
@@ -128,7 +133,7 @@ patches:
       version: v1
       kind: Deployment
       name: skaha-cavern-uws-postgres
-    path: ../../base/postgres-deploy-patch.yaml
+    path: ../../base/postgres-deploy-password-patch.yaml
   - target:
       version: v1
       kind: Deployment
