@@ -96,8 +96,10 @@ cd scripts/vault/export
 
 !!! Tip
     If any secrets fail syncing due to permission denied,
-    make sure the policy and role is properly configured.
-    Also check that the kubernetes auth role's **token policy** is set accordingly.
+    make sure that the **kubernetes auth role's token policy** is set accordingly.
+
+    After fixing this, you might need to **revoke authentication leases** and **delete
+    the corresponding ExternalSecret object** to trigger a re-auth and secret sync.
 
 ## Export/Backup Config
 
