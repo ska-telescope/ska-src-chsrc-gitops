@@ -202,6 +202,59 @@ data:
         },
         {
           "datasource": {
+            "type": "elasticsearch",
+            "uid": "ads0mdoz162o0c"
+          },
+          "gridPos": {
+            "h": 2,
+            "w": 4,
+            "x": 12,
+            "y": 1
+          },
+          "id": 36,
+          "options": {
+            "code": {
+              "language": "plaintext",
+              "showLineNumbers": false,
+              "showMiniMap": false
+            },
+            "content": "# Science-Gateway",
+            "mode": "markdown"
+          },
+          "pluginVersion": "11.1.0",
+          "targets": [
+            {
+              "alias": "",
+              "bucketAggs": [
+                {
+                  "field": "created_at",
+                  "id": "2",
+                  "settings": {
+                    "interval": "auto"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "datasource": {
+                "type": "elasticsearch",
+                "uid": "ads0mdoz162o0c"
+              },
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "",
+              "refId": "A",
+              "timeField": "created_at"
+            }
+          ],
+          "transparent": true,
+          "type": "text"
+        },
+        {
+          "datasource": {
             "type": "prometheus",
             "uid": "prometheus"
           },
@@ -564,6 +617,127 @@ data:
             }
           ],
           "title": "IVOA / TAP",
+          "transparent": true,
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [
+                {
+                  "options": {
+                    "0": {
+                      "color": "dark-red",
+                      "index": 1,
+                      "text": "DOWN"
+                    },
+                    "1": {
+                      "color": "green",
+                      "index": 0,
+                      "text": "UP"
+                    }
+                  },
+                  "type": "value"
+                },
+                {
+                  "options": {
+                    "match": "null",
+                    "result": {
+                      "color": "dark-red",
+                      "index": 2,
+                      "text": "DOWN"
+                    }
+                  },
+                  "type": "special"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 4,
+            "x": 12,
+            "y": 3
+          },
+          "id": 37,
+          "options": {
+            "colorMode": "background_solid",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "vertical",
+            "percentChangeColorMode": "standard",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showPercentChange": false,
+            "textMode": "auto",
+            "wideLayout": true
+          },
+          "pluginVersion": "11.1.0",
+          "targets": [
+            {
+              "columns": [
+                {
+                  "selector": "obs_id",
+                  "text": "obs_id",
+                  "type": "string"
+                }
+              ],
+              "csv_options": {
+                "delimiter": ","
+              },
+              "datasource": {
+                "type": "yesoreyeram-infinity-datasource",
+                "uid": "fdq13plfs8wsgd"
+              },
+              "disableTextWrap": false,
+              "editorMode": "builder",
+              "expr": "sum by(servicename) (probe_success{location=\"global\", servicename=\"science-gateway\"})",
+              "filterExpression": "",
+              "filters": [],
+              "format": "as-is",
+              "fullMetaSearch": false,
+              "global_query_id": "",
+              "includeNullMetadata": true,
+              "legendFormat": "__auto",
+              "parser": "backend",
+              "range": true,
+              "refId": "A",
+              "root_selector": "",
+              "source": "url",
+              "type": "csv",
+              "url": "https://dachs.ivoa.srcdev.skao.int/__system__/tap/run/sync?REQUEST=doQuery&LANG=ADQL&FORMAT=CSV&QUERY=SELECT TOP 1 * FROM ivoa.obscore",
+              "url_options": {
+                "body_content_type": "text/plain",
+                "body_type": "raw",
+                "data": "",
+                "method": "GET"
+              },
+              "useBackend": false
+            }
+          ],
+          "title": "Science-Gateway",
           "transparent": true,
           "type": "stat"
         },
@@ -1402,6 +1576,6 @@ data:
       "timezone": "browser",
       "title": "Central Monitoring / Global Services",
       "uid": "cdfjn9jl986iod",
-      "version": 4,
+      "version": 1,
       "weekStart": ""
     }
