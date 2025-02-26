@@ -1113,7 +1113,7 @@ prometheus:
               environment: 'prod'
 
           - targets:
-              #- https://ska-iam.stfc.ac.uk/:443
+              - https://gateway-test.srcdev.skao.int/
             labels:
               servicename: 'science-gateway'
               environment: 'prod'
