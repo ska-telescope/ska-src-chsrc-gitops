@@ -39,6 +39,7 @@ theme:
     - content.code.select
     - navigation.indexes
     - admonition
+    - edit-page
 
 markdown_extensions:
   - admonition
@@ -52,3 +53,4 @@ plugins:
   - literate-nav
   - glightbox
   - git-revision-date-localized
+  - git-authors
