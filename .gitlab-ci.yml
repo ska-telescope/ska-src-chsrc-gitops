@@ -46,7 +46,7 @@ docs:
       - .gitlab-ci.yml
   script:
     - apk add --no-cache git
-    - pip3 install mkdocs mkdocs-material mkdocs-glightbox mkdocs-literate-nav mkdocs-git-revision-date-localized-plugin
+    - pip3 install mkdocs mkdocs-material mkdocs-glightbox mkdocs-literate-nav mkdocs-git-revision-date-localized-plugin mkdocs-git-authors-plugin
     - mkdocs build --strict -d site
   artifacts:
     paths:
