@@ -30,6 +30,7 @@ nav:
 
 theme:
   name: material
+  custom_dir: "docs/overrides"
   logo: images/logo.png
   language: en
   features:
@@ -52,3 +53,4 @@ plugins:
   - literate-nav
   - glightbox
   - git-revision-date-localized
+  - git-authors
