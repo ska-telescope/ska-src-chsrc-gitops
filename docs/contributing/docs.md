@@ -1,9 +1,15 @@
 # Contributing to the docs
 
-These docs live in the git repository, so please check how to [contribute to the repo](repo.md), as
-it will have to follow the same procedure.
+These docs live in the git repository, so please read the page for how to
+[contribute to the repo](repo.md), as your edits will have to follow the same
+procedure. If you want to fix small typos or make a short edit of a single page
+you can click the `Edit this page` banner in the top right corner to open an
+editor on GitLab. Please use merge requests and follow the conventions described
+in [how to contribute to the repo](repo.md). For any larger changes to the
+documentation please edit the repo locally, use merge requests, and verify your
+changes using the [local preview](#local-preview).
 
-However there are some additional tips and tricks that are specific to the docs.
+Please see below for additional tips and tricks that are specific to these docs.
 
 ## Local preview
 
