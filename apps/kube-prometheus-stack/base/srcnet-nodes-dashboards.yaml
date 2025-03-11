@@ -755,7 +755,7 @@ data:
           },
           {
             "current": {
-              "selected": true,
+              "selected": false,
               "text": "prod",
               "value": "prod"
             },
@@ -784,14 +784,14 @@ data:
           {
             "current": {
               "selected": true,
-              "text": "cavern",
-              "value": "cavern"
+              "text": "echo",
+              "value": "echo"
             },
             "datasource": {
               "type": "prometheus",
               "uid": "fee9l2f12abr4f"
             },
-            "definition": "label_values(servicename)",
+            "definition": "label_values({location=\"$sitename\"},servicename)",
             "description": "The name of the service",
             "hide": 0,
             "includeAll": false,
@@ -801,7 +801,7 @@ data:
             "options": [],
             "query": {
               "qryType": 1,
-              "query": "label_values(servicename)",
+              "query": "label_values({location=\"$sitename\"},servicename)",
               "refId": "PrometheusVariableQueryEditor-VariableQuery"
             },
             "refresh": 1,
@@ -833,6 +833,6 @@ data:
       "timezone": "browser",
       "title": "Central Monitoring / SRCNet Site Services",
       "uid": "site_specific_services",
-      "version": 2,
+      "version": 3,
       "weekStart": ""
     }
