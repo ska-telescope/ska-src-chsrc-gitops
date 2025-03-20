@@ -81,11 +81,15 @@ singleuser:
   #   allowedIngressPorts: [ssh]  # allow ssh &| sftp?
   cloudMetadata:
     blockWithIptables: false
+  extraNodeAffinity:
+    required: # only gets considered if `scheduling.userPods.nodeAffinity.matchNodePurpose: require`
+      - matchExpressions:
+          - key: "hpc"
+            operator: "In"
+            values:
+              - "true"
 
 scheduling:
-  userScheduler:
-    labels:
-      hpc: "true" # extra-labels to add to the userScheduler pods
   userPods:
     tolerations:
       - key: "hpc"
