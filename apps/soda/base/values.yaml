@@ -31,10 +31,10 @@ persistence:
   accessMode: ReadWriteMany # ORIGINAL: ReadOnlyMany
 
 affinity:
-    nodeAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-        - matchExpressions:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+    nodeSelectorTerms:
+      - matchExpressions:
           - key: "hpc"
             operator: "In"
             values:
