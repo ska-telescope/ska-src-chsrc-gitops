@@ -127,7 +127,7 @@ deployment:
         requiredDuringSchedulingIgnoredDuringExecution:
           nodeSelectorTerms:
             - matchExpressions:
-                - key: "alps"
+                - key: "hpc"
                   operator: "In"
                   values:
                     - "true"
