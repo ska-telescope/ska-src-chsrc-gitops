@@ -1,3 +1,4 @@
+# Helm chart: https://gitlab.com/ska-telescope/src/src-ia/ska-src-ia-vo-soda-deployment/-/tree/main/etc/helm?ref_type=heads
 image:
   repository: harbor.srcdev.skao.int/soda/visivo-vlkb-soda
   pullPolicy: Always
@@ -28,3 +29,13 @@ ingress: # should not be exposed via ingress
 persistence:
   storageClass: ceph-corbo-cephfs
   accessMode: ReadWriteMany # ORIGINAL: ReadOnlyMany
+
+affinity:
+    nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: "hpc"
+            operator: "In"
+            values:
+              - "true"
