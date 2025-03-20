@@ -10,10 +10,10 @@ spec:
   # WARNING: do NOT set sources.directory when using kustomize, otherwise
   # ArgoCD will interpret all files as raw kubernetes manifests instead of kustomize resources
   sources:
-  - repoURL: https://gitlab.com/ska-telescope/src/deployments/chsrc/ska-src-chsrc-services-cd.git
-    targetRevision: dev
-    ref: argorepo
-    path: apps/skaha/overlays/dev
+    - repoURL: https://gitlab.com/ska-telescope/src/deployments/chsrc/ska-src-chsrc-services-cd.git
+      targetRevision: choc-148-canfar-jh-tolerations
+      ref: argorepo
+      path: apps/skaha/overlays/dev
   destination:
     server: https://kubernetes.default.svc
     namespace: skaha-system
@@ -22,4 +22,4 @@ spec:
       prune: true
       selfHeal: true
     syncOptions:
-    - CreateNamespace=false # created by skaha-base helm chart
+      - CreateNamespace=false # created by skaha-base helm chart

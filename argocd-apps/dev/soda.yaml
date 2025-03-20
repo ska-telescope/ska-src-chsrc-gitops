@@ -7,7 +7,7 @@ spec:
   project: default
   sources:
     - repoURL: https://gitlab.com/ska-telescope/src/deployments/chsrc/ska-src-chsrc-services-cd.git
-      targetRevision: dev
+      targetRevision: choc-148-canfar-jh-tolerations
       ref: argorepo
       path: apps/soda/overlays/dev
   destination:
@@ -16,7 +16,7 @@ spec:
   syncPolicy:
     managedNamespaceMetadata:
       annotations:
-        field.cattle.io/projectId: c-m-87s92m9v:p-qvdqp 
+        field.cattle.io/projectId: c-m-87s92m9v:p-qvdqp
     automated:
       prune: true
       selfHeal: true
