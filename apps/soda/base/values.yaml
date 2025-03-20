@@ -33,9 +33,9 @@ persistence:
 affinity:
   nodeAffinity:
     requiredDuringSchedulingIgnoredDuringExecution:
-    nodeSelectorTerms:
-      - matchExpressions:
-          - key: "hpc"
-            operator: "In"
-            values:
-              - "true"
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: "hpc"
+              operator: "In"
+              values:
+                - "true"
