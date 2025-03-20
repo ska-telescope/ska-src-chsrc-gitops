@@ -4,13 +4,3 @@ image:
 persistence:
   existingClaim: "soda-rse-pvc"
   enabled: true
-
-affinity:
-    nodeAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-        - matchExpressions:
-          - key: "hpc"
-            operator: "In"
-            values:
-              - "true"
