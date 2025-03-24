@@ -53,4 +53,3 @@ plugins:
   - literate-nav
   - glightbox
   - git-revision-date-localized
-  - git-authors
