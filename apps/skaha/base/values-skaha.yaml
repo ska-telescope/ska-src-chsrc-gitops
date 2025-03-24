@@ -23,7 +23,7 @@ deployment:
     # Cron string for the image caching cron job schedule. Defaults to every minute.
     imageCache:
       refreshSchedule: "*/5 * * * *" # ORIGINAL "*/1 * * * *"
-  
+
     # Set the top-level-directory name that gets mounted at the root.
     skahaTld: "/cavern" # ORIGINAL unset
 
@@ -79,10 +79,10 @@ deployment:
     # Settings for User Sessions.  Sensible defaults supplied, but can be overridden.
     # For units of storage, see https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory.
     sessions:
-      expirySeconds: "345600"   # Duration, in seconds, until they expire and are shut down.
-      maxCount: "3"  # Max number of sessions per user.
-      minEphemeralStorage: "20Gi"   # The initial requested amount of ephemeral (local) storage.  Does NOT apply to Desktop sessions.
-      maxEphemeralStorage: "200Gi"  # The maximum amount of ephemeral (local) storage to allow a Session to extend to.  Does NOT apply to Desktop sessions.
+      expirySeconds: "345600" # Duration, in seconds, until they expire and are shut down.
+      maxCount: "3" # Max number of sessions per user.
+      minEphemeralStorage: "20Gi" # The initial requested amount of ephemeral (local) storage.  Does NOT apply to Desktop sessions.
+      maxEphemeralStorage: "200Gi" # The maximum amount of ephemeral (local) storage to allow a Session to extend to.  Does NOT apply to Desktop sessions.
       # Declare extra volume mounts in User Sessions.  The "type: parameter in volume section is constant.
       # extraVolumes:
       # - name: example-pvc-name
@@ -119,10 +119,19 @@ deployment:
       # When set to 'true' this flag will enable GPU node scheduling.  Don't forget to declare any related GPU configurations, if appropriate, in the nodeAffinity below!
       # gpuEnabled: false
 
-      # Set the YAML that will go into the "affinity.nodeAffinity" stanza for Pod Spec in User Sessions.  This can be used to enable GPU scheduling, for example, 
+      # Set the YAML that will go into the "affinity.nodeAffinity" stanza for Pod Spec in User Sessions.  This can be used to enable GPU scheduling, for example,
       # or to control how and where User Session Pods are scheduled.  This can be potentially dangerous unless you know what you are doing.
       # See https://kubernetes.io/docs/tasks/configure-pod-container/assign-pods-nodes-using-node-affinity
       # nodeAffinity: {}
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: "hpc"
+                  operator: "In"
+                  values:
+                    - "true"
+      # Tolerations not supported ATM [03-2025]
 
     # Optionally set the DEBUG port.
     # extraEnv:
@@ -172,7 +181,6 @@ deployment:
   #     hostname: myhost.example.org
   # extraHosts: []
 
-
 secrets:
   # Uncomment to enable local or self-signed CA certificates for your domain to be trusted.
   # skaha-cacert-secret:
@@ -189,7 +197,7 @@ storage:
 
 # For caching images from the Image Repository and for the writing the POSIX Users and Groups to be shared with Job files
 redis:
-  architecture: 'standalone'
+  architecture: "standalone"
   auth:
     enabled: false
   master:
