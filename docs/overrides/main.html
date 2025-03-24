@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {{ super() }}
+
+  <div class="edit-banner">
+    <a href="https://gitlab.com/ska-telescope/src/deployments/chsrc/ska-src-chsrc-services-cd/-/edit/dev/docs/{{ page.file.src_path }}"
+       class="edit-banner-text">
+      Edit this page
+    </a>
+  </div>
+
+  <style>
+    .edit-banner {
+      position: fixed;
+      top: 20px;
+      right: -50px;
+      width: 200px;
+      background-color: #d1d5db;
+      transform: rotate(45deg);
+      text-align: center;
+      padding: 10px 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .edit-banner-text {
+      font-size: 14px;
+      font-weight: bold;
+      text-decoration: none;
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+
+    .edit-banner:hover {
+      background-color: #ffffff;
+    }
+  </style>
+{% endblock %}
