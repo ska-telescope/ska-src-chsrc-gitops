@@ -65,7 +65,7 @@ spec:
 
       containers:
       - name: xrootd
-        image: rucio/xrootd:latest
+        image: rucio/test-xrootd:latest
         command: ["/usr/bin/xrootd"]
         args: ["-c", "/etc/xrootd/xrootd-http.cfg", "-k", "fifo", "-s", "/run/xrootd/xrootd-http.pid", "-n", "http"]
         ports:

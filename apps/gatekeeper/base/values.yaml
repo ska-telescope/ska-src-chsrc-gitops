@@ -25,7 +25,7 @@ ingress-nginx:
   controller:
     replicaCount: 1
     service:
-      type: LoadBalancer
+      type: ClusterIP
     metrics:
       enabled: true
     ingressClassResource:

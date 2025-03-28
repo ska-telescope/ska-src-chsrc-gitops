@@ -855,7 +855,7 @@ prometheus:
 # Please DO add your targets below this line
         static_configs:
           - targets:
-              - https://xrootd-01.swesrc.chalmers.se:80/
+              - https://xrootd-01.swesrc.chalmers.se:1094/
             labels:
               servicename: 'rucio-storage-element'
               environment: 'prod'
@@ -864,37 +864,49 @@ prometheus:
               - https://services.swesrc.chalmers.se/http-echo
             labels:
               servicename: 'echo'
-              environment: 'dev'
+              environment: 'prod'
 
           - targets:
               - https://services.swesrc.chalmers.se/jupyterhub/
             labels:
               servicename: 'jupyterhub'
-              environment: 'dev'
+              environment: 'prod'
 
           - targets:
               - https://services.swesrc.chalmers.se/science-portal/
             labels:
               servicename: 'science-portal'
-              environment: 'dev'
+              environment: 'prod'
+
+          - targets:
+              - https://services.swesrc.chalmers.se/skaha/
+            labels:
+              servicename: 'skaha'
+              environment: 'prod'
+
+          - targets:
+              - https://services.swesrc.chalmers.se/posix-mapper/
+            labels:
+              servicename: 'posix-mapper'
+              environment: 'prod'
 
           - targets:
               - https://services.swesrc.chalmers.se/storage/list
             labels:
               servicename: 'cavern'
-              environment: 'dev'
+              environment: 'prod'
 
           - targets:
               - https://perfsonar.swesrc.chalmers.se
             labels:
               servicename: 'perfsonar'
-              environment: 'dev'
+              environment: 'prod'
 
           - targets:
-              - https://gatekeeper.swesrc.chalmers.se/availability
+              - https://gatekeeper.swesrc.chalmers.se/ping
             labels:
               servicename: 'gatekeeper'
-              environment: 'dev'
+              environment: 'prod'
 
 ##################################################
 #                                                #
