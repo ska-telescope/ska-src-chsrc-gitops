@@ -452,7 +452,7 @@ data:
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "fee9l2f12abr4f"
+            "uid": "prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -550,10 +550,7 @@ data:
           "type": "timeseries"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "fee9l2f12abr4f"
-          },
+          "datasource": {},
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -635,7 +632,7 @@ data:
                 "uid": "prometheus"
               },
               "disableTextWrap": false,
-              "editorMode": "builder",
+              "editorMode": "code",
               "expr": "sum by(environment, job, location, servicename, phase) (probe_http_duration_seconds{location=\"$sitename\", servicename=~\"$service\", environment=\"$environment\"})",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
@@ -657,7 +654,7 @@ data:
         "list": [
           {
             "current": {
-              "selected": true,
+              "selected": false,
               "text": "CHSRC",
               "value": "CHSRC"
             },
@@ -755,7 +752,7 @@ data:
           },
           {
             "current": {
-              "selected": false,
+              "selected": true,
               "text": "prod",
               "value": "prod"
             },
@@ -789,9 +786,9 @@ data:
             },
             "datasource": {
               "type": "prometheus",
-              "uid": "fee9l2f12abr4f"
+              "uid": "prometheus"
             },
-            "definition": "label_values({location=\"$sitename\"},servicename)",
+            "definition": "label_values({location=\"$sitename\", environment=\"$environment\"},servicename)",
             "description": "The name of the service",
             "hide": 0,
             "includeAll": false,
@@ -801,13 +798,13 @@ data:
             "options": [],
             "query": {
               "qryType": 1,
-              "query": "label_values({location=\"$sitename\"},servicename)",
+              "query": "label_values({location=\"$sitename\", environment=\"$environment\"},servicename)",
               "refId": "PrometheusVariableQueryEditor-VariableQuery"
             },
             "refresh": 1,
             "regex": "",
             "skipUrlSync": false,
-            "sort": 1,
+            "sort": 0,
             "type": "query"
           }
         ]
@@ -833,6 +830,6 @@ data:
       "timezone": "browser",
       "title": "Central Monitoring / SRCNet Site Services",
       "uid": "site_specific_services",
-      "version": 3,
+      "version": 1,
       "weekStart": ""
     }
