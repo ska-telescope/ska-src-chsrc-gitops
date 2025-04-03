@@ -1,4 +1,4 @@
-# XRootD procedures
+# XRootD Procedures
 
 The procedures below are useful for verifying the correct functioning of our RSE, as well as for verifying that the tokens are properly configured.
 
