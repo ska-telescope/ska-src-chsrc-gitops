@@ -8,5 +8,5 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: 1000Gi
+      storage: 350000Gi
   storageClassName: ceph-corbo-cephfs-retain
