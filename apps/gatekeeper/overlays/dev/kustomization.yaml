@@ -6,21 +6,13 @@ resources:
 - certificate.yaml
 
 # Patching of regular resources
-patches:
-  - path: namespace-label-patch.yaml
-    target:
-      version: v1
-      kind: Namespace
-      name: ska-src-gatekeeper-echo
-  - path: ../../base/remove-resolver-patch.yaml
-    target:
-      kind: Ingress
+patches: []
 
 # Helm chart definition with values overlay
 helmCharts:
-  - name: ska-src-service-gatekeeper
-    repo: https://gitlab.com/api/v4/projects/61396570/packages/helm/stable
-    version: 0.0.3
+  - name: ska-src-dm-da-service-gatekeeper
+    repo: https://gitlab.com/api/v4/projects/60950975/packages/helm/stable
+    version: 0.2.1
     namespace: gatekeeper
     # base values file
     valuesFile: ../../base/values.yaml
