@@ -29,7 +29,7 @@ data:
       "links": [],
       "panels": [
         {
-          "collapsed": false,
+          "collapsed": true,
           "gridPos": {
             "h": 1,
             "w": 24,
@@ -37,114 +37,115 @@ data:
             "y": 0
           },
           "id": 7,
-          "panels": [],
-          "title": "Overview",
-          "type": "row"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "custom": {
-                "align": "auto",
-                "cellOptions": {
-                  "applyToRow": false,
-                  "mode": "gradient",
-                  "type": "color-background",
-                  "wrapText": false
-                },
-                "inspect": false
-              },
-              "mappings": [
-                {
-                  "options": {
-                    "0": {
-                      "color": "semi-dark-red",
-                      "index": 1,
-                      "text": "Offline"
-                    },
-                    "1": {
-                      "color": "semi-dark-green",
-                      "index": 0,
-                      "text": "Online"
-                    }
-                  },
-                  "type": "value"
-                }
-              ],
-              "noValue": "N/A",
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "#6d6c6c",
-                    "value": null
-                  }
-                ]
-              },
-              "unit": "none"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 10,
-            "w": 24,
-            "x": 0,
-            "y": 1
-          },
-          "id": 5,
-          "options": {
-            "cellHeight": "sm",
-            "footer": {
-              "countRows": false,
-              "fields": "",
-              "reducer": [
-                "sum"
-              ],
-              "show": false
-            },
-            "frameIndex": 5,
-            "showHeader": true,
-            "sortBy": []
-          },
-          "pluginVersion": "11.1.0",
-          "targets": [
+          "panels": [
             {
               "datasource": {
                 "type": "prometheus",
                 "uid": "prometheus"
               },
-              "disableTextWrap": false,
-              "editorMode": "code",
-              "expr": "last_over_time(probe_success{location=~\".+\", environment=\"$environment\", servicename=~\"gatekeeper|jupyterhub|science-portal|cavern|perfsonar|rucio-storage-element\"}[10m])",
-              "format": "table",
-              "fullMetaSearch": false,
-              "includeNullMetadata": true,
-              "instant": false,
-              "legendFormat": "{{servicename}}",
-              "range": true,
-              "refId": "A",
-              "useBackend": false
+              "fieldConfig": {
+                "defaults": {
+                  "color": {
+                    "mode": "thresholds"
+                  },
+                  "custom": {
+                    "align": "auto",
+                    "cellOptions": {
+                      "applyToRow": false,
+                      "mode": "gradient",
+                      "type": "color-background",
+                      "wrapText": false
+                    },
+                    "inspect": false
+                  },
+                  "mappings": [
+                    {
+                      "options": {
+                        "0": {
+                          "color": "semi-dark-red",
+                          "index": 1,
+                          "text": "Offline"
+                        },
+                        "1": {
+                          "color": "semi-dark-green",
+                          "index": 0,
+                          "text": "Online"
+                        }
+                      },
+                      "type": "value"
+                    }
+                  ],
+                  "noValue": "N/A",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "#6d6c6c",
+                        "value": null
+                      }
+                    ]
+                  },
+                  "unit": "none"
+                },
+                "overrides": []
+              },
+              "gridPos": {
+                "h": 10,
+                "w": 24,
+                "x": 0,
+                "y": 1
+              },
+              "id": 5,
+              "options": {
+                "cellHeight": "sm",
+                "footer": {
+                  "countRows": false,
+                  "fields": "",
+                  "reducer": [
+                    "sum"
+                  ],
+                  "show": false
+                },
+                "frameIndex": 5,
+                "showHeader": true,
+                "sortBy": []
+              },
+              "pluginVersion": "11.1.0",
+              "targets": [
+                {
+                  "datasource": {
+                    "type": "prometheus",
+                    "uid": "prometheus"
+                  },
+                  "disableTextWrap": false,
+                  "editorMode": "code",
+                  "expr": "last_over_time(probe_success{location=~\".+\", environment=\"$environment\", servicename=~\"gatekeeper|jupyterhub|science-portal|cavern|perfsonar|rucio-storage-element\"}[10m])",
+                  "format": "table",
+                  "fullMetaSearch": false,
+                  "includeNullMetadata": true,
+                  "instant": false,
+                  "legendFormat": "{{servicename}}",
+                  "range": true,
+                  "refId": "A",
+                  "useBackend": false
+                }
+              ],
+              "title": "Overview",
+              "transformations": [
+                {
+                  "id": "groupingToMatrix",
+                  "options": {
+                    "columnField": "servicename",
+                    "rowField": "location",
+                    "valueField": "Value"
+                  }
+                }
+              ],
+              "type": "table"
             }
           ],
           "title": "Overview",
-          "transformations": [
-            {
-              "id": "groupingToMatrix",
-              "options": {
-                "columnField": "servicename",
-                "rowField": "location",
-                "valueField": "Value"
-              }
-            }
-          ],
-          "type": "table"
+          "type": "row"
         },
         {
           "collapsed": false,
@@ -152,7 +153,7 @@ data:
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 11
+            "y": 1
           },
           "id": 8,
           "panels": [],
@@ -199,7 +200,7 @@ data:
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 12
+            "y": 2
           },
           "id": 1,
           "options": {
@@ -304,7 +305,7 @@ data:
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 12
+            "y": 2
           },
           "id": 2,
           "options": {
@@ -384,7 +385,7 @@ data:
             "h": 10,
             "w": 11,
             "x": 0,
-            "y": 20
+            "y": 10
           },
           "id": 6,
           "options": {
@@ -442,7 +443,7 @@ data:
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 30
+            "y": 20
           },
           "id": 9,
           "panels": [],
@@ -506,13 +507,38 @@ data:
               },
               "unit": "s"
             },
-            "overrides": []
+            "overrides": [
+              {
+                "__systemRef": "hideSeriesFrom",
+                "matcher": {
+                  "id": "byNames",
+                  "options": {
+                    "mode": "exclude",
+                    "names": [
+                      "science-portal "
+                    ],
+                    "prefix": "All except:",
+                    "readOnly": true
+                  }
+                },
+                "properties": [
+                  {
+                    "id": "custom.hideFrom",
+                    "value": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": true
+                    }
+                  }
+                ]
+              }
+            ]
           },
           "gridPos": {
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 31
+            "y": 21
           },
           "id": 12,
           "options": {
@@ -609,7 +635,7 @@ data:
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 31
+            "y": 21
           },
           "id": 11,
           "options": {
@@ -654,7 +680,7 @@ data:
         "list": [
           {
             "current": {
-              "selected": false,
+              "selected": true,
               "text": "CHSRC",
               "value": "CHSRC"
             },
@@ -752,9 +778,9 @@ data:
           },
           {
             "current": {
-              "selected": false,
-              "text": "prod",
-              "value": "prod"
+              "selected": true,
+              "text": "dev",
+              "value": "dev"
             },
             "hide": 0,
             "includeAll": false,
@@ -763,12 +789,12 @@ data:
             "name": "environment",
             "options": [
               {
-                "selected": true,
+                "selected": false,
                 "text": "prod",
                 "value": "prod"
               },
               {
-                "selected": false,
+                "selected": true,
                 "text": "dev",
                 "value": "dev"
               }
@@ -781,14 +807,10 @@ data:
           {
             "current": {
               "selected": true,
-              "text": "echo",
-              "value": "echo"
+              "text": "science-portal",
+              "value": "science-portal"
             },
-            "datasource": {
-              "type": "prometheus",
-              "uid": "fee9l2f12abr4f"
-            },
-            "definition": "label_values({location=\"$sitename\"},servicename)",
+            "definition": "label_values({location=\"$sitename\", environment=\"$environment\"},servicename)",
             "description": "The name of the service",
             "hide": 0,
             "includeAll": false,
@@ -798,13 +820,13 @@ data:
             "options": [],
             "query": {
               "qryType": 1,
-              "query": "label_values({location=\"$sitename\"},servicename)",
+              "query": "label_values({location=\"$sitename\", environment=\"$environment\"},servicename)",
               "refId": "PrometheusVariableQueryEditor-VariableQuery"
             },
             "refresh": 1,
             "regex": "",
             "skipUrlSync": false,
-            "sort": 1,
+            "sort": 0,
             "type": "query"
           }
         ]
@@ -828,7 +850,7 @@ data:
         ]
       },
       "timezone": "browser",
-      "title": "Central Monitoring / SRCNet Site Services dev",
+      "title": "Central Monitoring / SRCNet Site Services",
       "uid": "site_specific_services",
       "version": 1,
       "weekStart": ""
