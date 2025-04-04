@@ -1,0 +1,18 @@
+# These are PVs that are included in the helm chart which we don't need since we do dynamic provisioning and can't use hostPath
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: harvester
+$patch: delete
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: harvester-wdirs
+$patch: delete
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mariadb
+$patch: delete

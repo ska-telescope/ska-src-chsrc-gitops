@@ -1,0 +1,7 @@
+# The configmap is too big to be synced in the kubectl  Therefore we force this to be added via create/replace.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: harvester-sandbox
+  annotations:
+    argocd.argoproj.io/sync-options: Replace=true

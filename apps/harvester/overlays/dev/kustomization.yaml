@@ -1,0 +1,35 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: harvester
+
+resources:
+- ../../base
+- certificate.yaml
+
+# Helm chart definition with values overlay
+helmCharts:
+- name: harvester
+  repo: https://gitlab.com/api/v4/projects/61396570/packages/helm/stable
+  version: 0.1.0
+  namespace: harvester
+  releaseName: harvester
+  # base values file
+  valuesFile: ../../base/values.yaml
+  # overlay values file that will override the base
+  additionalValuesFiles:
+  - values.yaml
+  valuesInline:
+    fullnameOverride: harvester
+
+# Normally we don't use "patchesStrategicMerge", but using "patches:" here crashes kustomize
+# when combining multiple $patch: delete documents together in one file.
+# See https://github.com/fluxcd/kustomize-controller/issues/1306
+# Kustomize is built into argocd images
+# (check with kubectl -n argocd exec -it deployment/argocd-repo-server -n argocd -- kustomize version)
+# so we'll keep patchesStrategicMerge for now.
+patchesStrategicMerge:
+  - ../../base/delete-pvs.yaml
+
+# ConfigMap is too big to be synced via the default kubectl apply, so we add annnotations for it to be created.
+patches:
+  - path: ../../base/harvester-sandbox-patch.yaml

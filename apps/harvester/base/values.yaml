@@ -1,0 +1,72 @@
+# Default values for harvester.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+global:
+  secret: "panda-secrets"
+
+harvester:
+  fullnameOverride: "harvester"
+  # enable harvester
+  enabled: true
+  # container image and tag
+  image:
+    tag: "v0.5.14"
+    # tag: "master"
+
+  # PV with selector support
+  # ORIGINAL commented
+  persistentvolume:
+      create: true # persistentvolume.false = dont create PV or PVCs
+      selector: false
+      class: ceph-corbo-cephfs
+      size: 5Gi
+  # ORIGINAL commented
+  persistentvolumecondor:
+      create: false # persistentvolumecondor.false = use dynamic provisioning instead of explicitly creating a PV
+      class: ceph-corbo-cephfs
+      size: 5Gi
+      selector: false
+
+  # Experiment
+  experiment: ""
+
+  # http/s proxy if containers need it to access external services
+  #httpProxy: "http://proxy.sdcc.bnl.local:3128"
+  #httpsProxy: "http://proxy.sdcc.bnl.local:3128"
+
+  # run containers with no-root PID e.g. for OKD
+  #noRoot: true
+  
+  resources:
+    limits:
+      cpu: 500m # ORIGINAL 4000m
+      memory: 1Gi # ORIGINAL 16Gi
+    requests:
+      cpu: 500m # ORIGINAL 4000m
+      memory: 1Gi # ORIGINAL 16Gi
+
+mariadb:
+  fullnameOverride: "mariadb"
+  # enable database
+  enabled: true
+
+  # PV with selector support
+  # ORIGINAL commented
+  persistentvolume:
+      selector: false
+      size: 5Gi
+      class: ceph-corbo-cephfs
+
+  resources:
+    limits:
+      cpu: 500m # ORIGINAL 4000m
+      memory: 1Gi # ORIGINAL 16Gi
+    requests:
+      cpu: 500m # ORIGINAL 4000m
+      memory: 1Gi # ORIGINAL 16Gi
+  
+  podSecurityContext:
+    # This matches the uid that the mariadb image runs as.
+    # Without setting this, mariadb gets a permission denied writing to the filesystem.
+    fsGroup: 1001
