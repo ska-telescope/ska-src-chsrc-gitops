@@ -14,25 +14,13 @@ In order to initialise Vault, one will need to:
 
 ## Connect to Vault
 
-First, establish a connection to Vault. If you're interacting with Vault from ela, be sure that your Vault commands are on the same node where you port-forwarded to vault service.
+See [Connecting to Vault](../procedures/services/vault.md#connecting-to-vault),
+and take into account that if Vault is being bootstrapped for the first time, you do not need VAULT_TOKEN,
+as the keys will be created in the next step.
 
-```bash
-kubectl port-forward svc/vault -n vault 8200:8200
-```
+## Initialisation
 
-From second shell on the same node. **Set histcontrol to ignoreboth and lead the ignore cmd with a whitespace to not expose VAULT_TOKEN to bash-history!**
-```bash
-export VAULT_ADDR=http://127.0.0.1:8200
-export VAULT_SKIP_VERIFY=true
-HISTCONTROL=ignoreboth
- export VAULT_TOKEN="<Initial Root Token>"
-```
-
-Now you can use [vault cli](https://developer.hashicorp.com/vault/install) from ela (e.g. by running the scripts from the cloned repo).
-
-## Initialisation (Unseal)
-
-This will initialise Vault and generate new unseal keys.
+This will initialise Vault and generate new unseal keys and a root token.
 
 ```bash
 vault operator init | tee secrets-delme.txt
@@ -52,20 +40,11 @@ This will allow anybody with admin rights to the cluster to recover Vault.
 kubectl create secret generic unseal-keys --from-file=keys=secrets-delme.txt --namespace=vault && rm secrets-delme.txt
 ```
 
-Now it's time to unseal. Run the following command until Vault is unsealed. By default it will take 3 runs using 3 different unseal keys.
+To recover the keys or root token, see [here](../procedures/services/vault.md#recover-the-root-token-or-unseal-keys).
 
-```bash
-vault operator unseal
-```
+## Unseal
 
-## Recover the token
-
-If one ever needs to recover the token or keys, one can read it from the `unseal-keys` secret in the `vault` namespace, as follows:
-
-```bash
-# Get the token to log in with
-kubectl get secret unseal-keys -n vault -o jsonpath='{.data}' | jq -r 'to_entries[] | "\(.key): \(.value | @base64d)"'
-```
+Now it's time to unseal, see [unsealing Vault](../procedures/services/vault.md#unsealing-vault).
 
 ## Configuration
 
@@ -75,10 +54,18 @@ To configure Vault, one needs to:
 * Create policies for each application.
 * Create secret engine with at least a Secret per app.
 
-The quickest to configure Vault is to restore a previous working configuration
+On a brand new Vault setup without any backed up config, one will have to enable the kv and authconfig.
+
+```bash
+vault secrets enable -path=app kv-v2
+vault auth enable kubernetes
+vault write auth/kubernetes/config kubernetes_host="https://kubernetes.default.svc"
+```
+
+However, the recommended and quickest to configure Vault is to restore a previous working configuration
 from an [export/backup](#exportbackup-config), using the scripts under `scripts/vault/`.
 
-When starting a new installation, however, one may want to use new secret values.
+When setting up on a new cluster, however, one may want to use new secret values.
 In that case, one can still follow the backup restore process,
 but then either edit the secrets to use new ones,
 or simply not import the secrets and create them by hand.
