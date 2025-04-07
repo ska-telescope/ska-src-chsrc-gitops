@@ -1119,9 +1119,6 @@ grafana:
           enabled: false
       provider:
         allowUiUpdates: false
-    # ORIGINAL # plugins is a new field
-    plugins:
-      - simpod-json-datasource
     datasources:
       enabled: true
       defaultDatasourceEnabled: true
