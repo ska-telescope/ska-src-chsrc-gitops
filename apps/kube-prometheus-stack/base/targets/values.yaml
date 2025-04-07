@@ -933,6 +933,8 @@ prometheus:
             replacement: blackbox-exporter-prometheus-blackbox-exporter.monitoring.svc.cluster.local:9115
           - target_label: location
             replacement: 'UKSRC'
+          - target_label: geohash
+            replacement: 'gcqq'
 # Please DO add your targets below this line
         static_configs:
           - targets:
