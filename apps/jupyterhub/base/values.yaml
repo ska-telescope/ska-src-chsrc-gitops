@@ -58,9 +58,10 @@ hub:
         # Mount subPaths dynamically under /home/jovyan
         for sub_path in sub_paths:
             volume_mount = {
-                'mountPath': f"/home/jovyan/{sub_path}",
-                'subPath': sub_path,
-                'name': "rse-volume",
+                "mountPath": f"/home/jovyan/{sub_path}",
+                "subPath": f"deterministic/{sub_path}",
+                "name": "rse-volume",
+                "readOnly": True,
             }
             spawner.volume_mounts.append(volume_mount)
 
@@ -103,11 +104,11 @@ singleuser:
       - name: rse-volume
         persistentVolumeClaim:
           claimName: jupyterhub-rse-pvc
-    extraVolumeMounts:
-      - name: rse-volume
-        mountPath: /home/jovyan/rse
-        subPath: deterministic
-        readOnly: true
+    # extraVolumeMounts:
+    #   - name: rse-volume
+    #     mountPath: /home/jovyan/rse
+    #     subPath: deterministic
+    #     readOnly: true
     # extraVolumes:
     #   - name: <name>
     # extraVolumeMounts: # do we need to mount additional volumes, e.g. to read&write "large" data products?
