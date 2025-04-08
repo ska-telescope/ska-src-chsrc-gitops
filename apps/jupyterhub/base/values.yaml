@@ -33,6 +33,38 @@ hub:
   extraVolumeMounts: # innovation-day
     - name: sqlite-db
       mountPath: /mnt/sqlite
+  extraConfig: # innovation-day
+    preSpawnHook: |
+      def pre_spawn_hook(spawner):
+        import os
+        import sqlite3
+
+        db_dir = "/mnt/sqlite"
+        db_path = os.path.join(db_dir, "user_data.db")
+
+        # Check if the database exists
+        if not os.path.exists(db_path):
+            raise Exception(f"Database not found at {db_path}")
+
+        # Connect to SQLite DB
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+
+        # Get subPaths for the user
+        cursor.execute("SELECT sub_path FROM sub_paths WHERE user_name = ?", (spawner.user.name,))
+        sub_paths = [row[0] for row in cursor.fetchall()]
+        conn.close()
+
+        # Mount subPaths dynamically under /home/jovyan
+        for sub_path in sub_paths:
+            volume_mount = {
+                'mountPath': f"/home/jovyan/{sub_path}",
+                'subPath': sub_path,
+                'name': "rse-volume",
+            }
+            spawner.volume_mounts.append(volume_mount)
+
+      c.KubeSpawner.pre_spawn_hook = pre_spawn_hook
   db:
     pvc:
       storageClassName: ceph-corbo-rbd-hdd
@@ -95,36 +127,6 @@ singleuser:
             operator: "In"
             values:
               - "true"
-  extraConfig: # innovation-day
-    pre_spawn_hook: |
-      def pre_spawn_hook(spawner):
-        import os
-        import sqlite3
-
-        db_dir = "/mnt/sqlite"
-        db_path = os.path.join(db_dir, "user_data.db")
-
-        # Check if the database exists
-        if not os.path.exists(db_path):
-            raise Exception(f"Database not found at {db_path}")
-
-        # Connect to SQLite DB
-        conn = sqlite3.connect(db_path)
-        cursor = conn.cursor()
-
-        # Get subPaths for the user
-        cursor.execute("SELECT sub_path FROM sub_paths WHERE user_name = ?", (spawner.user.name,))
-        sub_paths = [row[0] for row in cursor.fetchall()]
-        conn.close()
-
-        # Mount subPaths dynamically under /home/jovyan
-        for sub_path in sub_paths:
-            volume_mount = {
-                'mountPath': f"/home/jovyan/{sub_path}",
-                'subPath': sub_path,
-                'name': "rse-volume",
-            }
-            spawner.volume_mounts.append(volume_mount)
 
 scheduling:
   userPods:
