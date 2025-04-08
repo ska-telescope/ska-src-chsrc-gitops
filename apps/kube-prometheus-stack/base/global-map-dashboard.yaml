@@ -26,7 +26,6 @@ data:
       "editable": true,
       "fiscalYearStartMonth": 0,
       "graphTooltip": 0,
-      "id": 35,
       "links": [],
       "panels": [
         {
@@ -53,8 +52,20 @@ data:
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
+                    "color": "dark-blue",
                     "value": null
+                  },
+                  {
+                    "color": "light-blue",
+                    "value": 2
+                  },
+                  {
+                    "color": "super-light-yellow",
+                    "value": 4
+                  },
+                  {
+                    "color": "dark-green",
+                    "value": 6
                   }
                 ]
               }
@@ -88,6 +99,7 @@ data:
                   "showLegend": true,
                   "style": {
                     "color": {
+                      "field": "Value",
                       "fixed": "#37872D"
                     },
                     "opacity": 0.1,
@@ -131,7 +143,7 @@ data:
                   "geohash": "geohash",
                   "mode": "geohash"
                 },
-                "name": "Layer 1",
+                "name": "# mandatory services",
                 "tooltip": true,
                 "type": "markers"
               }
