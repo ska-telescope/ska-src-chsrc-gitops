@@ -23,6 +23,7 @@ nav:
     - bootstrap/vault.md
   - Misc:
     - misc/locked-credentials.md
+    - misc/manual-testing-and-development.md
   - Contributing:
     - contributing/repo.md
     - contributing/docs.md
