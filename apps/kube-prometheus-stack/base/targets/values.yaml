@@ -73,6 +73,8 @@ prometheus:
           - target_label: location
             replacement: 'CANSRC'
 # Please DO add your targets below this line
+          - target_label: geohash
+            replacement: 'c2b8'
         static_configs:
           - targets:
               - https://humpback.rcs.uvic.ca:8181/
@@ -122,6 +124,8 @@ prometheus:
           - target_label: location
             replacement: 'CHSRC'
 # Please DO add your targets below this line
+          - target_label: geohash
+            replacement: 'u0md'
         static_configs:
           - targets:
               - https://xrootd.dev.skach.org/data/
@@ -930,6 +934,8 @@ prometheus:
           - target_label: location
             replacement: 'UKSRC'
 # Please DO add your targets below this line
+          - target_label: geohash
+            replacement: 'gcqq'
         static_configs:
           - targets:
               - http://xrootd01.uksrc.rl.ac.uk:1094/static/liveness
