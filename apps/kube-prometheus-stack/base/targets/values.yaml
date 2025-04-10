@@ -546,28 +546,58 @@ prometheus:
 # Please DO add your targets below this line
         static_configs:
           - targets:
-              #- https://rucio.itsrc.org/
-            labels:
-              servicename: 'rucio-storage-element'
-              environment: 'dev/prod'
+            #   - http://itrse.oact.inaf.it/
+            # labels:
+            #   servicename: 'rucio-storage-element'
+            #   environment: 'prod'
 
           - targets:
-              #- https://jupyterhub.itsrc.org/
+              - https://jupyterhub.itsrc.oact.inaf.it/
             labels:
               servicename: 'jupyterhub'
-              environment: 'dev/prod'
+              environment: 'prod'
 
+          # - targets:
+          #     - https://perfsonar.itsrc.oact.inaf.it/
+          #   labels:
+          #     servicename: 'perfsonar'
+          #     environment: 'prod'
+              
           - targets:
-              #- https://perfsonar.itsrc.org/
+              - https://canfar.itsrc.oact.inaf.it/science-portal/
             labels:
-              servicename: 'perfsonar'
-              environment: 'dev/prod'
+              servicename: 'science-portal'
+              environment: 'prod'
 
           - targets:
-              #- https://gatekeeper.itsrc.org/
+              - https://canfar.itsrc.oact.inaf.it/skaha/
+            labels:
+              servicename: 'skaha'
+              environment: 'prod'
+
+          - targets:
+              - https://canfar.itsrc.oact.inaf.it/cavern/
+            labels:
+              servicename: 'cavern'
+              environment: 'prod'
+
+          - targets:
+              - https://canfar.itsrc.oact.inaf.it/posix-mapper/
+            labels:
+              servicename: 'posix-mapper'
+              environment: 'prod'
+
+          - targets:
+              - https://monitoring.itsrc.oact.inaf.it/
+            labels:
+              servicename: 'grafana'
+              environment: 'prod'
+
+          - targets:
+              - https://dmapi.itsrc.oact.inaf.it/ping/
             labels:
               servicename: 'gatekeeper'
-              environment: 'dev/prod'
+              environment: 'prod'            
 
 
 ##################################################
