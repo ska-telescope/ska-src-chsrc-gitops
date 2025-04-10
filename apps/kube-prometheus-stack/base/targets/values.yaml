@@ -359,7 +359,7 @@ prometheus:
 # Please DO add your targets below this line
         static_configs:
           - targets:
-              - https://spsrc14.iaa.csic.es:18027/
+              - https://rucio.espsrc.iaa.csic.es/
             labels:
               servicename: 'rucio-storage-element'
               environment: 'prod'
