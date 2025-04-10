@@ -26,4 +26,3 @@ spec:
       selfHeal: true
     syncOptions:
     - CreateNamespace=true
-    - Replace=true # Because otherwise `metadata.annotations too long`
